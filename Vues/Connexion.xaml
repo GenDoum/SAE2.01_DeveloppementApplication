@@ -2,39 +2,63 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Vues.Connexion"
-             Title="">
-    <FlexLayout BackgroundColor="DarkSeaGreen"
-                AlignItems="Center"
-                JustifyContent="Center"
-                Direction="Column">
+             x:Class="Vues.Connexion">
+    <toolkit:DockLayout BackgroundColor="DarkSeaGreen"
+                >
+        <Image
+            Source="stevemc.png"
+            toolkit:DockLayout.DockPosition="Left"
+            HeightRequest="400"
+            Margin="100"/>
+        <Image
+            Source="alexmc.png"
+            toolkit:DockLayout.DockPosition="Right"
+            HeightRequest="400"
+            Margin="150"/>
 
-        <Label 
+
+        <FlexLayout
+            JustifyContent="Center"
+            AlignItems="Center"
+            Direction="Column">
+
+            <Label 
                     Text="Connexion"
                     VerticalOptions="Center" 
                     HorizontalOptions="Center"
                     FontSize="38"
                     HeightRequest="100"/>
 
-        <Label
+            <Label
                     Text="Identifiant"
                     FontSize="20"
                     WidthRequest="200" />
 
-        <Entry 
-            WidthRequest="200"/>
+            <Entry 
+                WidthRequest="200"
+                />
 
-        <Label
+            <Label
                     Text="Mot de passe"
                     FontSize="20"
                     WidthRequest="200"/>
-        
-        <Entry WidthRequest="200"/>
+
+            <Entry WidthRequest="200"/>
+
+            <Button
+                BackgroundColor="DarkGreen"
+                Text="Valider"
+                WidthRequest="150"
+                Margin="10"/>
+
+        </FlexLayout>
 
 
 
 
 
 
-    </FlexLayout>
+
+    </toolkit:DockLayout>
+    
 </ContentPage>

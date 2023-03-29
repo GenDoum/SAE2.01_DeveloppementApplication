@@ -3,37 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Vues.PageConnexion">
-    <FlexLayout BackgroundColor="DarkSeaGreen"
-                AlignItems="Center"
-                JustifyContent="Center"
-                Direction="Column">
+    <toolkit:DockLayout BackgroundColor="DarkSeaGreen"
+                >
+        <Image
+            Source="stevemc.png"
+            toolkit:DockLayout.DockPosition="Left"
+            HeightRequest="400"
+            Margin="100"/>
+        <Image
+            Source="alexmc.png"
+            toolkit:DockLayout.DockPosition="Right"
+            HeightRequest="400"
+            Margin="150"/>
+        
 
-        <Label 
-                    Text="Connexion"
+        <FlexLayout
+            Direction="Column"
+            JustifyContent="Center"
+            AlignItems="Center">
+
+            <Label 
+                    Text="Bienvenue !"
                     VerticalOptions="Center" 
                     HorizontalOptions="Center"
                     FontSize="38"
-                    HeightRequest="100"/>
+                    HeightRequest="100" />
 
-        <Button
+            <Button
                     Text="Se connecter"
                     FontSize="20"
-                    WidthRequest="200" 
+                    WidthRequest="250"
+                    HeightRequest="70"
                     BorderColor="DarkGreen"
-                    Margin="5"/>
-        
+                    Margin="5" />
+
         <Button
                         
                     Text="Créer un compte"
                     FontSize="20"
-                    WidthRequest="200"
-                    BorderColor="DarkGreen"/>
-        
+                    WidthRequest="250"
+                    HeightRequest="70"
+                    BorderColor="DarkGreen"
+                    Margin="5" />
+    
+        </FlexLayout>
 
 
 
 
 
 
-    </FlexLayout>
+
+    </toolkit:DockLayout>
 </ContentPage>
