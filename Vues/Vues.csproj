@@ -65,6 +65,9 @@
 	  <Compile Update="Inscription.xaml.cs">
 	    <DependentUpon>Inscription.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="SearchMob.xaml.cs">
+	    <DependentUpon>SearchMob.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="PageConnexion.xaml.cs">
 	    <DependentUpon>PageConnexion.xaml</DependentUpon>
 	  </Compile>
@@ -78,6 +81,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Inscription.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SearchMob.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="PageConnexion.xaml">

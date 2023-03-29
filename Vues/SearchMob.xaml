@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Vues.SearchMob"
+             >
+    <toolkit:DockLayout>
+        
+        
+        
+        <VerticalStackLayout
+            BackgroundColor="ForestGreen"
+            toolkit:DockLayout.DockPosition="Left">
+
+            <Button Text="Coucou" />
+            <Button Text="Coucou" />
+            <Button Text="Coucou" />
+            <Button Text="Coucou" />
+            <Button Text="Coucou" />
+
+
+        </VerticalStackLayout>
+        <VerticalStackLayout
+                BackgroundColor="DarkSeaGreen"
+                toolkit:DockLayout.DockPosition="Right">
+
+            <Button Text="Coucou" />    
+
+
+
+            </VerticalStackLayout>
+
+        <VerticalStackLayout
+                BackgroundColor="DarkSeaGreen">
+            
+            
+            </VerticalStackLayout>
+        
+    </toolkit:DockLayout>
+</ContentPage>

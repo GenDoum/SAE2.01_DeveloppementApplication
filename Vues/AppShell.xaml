@@ -27,5 +27,9 @@
         ContentTemplate="{DataTemplate local:Inscription}"
         FlyoutIcon="cadena.png"
         Route="Inscriiption" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:SearchMob}"
+        FlyoutIcon="cadena.png"
+        Route="SearchMob" />
 
 </Shell>

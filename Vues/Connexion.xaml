@@ -46,7 +46,6 @@
             <Entry WidthRequest="200"/>
 
             <Button
-                BackgroundColor="DarkGreen"
                 Text="Valider"
                 WidthRequest="150"
                 Margin="10"/>
