@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Vues.PageConnexion">
+    <FlexLayout BackgroundColor="DarkSeaGreen"
+                AlignItems="Center"
+                JustifyContent="Center"
+                Direction="Column">
+
+        <Label 
+                    Text="Connexion"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    FontSize="38"
+                    HeightRequest="100"/>
+
+        <Button
+                    Text="Se connecter"
+                    FontSize="20"
+                    WidthRequest="200" 
+                    BorderColor="DarkGreen"
+                    Margin="5"/>
+        
+        <Button
+                        
+                    Text="Créer un compte"
+                    FontSize="20"
+                    WidthRequest="200"
+                    BorderColor="DarkGreen"/>
+        
+
+
+
+
+
+
+    </FlexLayout>
+</ContentPage>

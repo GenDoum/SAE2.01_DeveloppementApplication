@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vues.Accueil">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--2 lignes-->
+            <RowDefinition/>
+            <RowDefinition/> 
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <!--3 colonnes-->
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" 
+            Text="Something here maybe"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        
+        <SearchBar Grid.Column="1" Grid.Row="0"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="300">
+        </SearchBar>
+    </Grid>
+    
+
+</ContentPage>

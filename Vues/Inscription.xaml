@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vues.Inscription"
+             Title="Inscription">
+    <FlexLayout BackgroundColor="DarkSeaGreen"
+                AlignItems="Center"
+                JustifyContent="Center"
+                Direction="Column">
+
+        <Label 
+                    Text="Inscription"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    FontSize="38"
+                    HeightRequest="100"/>
+
+        <Entry
+                    MaxLength="50"
+                    Placeholder="Entrez votre nom"
+                    PlaceholderColor="DarkSlateGray"        
+                    WidthRequest="200"
+                    Style="{StaticResource CommonEntryStyle}" />
+
+        <Entry
+                    MaxLength="50"
+                    Placeholder="Entrez votre nom"
+                    PlaceholderColor="DarkSlateGray"
+                    Margin="5"
+                    WidthRequest="200"
+                    Style="{StaticResource CommonEntryStyle}" />
+
+        <Button
+                    
+                    Text="Valider"
+                    FontSize="20"
+                    WidthRequest="200"
+                    BorderColor="DarkGreen"/>
+
+
+
+
+
+
+
+    </FlexLayout>
+</ContentPage>

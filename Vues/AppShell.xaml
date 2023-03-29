@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Vues.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Vues"
+    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutWidth="65">
+
+    <ShellContent
+        ContentTemplate="{DataTemplate local:Accueil}"
+        FlyoutIcon="home.png"
+        Route="Accueil" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:Favoris}"
+        FlyoutIcon="star.png"
+        Route="Favoris" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:PageConnexion}"
+        FlyoutIcon="cadena.png"
+        Route="PageConnexion" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:Connexion}"
+        FlyoutIcon="cadena.png"
+        Route="Connexion" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:Inscription}"
+        FlyoutIcon="cadena.png"
+        Route="Inscriiption" />
+
+</Shell>
