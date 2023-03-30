@@ -30,15 +30,15 @@
             <Entry
                     MaxLength="50"
                     Placeholder="Entrez votre nom"
-                    PlaceholderColor="DarkSlateGray"        
+                    PlaceholderColor="CornflowerBlue"        
                     WidthRequest="200"
                 BackgroundColor="DimGrey"
                      />
 
             <Entry
                     MaxLength="50"
-                    Placeholder="Entrez votre nom"
-                    PlaceholderColor="DarkSlateGray"
+                    Placeholder="Entrez votre prenom"
+                    PlaceholderColor="CornflowerBlue"
                     Margin="5"
                     WidthRequest="200"
                     BackgroundColor="DimGrey"
@@ -47,15 +47,16 @@
             <Entry
                     MaxLength="50"
                     Placeholder="Entrez votre mail"
-                    PlaceholderColor="DarkSlateGray"
+                    PlaceholderColor="CornflowerBlue"
                     WidthRequest="200"
                     BackgroundColor="DimGrey"
+                    
                      />
 
             <Entry
                     MaxLength="50"
                     Placeholder="Entrez votre mot de passe"
-                    PlaceholderColor="DarkSlateGray"
+                    PlaceholderColor="CornflowerBlue"
                     Margin="5"
                     WidthRequest="200"
                     BackgroundColor="DimGrey"
@@ -66,7 +67,8 @@
                     Text="Valider"
                     FontSize="20"
                     WidthRequest="200"
-                    BorderColor="DarkGreen"/>
+                    BorderColor="CornflowerBlue"
+                    BackgroundColor="#6193b7"/>
 
 
 

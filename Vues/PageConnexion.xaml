@@ -15,31 +15,33 @@
             AlignItems="Center">
 
             <Label 
-                    Text="Bienvenue !"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center"
-                    FontSize="38"
-                    HeightRequest="100" />
+                Text="Bienvenue !"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="38"
+                HeightRequest="100" />
 
             <Button
-                    Text="Se connecter"
-                    FontSize="20"
-                    WidthRequest="250"
-                    HeightRequest="70"
-                    BorderColor="Black"
-                    BorderWidth="2"
-                    Margin="5" />
+                Text="Se connecter"
+                FontSize="20"
+                WidthRequest="250"
+                HeightRequest="70"
+                BorderColor="Black"
+                BorderWidth="2"
+                Margin="5" 
+                BackgroundColor="#6193b7"/>
 
-        <Button
+            <Button
                         
-                    Text="Créer un compte"
-                    FontSize="20"
-                    WidthRequest="250"
-                    HeightRequest="70"
-                    BorderColor="Black"
-                    BorderWidth="2"
-                    Margin="5" />
-    
+                Text="Créer un compte"
+                FontSize="20"
+                WidthRequest="250"
+                HeightRequest="70"
+                BorderColor="Black"
+                BorderWidth="2"
+                Margin="5"
+                BackgroundColor="#6193b7"/>
+
         </FlexLayout>
 
 

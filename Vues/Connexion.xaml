@@ -34,7 +34,7 @@
                 WidthRequest="200"
                 BackgroundColor="DimGrey"
                 Placeholder="Identifiant"
-                PlaceholderColor="DarkSlateGrey"
+                PlaceholderColor="CornflowerBlue"
                 />
 
             <Label
@@ -45,12 +45,14 @@
             <Entry WidthRequest="200"
                    BackgroundColor="DimGrey"
                    Placeholder="Mot de passe"
-                   PlaceholderColor="DarkSlateGrey"/>
+                   PlaceholderColor="CornflowerBlue"/>
 
             <Button
                 Text="Valider"
                 WidthRequest="150"
-                Margin="10"/>
+                Margin="10"
+                BackgroundColor="#6193b7"
+                BorderColor="CornflowerBlue"/>
 
         </FlexLayout>
 

@@ -5,36 +5,41 @@
              x:Class="Vues.SearchMob"
              >
     <toolkit:DockLayout>
-        
-        
-        
-        <VerticalStackLayout
-            BackgroundColor="ForestGreen"
-            toolkit:DockLayout.DockPosition="Left">
 
-            <Button Text="Coucou" />
-            <Button Text="Coucou" />
-            <Button Text="Coucou" />
-            <Button Text="Coucou" />
-            <Button Text="Coucou" />
+
+
+        <VerticalStackLayout
+            BackgroundColor="#153f5d"
+            toolkit:DockLayout.DockPosition="Left"
+            WidthRequest="350">
+
+            <Button Text="déconnexion" 
+                FontSize="10"
+                BackgroundColor="#6193b7"/>
+
+            <SearchBar Placeholder="Rechercher un monstre"
+                       PlaceholderColor="DimGray"
+                       CancelButtonColor="DimGray"/>
+
 
 
         </VerticalStackLayout>
-        <VerticalStackLayout
-                BackgroundColor="DarkSeaGreen"
-                toolkit:DockLayout.DockPosition="Right">
-
-            <Button Text="Coucou" />    
-
-
-
-            </VerticalStackLayout>
 
         <VerticalStackLayout
-                BackgroundColor="DarkSeaGreen">
-            
-            
-            </VerticalStackLayout>
-        
+            BackgroundColor="#6193b7"
+            toolkit:DockLayout.DockPosition="Right"
+            WidthRequest="600">
+
+        </VerticalStackLayout>
+
+
+
+        <VerticalStackLayout
+            BackgroundColor="#6193b7"
+            toolkit:DockLayout.DockPosition="Top">
+
+
+        </VerticalStackLayout>
+
     </toolkit:DockLayout>
 </ContentPage>
