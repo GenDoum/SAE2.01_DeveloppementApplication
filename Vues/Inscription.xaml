@@ -2,15 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Vues.Inscription">
+             x:Class="Vues.Inscription"
+             BackgroundImageSource="back.png">
 
 
-    <toolkit:DockLayout BackgroundColor="DarkSeaGreen">
-        <Image
-            Source="stevemc.png"
-            toolkit:DockLayout.DockPosition="Left"
-            HeightRequest="400"
-            Margin="100"/>
+    <toolkit:DockLayout>
+
         <Image
             Source="alexmc.png"
             toolkit:DockLayout.DockPosition="Right"
@@ -35,6 +32,7 @@
                     Placeholder="Entrez votre nom"
                     PlaceholderColor="DarkSlateGray"        
                     WidthRequest="200"
+                BackgroundColor="DimGrey"
                      />
 
             <Entry
@@ -43,14 +41,15 @@
                     PlaceholderColor="DarkSlateGray"
                     Margin="5"
                     WidthRequest="200"
+                    BackgroundColor="DimGrey"
                      />
-            
+
             <Entry
                     MaxLength="50"
                     Placeholder="Entrez votre mail"
                     PlaceholderColor="DarkSlateGray"
-                    
                     WidthRequest="200"
+                    BackgroundColor="DimGrey"
                      />
 
             <Entry
@@ -59,6 +58,7 @@
                     PlaceholderColor="DarkSlateGray"
                     Margin="5"
                     WidthRequest="200"
+                    BackgroundColor="DimGrey"
                      />
 
             <Button
@@ -68,11 +68,11 @@
                     WidthRequest="200"
                     BorderColor="DarkGreen"/>
 
-            
+
 
         </FlexLayout>
 
 
     </toolkit:DockLayout>
-       
+
 </ContentPage>

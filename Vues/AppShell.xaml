@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Vues"
     Shell.FlyoutBehavior="Locked"
-    Shell.FlyoutWidth="65">
+    Shell.FlyoutWidth="60">
 
     <ShellContent
         ContentTemplate="{DataTemplate local:Accueil}"

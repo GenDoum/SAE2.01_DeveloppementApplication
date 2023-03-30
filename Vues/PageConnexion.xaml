@@ -2,19 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Vues.PageConnexion">
-    <toolkit:DockLayout BackgroundColor="DarkSeaGreen"
+             x:Class="Vues.PageConnexion"
+             BackgroundImageSource="back.png">
+    <toolkit:DockLayout        
                 >
-        <Image
-            Source="stevemc.png"
-            toolkit:DockLayout.DockPosition="Left"
-            HeightRequest="400"
-            Margin="100"/>
-        <Image
-            Source="alexmc.png"
-            toolkit:DockLayout.DockPosition="Right"
-            HeightRequest="400"
-            Margin="150"/>
+        
         
 
         <FlexLayout
@@ -34,7 +26,8 @@
                     FontSize="20"
                     WidthRequest="250"
                     HeightRequest="70"
-                    BorderColor="DarkGreen"
+                    BorderColor="Black"
+                    BorderWidth="2"
                     Margin="5" />
 
         <Button
@@ -43,7 +36,8 @@
                     FontSize="20"
                     WidthRequest="250"
                     HeightRequest="70"
-                    BorderColor="DarkGreen"
+                    BorderColor="Black"
+                    BorderWidth="2"
                     Margin="5" />
     
         </FlexLayout>

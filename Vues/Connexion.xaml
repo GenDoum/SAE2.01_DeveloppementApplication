@@ -2,19 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Vues.Connexion">
-    <toolkit:DockLayout BackgroundColor="DarkSeaGreen"
+             x:Class="Vues.Connexion"
+             BackgroundImageSource="back.png">
+    <toolkit:DockLayout 
                 >
         <Image
             Source="stevemc.png"
             toolkit:DockLayout.DockPosition="Left"
             HeightRequest="400"
             Margin="100"/>
-        <Image
-            Source="alexmc.png"
-            toolkit:DockLayout.DockPosition="Right"
-            HeightRequest="400"
-            Margin="150"/>
 
 
         <FlexLayout
@@ -36,6 +32,9 @@
 
             <Entry 
                 WidthRequest="200"
+                BackgroundColor="DimGrey"
+                Placeholder="Identifiant"
+                PlaceholderColor="DarkSlateGrey"
                 />
 
             <Label
@@ -43,7 +42,10 @@
                     FontSize="20"
                     WidthRequest="200"/>
 
-            <Entry WidthRequest="200"/>
+            <Entry WidthRequest="200"
+                   BackgroundColor="DimGrey"
+                   Placeholder="Mot de passe"
+                   PlaceholderColor="DarkSlateGrey"/>
 
             <Button
                 Text="Valider"
