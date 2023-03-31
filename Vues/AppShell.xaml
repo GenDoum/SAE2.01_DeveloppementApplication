@@ -12,14 +12,6 @@
         FlyoutIcon="home.png"
         Route="Accueil" />
     <ShellContent
-        ContentTemplate="{DataTemplate local:Favoris}"
-        FlyoutIcon="star.png"
-        Route="Favoris" />
-    <ShellContent
-        ContentTemplate="{DataTemplate local:PageConnexion}"
-        FlyoutIcon="cadena.png"
-        Route="PageConnexion" />
-    <ShellContent
         ContentTemplate="{DataTemplate local:Connexion}"
         FlyoutIcon="cadena.png"
         Route="Connexion" />
@@ -31,5 +23,9 @@
         ContentTemplate="{DataTemplate local:SearchMob}"
         FlyoutIcon="cadena.png"
         Route="SearchMob" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:Favoris}"
+        FlyoutIcon="star.png"
+        Route="Favoris" />
 
 </Shell>

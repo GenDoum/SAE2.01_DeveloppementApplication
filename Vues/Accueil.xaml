@@ -1,31 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vues.Accueil">
+             x:Class="Vues.Accueil"
+             BackgroundImageSource="back.png">
+    <FlexLayout
+        Direction="Column"
+        JustifyContent="Center"
+        AlignItems="Center">
+        <FlexLayout.Resources>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource buttonBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1.05" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <!--2 lignes-->
-            <RowDefinition/>
-            <RowDefinition/> 
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <!--3 colonnes-->
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" 
-            Text="Something here maybe"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <Style x:Key="labelStyleBottom" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource buttonBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextDecorations"
+                                        Value="None" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="TextDecorations"
+                                        Value="Underline" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </FlexLayout.Resources>
         
-        <SearchBar Grid.Column="1" Grid.Row="0"
+        <Label
+            Text="Bienvenue !"
+            TextDecorations="Underline"
+            VerticalOptions="Center" 
             HorizontalOptions="Center"
-            VerticalOptions="Center"
-            WidthRequest="300">
-        </SearchBar>
-    </Grid>
-    
+            FontSize="40"
+            HeightRequest="100" />
+        <Button
+            Style="{StaticResource buttonStyle}"
+            Text="Se connecter" />
+        <Button
+            Style="{StaticResource buttonStyle}"
+            Text="Créer un compte" />
+        <Label
+            Style="{StaticResource labelStyleBottom}"
+            Text="Me connecter plus tard"
+            HeightRequest="20" />
+    </FlexLayout>
 
 </ContentPage>
