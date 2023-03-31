@@ -59,13 +59,13 @@
             </Style>
         </FlexLayout.Resources>
         
-        <Label
-            Text="Bienvenue !"
-            TextDecorations="Underline"
-            VerticalOptions="Center" 
+        <Image
+            Source="bienvenue.png"
+            VerticalOptions="Center"
+            Margin="0, 0, 0, 40"
             HorizontalOptions="Center"
-            FontSize="40"
-            HeightRequest="100" />
+            HeightRequest="100"
+            />
         <Button
             Style="{StaticResource buttonStyle}"
             Text="Se connecter" />
@@ -76,6 +76,8 @@
             Style="{StaticResource labelStyleBottom}"
             Text="Me connecter plus tard"
             HeightRequest="20" />
+        
+        <!--IMAGE SORTIE APPLI A FAIRE - EXIT avec porte style minecraft-->
     </FlexLayout>
 
 </ContentPage>

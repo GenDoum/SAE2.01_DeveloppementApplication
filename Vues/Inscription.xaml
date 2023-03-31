@@ -5,76 +5,63 @@
              x:Class="Vues.Inscription"
              BackgroundImageSource="back.png">
 
-
     <toolkit:DockLayout>
-
         <Image
             Source="alexmc.png"
             toolkit:DockLayout.DockPosition="Right"
             HeightRequest="400"
             Margin="150"/>
-
-
         <FlexLayout
             JustifyContent="Center"
             AlignItems="Center"
             Direction="Column">
-
-            <Label 
-                    Text="Inscription"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center"
-                    FontSize="38"
-                    HeightRequest="100"/>
-
-            <Entry
-                    MaxLength="50"
-                    Placeholder="Entrez votre nom"
-                    PlaceholderColor="CornflowerBlue"        
-                    WidthRequest="200"
-                BackgroundColor="DimGrey"
-                     />
-
-            <Entry
-                    MaxLength="50"
-                    Placeholder="Entrez votre prenom"
-                    PlaceholderColor="CornflowerBlue"
-                    Margin="5"
-                    WidthRequest="200"
-                    BackgroundColor="DimGrey"
-                     />
-
-            <Entry
-                    MaxLength="50"
-                    Placeholder="Entrez votre mail"
-                    PlaceholderColor="CornflowerBlue"
-                    WidthRequest="200"
-                    BackgroundColor="DimGrey"
-                    
-                     />
-
-            <Entry
-                    MaxLength="50"
-                    Placeholder="Entrez votre mot de passe"
-                    PlaceholderColor="CornflowerBlue"
-                    Margin="5"
-                    WidthRequest="200"
-                    BackgroundColor="DimGrey"
-                     />
-
-            <Button
-                    
-                    Text="Valider"
-                    FontSize="20"
-                    WidthRequest="200"
-                    BorderColor="CornflowerBlue"
-                    BackgroundColor="#6193b7"/>
-
-
-
+            <FlexLayout.Resources>
+                <Style TargetType="Entry">
+                    <Setter Property="WidthRequest" Value="250" />
+                    <Setter Property="MaxLength" Value="60" />
+                    <Setter Property="BackgroundColor" Value="{StaticResource Gray300}" />
+                    <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
+                    <Setter Property="Margin" Value="3" />
+                </Style>
+                <Style x:Key="buttonStyle" TargetType="Button">
+                    <Setter Property="FontSize" Value="Small" />
+                    <Setter Property="WidthRequest" Value="100" />
+                    <Setter Property="HeightRequest" Value="50" />
+                    <Setter Property="BorderColor" Value="Black" />
+                    <Setter Property="BorderWidth" Value="1" />
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="BackgroundColor" Value="{StaticResource buttonBackgroundColor}" />
+                    <Setter Property="VisualStateManager.VisualStateGroups">
+                        <VisualStateGroupList>
+                            <VisualStateGroup>
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                        Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                        Value="1.05" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter>
+                </Style>
+            </FlexLayout.Resources>
+            <Image
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Source="inscription.png"
+                HeightRequest="70"
+                Margin="0, 0, 0, 30" />
+            <Entry Placeholder="Nom"/>
+            <Entry Placeholder="Prénom" />
+            <Entry Placeholder="Mail" />
+            <Entry Placeholder="Mot de passe" />
+            <Button Style="{StaticResource buttonStyle}" Text="Valider" />
         </FlexLayout>
-
-
     </toolkit:DockLayout>
-
 </ContentPage>
