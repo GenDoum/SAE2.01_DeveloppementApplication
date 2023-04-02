@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Vues.SearchMob"
+             BackgroundImageSource="backsearchpage.png"
              >
     <toolkit:DockLayout>
 
@@ -11,32 +12,120 @@
         <VerticalStackLayout
             BackgroundColor="#153f5d"
             toolkit:DockLayout.DockPosition="Left"
-            WidthRequest="350">
+            WidthRequest="300"
+            >
 
-            <Button Text="déconnexion" 
+            <Button Text="Accueil" 
                 FontSize="10"
                 BackgroundColor="#6193b7"/>
-
+            
             <SearchBar Placeholder="Rechercher un monstre"
                        PlaceholderColor="DimGray"
                        CancelButtonColor="DimGray"/>
-
+            <VerticalStackLayout>
+                <ScrollView VerticalScrollBarVisibility="Always"
+                            HeightRequest="700">
+                    <StackLayout>
+                        <!-- Mob Hostile-->
+                        <ImageButton Source="zombie.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="squelette.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="creeper.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="araignee.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="phantom.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="enderman.png"
+                                     WidthRequest="303"/>
+                        <!-- Mob Passif -->
+                        <ImageButton Source="cow.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="sheep.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="pig.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="poule.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="loup.png"
+                                     WidthRequest="303"/>
+                        <!-- Boss -->
+                        <ImageButton Source="wither.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="dragon.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="warden.png"
+                                     WidthRequest="303"/>
+                    </StackLayout>
+                </ScrollView>
+            </VerticalStackLayout>
 
 
         </VerticalStackLayout>
 
-        <VerticalStackLayout
-            BackgroundColor="#6193b7"
+        <toolkit:DockLayout
+
+            BackgroundColor="Black" 
             toolkit:DockLayout.DockPosition="Right"
-            WidthRequest="600">
+            WidthRequest="500"
+            
+            >
+            
+                <Image Source="zoombie.png"
+                       HeightRequest="400"
+                       Margin="-10, 50, 0, 0"
+                       BackgroundColor="#6193b7"
+                       toolkit:DockLayout.DockPosition="Top"/>
 
-        </VerticalStackLayout>
+                <Label
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Padding="30, 30, 30, 30" 
+                    Margin="40"
+                    Text="Particularité :"
+                    FontSize="Medium">
+                    
+                    
+                    
+                </Label>
+            
+            
+
+        </toolkit:DockLayout>
 
 
 
         <VerticalStackLayout
-            BackgroundColor="#6193b7"
+            BackgroundColor="NavajoWhite"
             toolkit:DockLayout.DockPosition="Top">
+
+            <Label
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Padding="30, 30, 30, 30" 
+                    Margin="40, 80, 40,  80"
+                    Text="Caractéristiques :"
+                    FontSize="Medium">
+            </Label>
+            
+            <Label
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Padding="30, 30, 30, 80" 
+                    Margin="40"
+                    Text="Conseil :"
+                    FontSize="Medium">
+            </Label>
+             
+            <Label
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Padding="30, 30, 30, 80" 
+                    Margin="40"
+                    Text="Apparence :"
+                    FontSize="Medium">
+            </Label>
 
 
         </VerticalStackLayout>
