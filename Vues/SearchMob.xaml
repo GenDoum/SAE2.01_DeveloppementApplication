@@ -16,15 +16,13 @@
             WidthRequest="300"
             >
 
-            <Button Text="Accueil" 
-                FontSize="10"
-                BackgroundColor="#6193b7"/>
             
                 <ImageButton
                     Source="exit.png"
                     WidthRequest="10"
                     HeightRequest="10"
                     BackgroundColor="{StaticResource BleuFonce}"
+                    
                     />
 
                 <SearchBar Placeholder="Rechercher un monstre"
@@ -76,6 +74,7 @@
             </VerticalStackLayout>
 
 
+
         </VerticalStackLayout>
         <!--  -->
         <toolkit:DockLayout
@@ -93,12 +92,11 @@
                        BackgroundColor="{StaticResource buttonBackgroundColor}"
                        toolkit:DockLayout.DockPosition="Top"/>
                 <!-- Particularité -->
-            <Frame>
+            <Frame
+                Margin="40">
                 <Label
                     BackgroundColor="White"
                     toolkit:DockLayout.DockPosition="Bottom"
-                    Padding="30, 30, 30, 30" 
-                    Margin="40"
                     Text="Particularité :"
                     FontSize="Medium">
                     
@@ -115,31 +113,31 @@
             BackgroundColor="NavajoWhite"
             toolkit:DockLayout.DockPosition="Top">
 
-            <Frame>
+            <Frame
+                Margin="40">
                 <Label
-                        BackgroundColor="White"
-                        toolkit:DockLayout.DockPosition="Bottom"
-
-                        Text="Caractéristiques :"
-                        FontSize="Medium">
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Text="Caractéristiques :"
+                    FontSize="Medium">
                 </Label>
             </Frame>
-            <Frame>
+            <Frame
+                Margin="40">
                 <Label
-                        BackgroundColor="White"
-                        toolkit:DockLayout.DockPosition="Bottom"
-
-                        Text="Conseil :"
-                        FontSize="Medium">
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Text="Conseil :"
+                    FontSize="Medium">
                 </Label>
             </Frame>
-            <Frame>
+            <Frame
+                Margin="40">
                 <Label
-                        BackgroundColor="White"
-                        toolkit:DockLayout.DockPosition="Bottom"
-
-                        Text="Apparence :"
-                        FontSize="Medium">
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"                 
+                    Text="Apparence :"
+                    FontSize="Medium">
                 </Label>
             </Frame>
 
