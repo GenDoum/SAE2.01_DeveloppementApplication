@@ -59,7 +59,7 @@
                 Margin="0, 0, 0, 30" />
             <Entry Placeholder="Nom"/>
             <Entry Placeholder="Prénom" />
-            <Entry Placeholder="Mail" />
+            <Entry Placeholder="Identifiant" />
             <Entry Placeholder="Mot de passe" />
             <Button Style="{StaticResource buttonStyle}" Text="Valider" />
         </FlexLayout>
