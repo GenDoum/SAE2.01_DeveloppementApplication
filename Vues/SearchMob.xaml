@@ -26,7 +26,7 @@
                 <ScrollView VerticalScrollBarVisibility="Always"
                             HeightRequest="700">
                     <StackLayout>
-                        <!-- Mob Hostile-->
+                        <!-- Mob Hostile Overworld -->
                         <ImageButton Source="zombie.png"
                                      WidthRequest="303"/>
                         <ImageButton Source="squelette.png"
@@ -39,6 +39,8 @@
                                      WidthRequest="303"/>
                         <ImageButton Source="enderman.png"
                                      WidthRequest="303"/>
+                        <ImageButton Source="slime.png"
+                                     WidthRequest="303"/>
                         <!-- Mob Passif -->
                         <ImageButton Source="cow.png"
                                      WidthRequest="303"/>
@@ -49,6 +51,8 @@
                         <ImageButton Source="poule.png"
                                      WidthRequest="303"/>
                         <ImageButton Source="loup.png"
+                                     WidthRequest="303"/>
+                        <ImageButton Source="chat.png"
                                      WidthRequest="303"/>
                         <!-- Boss -->
                         <ImageButton Source="wither.png"
