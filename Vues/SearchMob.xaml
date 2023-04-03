@@ -11,7 +11,7 @@
 
 
         <VerticalStackLayout
-            BackgroundColor="#153f5d"
+            BackgroundColor="{StaticResource BleuFonce}"
             toolkit:DockLayout.DockPosition="Left"
             WidthRequest="300"
             >
@@ -20,9 +20,18 @@
                 FontSize="10"
                 BackgroundColor="#6193b7"/>
             
-            <SearchBar Placeholder="Rechercher un monstre"
-                       PlaceholderColor="DimGray"
-                       CancelButtonColor="DimGray"/>
+                <ImageButton
+                    Source="exit.png"
+                    WidthRequest="10"
+                    HeightRequest="10"
+                    BackgroundColor="{StaticResource BleuFonce}"
+                    />
+
+                <SearchBar Placeholder="Rechercher un monstre"
+                           PlaceholderColor="DimGray"
+                           CancelButtonColor="DimGray"
+                           WidthRequest="300"/>
+      
             <VerticalStackLayout>
                 <ScrollView VerticalScrollBarVisibility="Always"
                             HeightRequest="700">
@@ -81,7 +90,7 @@
                 <Image Source="zoombie.png"
                        HeightRequest="400"
                        Margin="-10, 50, 0, 0"
-                       BackgroundColor="#6193b7"
+                       BackgroundColor="{StaticResource buttonBackgroundColor}"
                        toolkit:DockLayout.DockPosition="Top"/>
                 <!-- Particularité -->
             <Frame>
