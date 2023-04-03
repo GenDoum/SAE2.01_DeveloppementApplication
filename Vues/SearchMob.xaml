@@ -101,11 +101,7 @@
 
         </toolkit:DockLayout>
 
-        <Line
-            X1="50"
-            X2="50"
-            Y1="100"
-            Y2="100"/>
+
         <VerticalStackLayout
             BackgroundColor="NavajoWhite"
             toolkit:DockLayout.DockPosition="Top">
@@ -114,8 +110,7 @@
                 <Label
                         BackgroundColor="White"
                         toolkit:DockLayout.DockPosition="Bottom"
-                        Padding="30, 30, 30, 30" 
-                        Margin="40, 80, 40,  80"
+
                         Text="Caractéristiques :"
                         FontSize="Medium">
                 </Label>
@@ -124,8 +119,7 @@
                 <Label
                         BackgroundColor="White"
                         toolkit:DockLayout.DockPosition="Bottom"
-                        Padding="30, 30, 30, 80" 
-                        Margin="40"
+
                         Text="Conseil :"
                         FontSize="Medium">
                 </Label>
@@ -134,7 +128,7 @@
                 <Label
                         BackgroundColor="White"
                         toolkit:DockLayout.DockPosition="Bottom"
-                        Padding="30, 30, 30, 80" Margin="40"
+
                         Text="Apparence :"
                         FontSize="Medium">
                 </Label>
