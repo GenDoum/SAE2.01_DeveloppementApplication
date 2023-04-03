@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:shape="Microsoft.Maui.Controls.Shapes"
              x:Class="Vues.SearchMob"
              BackgroundImageSource="backsearchpage.png"
              >
@@ -76,12 +77,14 @@
             
             >
                 <!-- Image du mob -->
+                
                 <Image Source="zoombie.png"
                        HeightRequest="400"
                        Margin="-10, 50, 0, 0"
                        BackgroundColor="#6193b7"
                        toolkit:DockLayout.DockPosition="Top"/>
                 <!-- Particularité -->
+            <Frame>
                 <Label
                     BackgroundColor="White"
                     toolkit:DockLayout.DockPosition="Bottom"
@@ -93,44 +96,49 @@
                     
                     
                 </Label>
-            
-            
+            </Frame>
+
 
         </toolkit:DockLayout>
 
-
-
+        <Line
+            X1="50"
+            X2="50"
+            Y1="100"
+            Y2="100"/>
         <VerticalStackLayout
             BackgroundColor="NavajoWhite"
             toolkit:DockLayout.DockPosition="Top">
 
-            <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Padding="30, 30, 30, 30" 
-                    Margin="40, 80, 40,  80"
-                    Text="Caractéristiques :"
-                    FontSize="Medium">
-            </Label>
-            
-            <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Padding="30, 30, 30, 80" 
-                    Margin="40"
-                    Text="Conseil :"
-                    FontSize="Medium">
-            </Label>
-             
-            <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Padding="30, 30, 30, 80" 
-                    Margin="40"
-                    Text="Apparence :"
-                    FontSize="Medium">
-            </Label>
-
+            <Frame>
+                <Label
+                        BackgroundColor="White"
+                        toolkit:DockLayout.DockPosition="Bottom"
+                        Padding="30, 30, 30, 30" 
+                        Margin="40, 80, 40,  80"
+                        Text="Caractéristiques :"
+                        FontSize="Medium">
+                </Label>
+            </Frame>
+            <Frame>
+                <Label
+                        BackgroundColor="White"
+                        toolkit:DockLayout.DockPosition="Bottom"
+                        Padding="30, 30, 30, 80" 
+                        Margin="40"
+                        Text="Conseil :"
+                        FontSize="Medium">
+                </Label>
+            </Frame>
+            <Frame>
+                <Label
+                        BackgroundColor="White"
+                        toolkit:DockLayout.DockPosition="Bottom"
+                        Padding="30, 30, 30, 80" Margin="40"
+                        Text="Apparence :"
+                        FontSize="Medium">
+                </Label>
+            </Frame>
 
         </VerticalStackLayout>
 
