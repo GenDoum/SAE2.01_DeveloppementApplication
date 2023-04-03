@@ -67,7 +67,7 @@
 
 
         </VerticalStackLayout>
-
+        <!--  -->
         <toolkit:DockLayout
 
             BackgroundColor="Black" 
@@ -75,13 +75,13 @@
             WidthRequest="500"
             
             >
-            
+                <!-- Image du mob -->
                 <Image Source="zoombie.png"
                        HeightRequest="400"
                        Margin="-10, 50, 0, 0"
                        BackgroundColor="#6193b7"
                        toolkit:DockLayout.DockPosition="Top"/>
-
+                <!-- Particularité -->
                 <Label
                     BackgroundColor="White"
                     toolkit:DockLayout.DockPosition="Bottom"
