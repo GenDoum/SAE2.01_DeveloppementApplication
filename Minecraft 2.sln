@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vues", "Vues\Vues.csproj", "{6474A056-564C-44CE-910D-5B78BA1D8AAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{BCF060B8-BED1-4885-B9DD-F4BD391B6726}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console", "Console\Console.csproj", "{BCF060B8-BED1-4885-B9DD-F4BD391B6726}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modèle", "Modèle\Modèle.csproj", "{D11EF161-2695-4FCF-8A91-C2E736AF791E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modèle", "Modèle\Modèle.csproj", "{D11EF161-2695-4FCF-8A91-C2E736AF791E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -25,3 +25,30 @@ Console.WriteLine();
 Console.WriteLine();
 Monstre monstre2 = new Monstre(423, "Mouton", "Je suis un animal présent dans la campagne.", charact, appear);
 Console.WriteLine(monstre2.IntroduceTest());
+
+
+// User
+string pseudo;
+string mdp;
+User Dede = new User("DedeDu42", "dede", "dodo", "mdp");
+Dede.ListUsers.Add(Dede);
+Console.WriteLine("Veuillez Saisir votre pseudo");
+pseudo = Console.ReadLine();
+Console.WriteLine("Veuillez Saisir votre mdp");
+mdp = Console.ReadLine();
+if (Dede.testConnexion(pseudo, mdp) == 0)
+{
+    Console.WriteLine("Welcome home");
+}
+if (Dede.testConnexion(pseudo, mdp) == 1)
+{
+    Console.WriteLine("Pseudo incorrect");
+}
+if (Dede.testConnexion(pseudo, mdp) == 2)
+{
+    Console.WriteLine("Mot de passe incorrect");
+}
+if (Dede.testConnexion(pseudo, mdp) == -1)
+{
+    Console.WriteLine("...");
+}
