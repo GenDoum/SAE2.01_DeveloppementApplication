@@ -8,3 +8,5 @@ L'application porte sur le thème de Minecraft. C'est un guide d'utilisation sur
 Il est possible de voir les statistiques du monstre choisi, ainsi que de consulter des conseils et en poster.
 
 Source image : https://fr-minecraft.net/15-creatures-mobs-animaux-sur-minecraft.php
+
+Use case : https://dartagnan.cg.helmo.be/~p150107/tutoriels/uml-uc/
