@@ -6,4 +6,9 @@ public partial class SearchMob : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void Label_SizeChanged(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -4,7 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:shape="Microsoft.Maui.Controls.Shapes"
              x:Class="Vues.SearchMob"
-             BackgroundImageSource="backsearchpage.png"
+             BackgroundImageSource="backcollection.jpg"
              >
     <toolkit:DockLayout>
 
@@ -34,74 +34,72 @@
 
             <ScrollView VerticalScrollBarVisibility="Always" >
                 <VerticalStackLayout>
-                        <!-- Mob Hostile Overworld -->
-                        <ImageButton Source="zombie.png"
+                    <!-- Mob Hostile Overworld -->
+                    <ImageButton Source="zombie.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="squelette.png"
+                    <ImageButton Source="squelette.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="creeper.png"
+                    <ImageButton Source="creeper.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="araignee.png"
+                    <ImageButton Source="araignee.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="phantom.png"
+                    <ImageButton Source="phantom.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="enderman.png"
+                    <ImageButton Source="enderman.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="slime.png"
+                    <ImageButton Source="slime.png"
                                      WidthRequest="303"/>
-                        <!-- Mob Passif -->
-                        <ImageButton Source="cow.png"
+                    <!-- Mob Passif -->
+                    <ImageButton Source="cow.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="sheep.png"
+                    <ImageButton Source="sheep.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="pig.png"
+                    <ImageButton Source="pig.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="poule.png"
+                    <ImageButton Source="poule.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="loup.png"
+                    <ImageButton Source="loup.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="chat.png"
+                    <ImageButton Source="chat.png"
                                      WidthRequest="303"/>
-                        <!-- Boss -->
-                        <ImageButton Source="wither.png"
+                    <!-- Boss -->
+                    <ImageButton Source="wither.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="dragon.png"
+                    <ImageButton Source="dragon.png"
                                      WidthRequest="303"/>
-                        <ImageButton Source="warden.png"
+                    <ImageButton Source="warden.png"
                                      WidthRequest="303"/>
-                    </VerticalStackLayout>
-                </ScrollView>
-            
+                </VerticalStackLayout>
+            </ScrollView>
+
 
 
 
         </VerticalStackLayout>
         <!--  -->
         <toolkit:DockLayout
-
-            BackgroundColor="Black" 
             toolkit:DockLayout.DockPosition="Right"
             WidthRequest="500"
-            
+           
             >
-                <!-- Image du mob -->
-                
-                <Image Source="zoombie.png"
-                       HeightRequest="400"
-                       Margin="-10, 50, 0, 0"
-                       BackgroundColor="{StaticResource buttonBackgroundColor}"
-                       toolkit:DockLayout.DockPosition="Top"/>
-                <!-- Particularité -->
+
+            <!-- Image du mob -->
+
+            <Image Source="zoombie.png"
+                           HeightRequest="400"
+                           Margin="-10, 50, 0, 0"
+                          
+                           toolkit:DockLayout.DockPosition="Top"/>
+            <!-- Particularité -->
             <Frame
-                Margin="40">
+                    Margin="40">
                 <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Text="Particularité :"
-                    FontSize="Medium">
-                    
-                    
-                    
+                        toolkit:DockLayout.DockPosition="Bottom"
+                        Text="Particularité :"
+                        FontSize="Medium">
+
+
+
                 </Label>
             </Frame>
 
@@ -110,9 +108,24 @@
 
 
         <VerticalStackLayout
-            BackgroundColor="NavajoWhite"
             toolkit:DockLayout.DockPosition="Top">
-
+            <HorizontalStackLayout>
+                <Label Text="Déjà vu ?"
+                       FontSize="20"
+                       TextColor="White"
+                       Margin="7"></Label>
+                <CheckBox
+                    Color="{StaticResource BleuFonce}"></CheckBox>
+            </HorizontalStackLayout>
+            <Frame
+                Margin="40">
+                <Label
+                    BackgroundColor="White"
+                    toolkit:DockLayout.DockPosition="Bottom"
+                    Text="Description :"
+                    FontSize="Medium">
+                </Label>
+            </Frame>
             <Frame
                 Margin="40">
                 <Label

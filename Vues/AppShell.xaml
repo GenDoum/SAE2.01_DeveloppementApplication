@@ -27,5 +27,9 @@
         ContentTemplate="{DataTemplate local:Favoris}"
         FlyoutIcon="star.png"
         Route="Favoris" />
+    <ShellContent
+        ContentTemplate="{DataTemplate local:Collection}"
+        FlyoutIcon="star.png"
+        Route="Collection" />
 
 </Shell>
