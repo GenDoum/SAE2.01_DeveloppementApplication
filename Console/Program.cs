@@ -54,10 +54,11 @@ int menuPrincipal(){
     {
         Console.Clear();
         Console.WriteLine("Choix 3");
+        searchPage();
         return 3;
     } else
     {
-        Console.WriteLine("Écris un nombre compris entre 1 et 3");
+        Console.WriteLine("Écris un nombre compris entre 1 et 3"); // Pq ? il écrit ça à chaque fin de prog
     }
     return 0;
 }
@@ -92,7 +93,8 @@ string ReadPassword()
         info = Console.ReadKey(true);
     }
     // Ajoute un alinéa parce que l'utlisateur a validé
-    Console.WriteLine();
+    Console.WriteLine("Vous arrivez sur la page d'accueil");
+    searchPage();
     return psswrd;
 }
 int menuConnexion()
@@ -120,6 +122,27 @@ int menuConnexion()
         Console.WriteLine("Mot de passe : ");
         psswd = ReadPassword();
         exists = ub.checkIfExists(id, psswd);
+    }
+    return 0;
+}
+
+int searchPage()
+{
+    Console.WriteLine("Bienvenue sur la page d'accueil");
+    Console.WriteLine("1 - Déconnexion");
+    string? choix;
+    choix = Console.ReadLine();
+    if ( choix == "1")
+    {
+        menuPrincipal();
+
+        return 1;
+    }
+    
+    else
+    {
+        Console.WriteLine("Entrer un chiffre correct");
+        searchPage();
     }
     return 0;
 }

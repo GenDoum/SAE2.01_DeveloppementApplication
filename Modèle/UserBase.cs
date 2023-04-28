@@ -25,12 +25,14 @@ namespace Modèle
         {
             ListUsers = new Stub().loadUsers();
         }
-        
+
+
+
         public int checkIfExists(string username, string password)
         {
             foreach (User u in ListUsers)
             {
-                if(username.Equals(u.Pseudo) && password.Equals(u.Mdp))
+                if (username.Equals(u.Pseudo) && password.Equals(u.Mdp))
                 {
                     Console.WriteLine($"Bienvenue, {u.Pseudo}, vous venez de vous connecter!");
                     return 1;
@@ -38,5 +40,6 @@ namespace Modèle
             }
             return 0;
         }
+
     }
 }
