@@ -7,6 +7,7 @@ using System.Reflection.PortableExecutable;
 ///Déclaration du STUB
 
 UserBase ub = new UserBase();
+MonsterBase monsterBase = new MonsterBase();
 /*
 void testMonstre()
 {
@@ -34,31 +35,41 @@ void testMonstre()
 }*/
 
 
-int menuPrincipal(){
+int menuAccueil(){
     string? choix;
     Console.WriteLine("Menu - Connexion / Inscription");
-    Console.WriteLine("\t1 - Connexion\n\t2 - Inscription\n\t3 - Connexion plus tard\n");
+    Console.WriteLine("\t1 - Connexion\n\t2 - Inscription\n\t3 - Connexion plus tard\n\t4 - Fermer\n");
     choix = Console.ReadLine();
-    if ( choix == "1")
+    if (choix == "1")
     {
         Console.Clear();
         Console.WriteLine("Choix 1");
         menuConnexion();
         return 1;
-    } else if ( choix == "2")
+    }
+    else if (choix == "2")
     {
         Console.Clear();
         Console.WriteLine("Choix 2");
         return 2;
-    } else if (choix == "3")
+    }
+    else if (choix == "3")
     {
         Console.Clear();
         Console.WriteLine("Choix 3");
-        searchPage();
+        monsterPage();
         return 3;
-    } else
+    }
+    else if (choix == "4")
     {
-        Console.WriteLine("Écris un nombre compris entre 1 et 3"); // Pq ? il écrit ça à chaque fin de prog
+        Console.Clear();
+        Console.WriteLine("Exit");
+        return 4;
+    }
+    else
+    {
+        // Si l'utilisateur entre autre chose que 1, 2, 3 ou 4
+        Console.WriteLine("Écris un nombre compris entre 1 et 3");
     }
     return 0;
 }
@@ -93,8 +104,7 @@ string ReadPassword()
         info = Console.ReadKey(true);
     }
     // Ajoute un alinéa parce que l'utlisateur a validé
-    Console.WriteLine("Vous arrivez sur la page d'accueil");
-    searchPage();
+    Console.WriteLine();
     return psswrd;
 }
 int menuConnexion()
@@ -107,6 +117,7 @@ int menuConnexion()
     psswd = ReadPassword();
     int nbRetries = 0;
     int exists = ub.checkIfExists(id, psswd);
+    nbRetries++;
     while (exists == 0)
     {
         if(nbRetries >= 3)
@@ -115,36 +126,43 @@ int menuConnexion()
         }
         Console.Clear();
         Console.WriteLine("Erreur, identifiant ou mot de passe incorrect.");
-        nbRetries++;
         Console.WriteLine("");
         Console.WriteLine("Identifiant : ");
         id = Console.ReadLine();
         Console.WriteLine("Mot de passe : ");
         psswd = ReadPassword();
         exists = ub.checkIfExists(id, psswd);
+        nbRetries++;
     }
+    monsterPage();
     return 0;
 }
 
-int searchPage()
+int monsterPage()
 {
-    Console.WriteLine("Bienvenue sur la page d'accueil");
-    Console.WriteLine("1 - Déconnexion");
+    Console.WriteLine("Index des monstres :");
+    Console.WriteLine("\n\t1 - Rechercher\n\t2 - Accueil\n");
     string? choix;
     choix = Console.ReadLine();
     if ( choix == "1")
     {
-        menuPrincipal();
-
+        //Tant que lecture de l'entrée != JE VEUX SORTIR
+        //while(Console.ReadLine)
         return 1;
     }
     
     else
     {
         Console.WriteLine("Entrer un chiffre correct");
-        searchPage();
     }
     return 0;
 }
 
-int codeRetour = menuPrincipal();
+//int codeRetour = menuAccueil();
+
+
+List<Monstre> m = monsterBase.search("n", monsterBase);
+foreach ( Monstre mnstr in m)
+{
+    Console.WriteLine($"{mnstr.Name} a été trouvé!");
+}

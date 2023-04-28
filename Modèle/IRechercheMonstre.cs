@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Modèle
 {
-    internal class Recherche
+    public interface IRechercheMonstre
     {
-        public string champ;
-        public Recherche(string rech)
-        {
-            champ = rech;
-
-        }
+        public List<Monstre> search(string texte, MonsterBase mb);
     }
 }
