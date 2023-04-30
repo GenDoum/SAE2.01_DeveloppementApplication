@@ -161,7 +161,7 @@ int monsterPage()
 //int codeRetour = menuAccueil();
 
 
-List<Monstre> m = monsterBase.search("n", monsterBase);
+List<Monstre> m = monsterBase.search("o", monsterBase);
 foreach ( Monstre mnstr in m)
 {
     Console.WriteLine($"{mnstr.Name} a été trouvé!");

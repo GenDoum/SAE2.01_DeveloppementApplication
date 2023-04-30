@@ -27,10 +27,10 @@ namespace Modèle
         public List<Monstre> loadMonsters() ///SAME
         {
             List<Monstre> lm = new List<Monstre>();
-            lm.Add(new Monstre(1, "Cochon", "Je suis un animal présent un peu partout (oui cette info est pas juste).", new List<string> { "Caractéristique 1", "C2", "C3" }, new List<string> { "Apparence1", "App2", "App3" }));
-            lm.Add(new Monstre(2, "Poule", "Je suis présente un peu partout, et je ponds des oeufs des fois.", new List<string> { "Caractéristique 1", "C2", "C3" }, new List<string> { "Apparence1", "App2", "App3" }));
-            lm.Add(new Monstre(3, "Mouton", "Je suis un animal présent dans la campagne.", new List<string>{ "Caractéristique 1", "C2", "C3" }, new List<string> { "Apparence1", "App2", "App3" }));
-            lm.Add(new Monstre(4, "Warden", "Le Warden est une entité conçue pour vous traquer.", new List<string> { "Caractéristique 1", "C2", "C3" }, new List<string> { "Apparence1", "App2", "App3" }));
+            lm.Add(new Monstre(1, "Poule", "Je suis un animal présent un peu partout, sauf dans le desert car il fait beaucoup trop chaud. Mais j'aime beaucoup la jungle !", new List<string> { "Quand une poule est tué il y a 3.12% de chance que la poule laisse tomber un oeuf " }, new List<string> { "Apparence1", "App2", "App3" }));
+            lm.Add(new Monstre(2, "Mouton", "Je suis présent un peu partout, sauf dnas le desert.", new List<string> { "Avec une cisaille il est possible de rasé la laine d'un mouton, il se retoruvera sans laine.", "Pour faire repousser la laine d'un mouton il faut qu'il ai de l'herbe sous ses pattes pour qu'il puisse manger. Une fois manger la laine repousse instantanément !" }, new List<string> { "Apparence1", "App2", "App3" }));
+            lm.Add(new Monstre(3, "Cochon", "Je suis un animal présent partout, sauf dans le desert ou il fait trop chaud pour moi.", new List<string>{ "La reproduction de cochon peut se faire avec des carottes et des patates crues."}, new List<string> { "Apparence1", "App2", "App3" }));
+            lm.Add(new Monstre(4, "Warden", "Je ne vous voit pas mais je sais où vous êtes", new List<string> { "Le warden est aveugle mais il entend tous les bruit autour de lui.", "Il apparait dans une caverne spécial appeler les abîmes quand on y marche en faisant trop de bruit.", "Il s'agit du seul monstre qui ai une animation d'apparation, il sort du sol.", "Il est capable de tirer des rayon laser à l'endroit d'où proviennes les bruit qu'il entend." }, new List<string> { "Apparence1", "App2", "App3" }));
             return lm;
         }
     }
