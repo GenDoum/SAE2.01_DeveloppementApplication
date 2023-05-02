@@ -40,36 +40,39 @@ int menuAccueil(){
     Console.WriteLine("Menu - Connexion / Inscription");
     Console.WriteLine("\t1 - Connexion\n\t2 - Inscription\n\t3 - Connexion plus tard\n\t4 - Fermer\n");
     choix = Console.ReadLine();
-    if (choix == "1")
+    while(choix != null)
     {
-        Console.Clear();
-        Console.WriteLine("Choix 1");
-        menuConnexion();
-        return 1;
-    }
-    else if (choix == "2")
-    {
-        Console.Clear();
-        Console.WriteLine("Choix 2");
-        return 2;
-    }
-    else if (choix == "3")
-    {
-        Console.Clear();
-        Console.WriteLine("Choix 3");
-        monsterPage();
-        return 3;
-    }
-    else if (choix == "4")
-    {
-        Console.Clear();
-        Console.WriteLine("Exit");
-        return 4;
-    }
-    else
-    {
-        // Si l'utilisateur entre autre chose que 1, 2, 3 ou 4
-        Console.WriteLine("Écris un nombre compris entre 1 et 3");
+        if (choix == "1")
+        {
+            Console.Clear();
+            Console.WriteLine("Choix 1");
+            menuConnexion();
+            return 1;
+        }
+        else if (choix == "2")
+        {
+            Console.Clear();
+            Console.WriteLine("Choix 2");
+            return 2;
+        }
+        else if (choix == "3")
+        {
+            Console.Clear();
+            Console.WriteLine("Choix 3");
+            monsterPage();
+            return 3;
+        }
+        else if (choix == "4")
+        {
+            Console.Clear();
+            Console.WriteLine("Exit");
+            return 4;
+        }
+        else
+        {
+            // Si l'utilisateur entre autre chose que 1, 2, 3 ou 4
+            Console.WriteLine("Écris un nombre compris entre 1 et 3, ou juste tape sur la touche Entrée pour quitter.");
+        }
     }
     return 0;
 }
@@ -111,8 +114,21 @@ int menuConnexion()
 {
     string? id;
     string? psswd;
-    Console.WriteLine("Identifiant : ");
-    id = Console.ReadLine();
+    int ret = 0;
+    while ( ret != 0 )
+    {
+        Console.WriteLine("Identifiant : ");
+        id = Console.ReadLine();
+        if (!string.IsNullOrEmpty(id))
+        {
+            ret = 1;
+            Console.Clear();
+        } else
+        {
+            ret = 0;
+        }
+    }
+    
     Console.WriteLine("Mot de passe : ");
     psswd = ReadPassword();
     int nbRetries = 0;
@@ -146,8 +162,36 @@ int monsterPage()
     choix = Console.ReadLine();
     if ( choix == "1")
     {
-        //Tant que lecture de l'entrée != JE VEUX SORTIR
-        //while(Console.ReadLine)
+        List<Monstre> m = new List<Monstre>();
+        Console.Clear ();
+        ConsoleKeyInfo carac = Console.ReadKey(true); ;
+        string listCarac = "";
+        while (carac.Key != ConsoleKey.Enter)
+        {
+            
+            if (carac.Key != ConsoleKey.Backspace)
+            {
+                listCarac += carac.KeyChar;
+            }
+            else if (carac.Key == ConsoleKey.Backspace)
+            {
+                if (!string.IsNullOrEmpty(listCarac))
+                {
+                    listCarac = listCarac.Remove(listCarac.Length - 1, 1);
+                }
+            }
+            Console.Clear ();
+            Console.Write(listCarac);
+            Console.WriteLine();
+            Console.WriteLine();
+            m = monsterBase.search(listCarac.ToString(), monsterBase);
+            foreach (Monstre mnstr in m)
+            {
+                Console.WriteLine($"{mnstr.Name} a été trouvé!");
+            }
+            carac = Console.ReadKey(true);
+        }
+        
         return 1;
     }
     
@@ -158,11 +202,4 @@ int monsterPage()
     return 0;
 }
 
-//int codeRetour = menuAccueil();
-
-
-List<Monstre> m = monsterBase.search("o", monsterBase);
-foreach ( Monstre mnstr in m)
-{
-    Console.WriteLine($"{mnstr.Name} a été trouvé!");
-}
+int codeRetour = menuAccueil();

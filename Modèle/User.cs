@@ -14,17 +14,27 @@ namespace Modèle
     public class User
     {
         public string Pseudo { get; private set; }
-        private string Nom { get; }
-        private string Prenom { get; }
-        public string Mdp { get; private set; }
+        private string Nom { get; set; }
+        private string Prenom { get; set; }
+        private string Mdp { get; set; }
+        private List<Monstre> monstresDejaVu { get; set; }
 
-
-        public User(string pseudo, string nom, string prenom, string mdp)
+        public User(string pseudo, string nom, string prenom, string mdp, List<Monstre> monstresVus)
         {
             Pseudo = pseudo;
             Nom = nom;
             Prenom = prenom;
             Mdp = mdp;
+            monstresDejaVu = monstresVus;
+        }
+
+        public bool verifyPssw(string pssw)
+        {
+            if(pssw.Equals(Mdp))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

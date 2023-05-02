@@ -43,7 +43,7 @@ namespace Modèle
             }
             foreach (User u in ListUsers)
             {
-                if (username.Equals(u.Pseudo) && password.Equals(u.Mdp))
+                if (username.Equals(u.Pseudo) && u.verifyPssw(password))
                 {
                     return 5;
                 }
