@@ -5,7 +5,6 @@
 	<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 	<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('ios'))">$(TargetFrameworks);net7.0-ios</TargetFrameworks>
 	<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('maccatalyst'))">$(TargetFrameworks);net7.0-maccatalyst</TargetFrameworks>
-    <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
