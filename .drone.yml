@@ -15,7 +15,7 @@ steps:
       - cd Sources/
       - dotnet restore "MineGuide.sln"
       - dotnet build "MineGuide.sln" -c Release --no-restore
-      - dotnet publish "MineGuide.sln" -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+      - dotnet publish "MineGuide.sln" -c Release --no-restore
 
   - name: tests
     image: mcr.microsoft.com/dotnet/sdk:7.0
