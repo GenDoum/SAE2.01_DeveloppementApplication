@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace Vues
+namespace Vues.Platforms.MacCatalyst
 {
     [Register("AppDelegate")]
     public class AppDelegate : MauiUIApplicationDelegate

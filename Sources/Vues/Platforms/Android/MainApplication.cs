@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace Vues
+namespace Vues.Platforms.Android
 {
     [Application]
     public class MainApplication : MauiApplication

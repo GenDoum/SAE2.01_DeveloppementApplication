@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace Vues
+namespace Vues.Platforms.MacCatalyst
 {
     public class Program
     {
