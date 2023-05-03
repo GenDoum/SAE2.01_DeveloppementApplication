@@ -13,14 +13,14 @@ steps:
     image: mcr.microsoft.com/dotnet/sdk:7.0
     commands:
       - cd Sources/
-      - dotnet restore Minecraft\ 2.sln
-      - dotnet build Minecraft\ 2.sln -c Release --no-restore
-      - dotnet publish Minecraft\ 2.sln -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+      - dotnet restore "Minecraft 2.sln"
+      - dotnet build "Minecraft 2.sln" -c Release --no-restore
+      - dotnet publish "Minecraft 2.sln" -c Release --no-restore -o $CI_PROJECT_DIR/build/release
 
   - name: tests
     image: mcr.microsoft.com/dotnet/sdk:7.0
     commands:
       - cd Sources/
-      - dotnet restore Minecraft\ 2.sln
-      - dotnet test Minecraft\ 2.sln --no-restore
+      - dotnet restore "Minecraft 2.sln"
+      - dotnet test "Minecraft 2.sln" --no-restore
     depends_on: [build]
