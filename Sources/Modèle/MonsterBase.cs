@@ -12,7 +12,6 @@ namespace Modèle
     /// </summary>
     public class MonsterBase : IRechercheMonstre
     {
-        private List<Monstre> monsters = null!;
         public List<Monstre> ListMonsters
         {
             get
@@ -24,6 +23,7 @@ namespace Modèle
                 monsters = value;
             }
         }
+        private List<Monstre> monsters = null!;
 
         public MonsterBase()
         {

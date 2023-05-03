@@ -9,7 +9,7 @@ public class Monstre
     public string Name { get; set; }
     public string Description { get; set; } = string.Empty;
     
-    private List<string> characteristic = null!;
+    
     public List<string> CharacteristicsList
     {
         get {
@@ -19,24 +19,19 @@ public class Monstre
             characteristic = value;
         }
     }
+    private List<string> characteristic = null!;
+
     
-    private List<string> appearance = null!;
     public List<string> AppearanceList
     {
-        get
-        {
-            return appearance;
-        }
+        get => appearance;
         set
         {
             appearance = value;
         }
     }
+    private List<string> appearance = null!;
 
-    public string IntroduceTest()
-    {
-        return $"Je suis un {Name} (id : {Id}). Description : {Description}";
-    }
     public Monstre(int id, string name, string desc, List<string> characList, List<string> appearList)
     {
         Id = id;
@@ -44,5 +39,9 @@ public class Monstre
         Description = desc;
         CharacteristicsList = characList;
         AppearanceList = appearList;
+        if (string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Description))
+        {
+            throw new ArgumentException("Un monstre doit avoir un nom et une description!");
+        }
     }
 }
