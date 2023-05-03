@@ -2,6 +2,7 @@
 
 using Modèle;
 using System;
+using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
 ///Déclaration du STUB
@@ -114,41 +115,49 @@ int menuConnexion()
 {
     string? id;
     string? psswd;
-    int ret = 0;
-    while ( ret != 0 )
-    {
-        Console.WriteLine("Identifiant : ");
-        id = Console.ReadLine();
-        if (!string.IsNullOrEmpty(id))
-        {
-            ret = 1;
-            Console.Clear();
-        } else
-        {
-            ret = 0;
-        }
-    }
-    
-    Console.WriteLine("Mot de passe : ");
-    psswd = ReadPassword();
+    int i = 1;
     int nbRetries = 0;
-    int exists = ub.checkIfExists(id, psswd);
     nbRetries++;
+    int exists = 0;
     while (exists == 0)
     {
-        if(nbRetries >= 3)
+        if (nbRetries >= 3)
         {
             return -1;
         }
-        Console.Clear();
-        Console.WriteLine("Erreur, identifiant ou mot de passe incorrect.");
-        Console.WriteLine("");
-        Console.WriteLine("Identifiant : ");
+        Console.Write($"Essai n°{i} Identifiant : ");
         id = Console.ReadLine();
-        Console.WriteLine("Mot de passe : ");
+        i++;
+        if (id != null)
+            id = id.Trim();
+
+        while (string.IsNullOrEmpty(id))
+        {
+            if (i > 3)
+            {
+                Console.Clear();
+                Console.WriteLine("Trop d'erreurs. Réessayez plus tard.");
+                return -2;
+            }
+            Console.Clear();
+            Console.Write($"Essai n°{i} Identifiant : ");
+            id = Console.ReadLine();
+            if (id != null)
+                id = id.Trim();
+            i++;
+        }
+
+        Console.Write("Mot de passe : ");
         psswd = ReadPassword();
+        if (string.IsNullOrEmpty(psswd))
+        {
+            continue;
+        }
         exists = ub.checkIfExists(id, psswd);
-        nbRetries++;
+        if ( exists == 0)
+        {
+            Console.WriteLine("Erreur, identifiant ou mot de passe incorrect.");
+        }
     }
     monsterPage();
     return 0;

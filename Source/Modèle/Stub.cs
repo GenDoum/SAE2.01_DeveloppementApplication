@@ -21,6 +21,7 @@ namespace Modèle
             lu.Add(new User("Moi", "Monchanin", "Liam", "feur", new List<Monstre> { }));
             lu.Add(new User("Nikoala", "Blondeau", "Nicolas", "niblondeau", new List<Monstre> { }));
             lu.Add(new User("Yadoumir", "Doumir", "Yannis", "mdp", new List<Monstre> { }));
+            lu.Add(new User("osuplayer123", "Bonetti", "Martin", "oSu!727", new List<Monstre> { }));
             return lu;
         }
 
