@@ -12,7 +12,7 @@ namespace Modèle
     /// </summary>
     public class UserBase
     {
-        private List<User> users;
+        private List<User> users = null!;
         public List<User> ListUsers
         {
             get
