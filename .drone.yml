@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: Minecraft_CI_Pipeline
+name: MineGuide_CI_Pipeline
 
 trigger:
   branch:
@@ -10,12 +10,12 @@ trigger:
 
 steps:
   - name: build
-    image: mcr.microsoft.com/dotnet/sdk:7.0
+    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dotnet7-maui:latest
     commands:
       - cd Sources/
-      - dotnet restore "MineGuide.sln"
-      - dotnet build "MineGuide.sln" -c Release --no-restore
-      - dotnet publish "MineGuide.sln" -c Release --no-restore
+      - dotnet restore MineGuide.sln
+      - dotnet build MineGuide.sln -c Release --no-restore
+      - dotnet publish MineGuide.sln -c Release --no-restore
 
   - name: tests
     image: mcr.microsoft.com/dotnet/sdk:7.0
