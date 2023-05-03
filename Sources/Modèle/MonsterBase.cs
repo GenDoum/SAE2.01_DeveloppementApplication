@@ -12,7 +12,7 @@ namespace Modèle
     /// </summary>
     public class MonsterBase : IRechercheMonstre
     {
-        private List<Monstre> monsters;
+        private List<Monstre> monsters = null!;
         public List<Monstre> ListMonsters
         {
             get

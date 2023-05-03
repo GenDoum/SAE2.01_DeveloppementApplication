@@ -9,7 +9,7 @@ public class Monstre
     public string Name { get; set; }
     public string Description { get; set; } = string.Empty;
     
-    private List<string> characteristic;
+    private List<string> characteristic = null!;
     public List<string> CharacteristicsList
     {
         get {
@@ -20,7 +20,7 @@ public class Monstre
         }
     }
     
-    private List<string> appearance;
+    private List<string> appearance = null!;
     public List<string> AppearanceList
     {
         get
