@@ -3,8 +3,6 @@ type: docker
 name: MineGuide_CI_Pipeline
 
 trigger:
-  branch:
-    - develop
   event:
     - push
 
@@ -14,8 +12,8 @@ steps:
     commands:
       - cd Sources/
       - dotnet restore MineGuide.sln
-      - dotnet build MineGuide.sln -c Release --no-restore
-      - dotnet publish MineGuide.sln -c Release --no-restore
+      - dotnet build MineGuide.sln -c Release --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0
+      - dotnet publish MineGuide/MineGuide.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release -f:net7.0-android /p:AndroidSdkDirectory=/usr/lib/android-sdk
 
   - name: tests
     image: mcr.microsoft.com/dotnet/sdk:7.0
