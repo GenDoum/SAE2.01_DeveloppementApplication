@@ -3,6 +3,8 @@ type: docker
 name: MineGuide_CI_Pipeline
 
 trigger:
+  branch:
+    - develop
   event:
     - push
 
