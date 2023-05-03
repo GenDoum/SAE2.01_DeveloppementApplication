@@ -16,6 +16,7 @@ steps:
       - dotnet restore MineGuide.sln
       - dotnet build MineGuide.sln -c Release --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0
       - dotnet publish Vues/Vues.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release -f:net7.0-android /p:AndroidSdkDirectory=/usr/lib/android-sdk
+    depends_on: [clone]
 
   - name: build_net7
     image: mcr.microsoft.com/dotnet/sdk:7.0
@@ -24,3 +25,4 @@ steps:
       - dotnet restore MineGuide_linuxOnly.sln
       - dotnet build MineGuide_linuxOnly.sln -c Release --no-restore /p:AndroidSdkDirectory=$ANDROID_SDK_ROOT -property:Aapt2ToolPath=$ANDROID_SDK_ROOT/build-tools/33.0.0
       - dotnet publish MineGuide_linuxOnly.sln -c Release --no-restore -o $CI_PROJECT_DIR/build/release
+    depends_on: [clone]
