@@ -5,7 +5,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modèle
+namespace Model
 {
     /// <summary>
     /// Le stub "émule" une base de données, elle permet simplement d'imiter le rôle du stockage des 

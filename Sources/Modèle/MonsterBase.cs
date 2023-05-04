@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modèle
+namespace Model
 {
     /// <summary>
     /// Cette classe permet d'initialiser une base de données de monstres, en appelant pour le

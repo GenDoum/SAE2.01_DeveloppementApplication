@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection.Metadata;
 
-namespace Modèle;
+namespace Model;
 
 public class Monstre
 {

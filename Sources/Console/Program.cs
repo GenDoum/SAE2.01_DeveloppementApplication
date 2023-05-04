@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Modèle;
+using Model;
 using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;

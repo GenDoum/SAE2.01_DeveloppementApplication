@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Xunit;
 
-namespace Modèle
+namespace Model
 {
     /// <summary>
     /// La classe User représente un utilisateur ayant pour identifiant son pseudo (publique),
