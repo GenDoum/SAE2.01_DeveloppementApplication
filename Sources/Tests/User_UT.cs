@@ -7,47 +7,32 @@ namespace Tests
     {
 
         [Theory]
-        [MemberData(nameof(DataWithoutList))]
-        public void TestConstructorWithoutList(string pseudo, string nom, string prenom, string mdp)
+        [MemberData(nameof(ValidData_NoList))]
+        public void TestConstructorWithValidData_NoList(string pseudo, string nom, string prenom, string mdp)
         {
-            Assert.Throws<ArgumentException>(() => new User(pseudo, nom, prenom, mdp));
-            /*User u = new User(pseudo, nom, prenom, mdp);
+            User u = new User(pseudo, nom, prenom, mdp);
             Assert.Equal(pseudo, u.Pseudo);
             Assert.Equal(nom, u.Nom);
             Assert.Equal(prenom, u.Prenom);
-            Assert.True(u.verifyPssw(mdp));*/
+            Assert.True(u.verifyPssw(mdp));
         }
 
-        public static IEnumerable<object[]> DataWithoutList =>
-            new List<object[]>
-            {
-                //Test de toutes les possibilités
-                new object[] { "", "", "", "" },
-                new object[] { "Pseudo", "", "", "" },
-                new object[] { "", "Nom", "", "" },
-                new object[] { "Pseudo", "Nom", "", "" },
-                new object[] { "", "", "Prenom", "" },
-                new object[] { "Pseudo", "", "Prenom", "" },
-                new object[] { "", "Nom", "Prenom", "" },
-                new object[] { "Prenom", "Nom", "Prenom", "" },
-                new object[] { "", "", "", "Mdp" },
-                new object[] { "Pseudo", "", "", "Mdp" },
-                new object[] { "", "Nom", "", "Mdp" },
-                new object[] { "Pseudo", "Nom", "", "Mdp" },
-                new object[] { "", "", "Prenom", "Mdp" },
-                new object[] { "Pseudo", "", "Prenom", "Mdp" },
-                new object[] { "", "Nom", "Prenom", "Mdp" },
-                new object[] { "Pseudo", "Nom", "Prenom", "Mdp" },
-
-                //Puis quelques tests avec des ints au lieu de strings
-                new object[] { 0, "Nom", "Prenom", "Mdp" },
-                new object[] { "Pseudo", 0, "Prenom", "Mdp" },
-                new object[] { "Pseudo", "Nom", 0, "Mdp" },
-                new object[] { "Pseudo", "Nom", "Prenom", 0 },
-                new object[] { 1, 12, 123, 1234}
-            };
+        [Theory]
+        [MemberData(nameof(InvalidData_NoList))]
+        public void TestConstructorWithNumbers_NoList(string pseudo, string nom, string prenom, string mdp)
+        {
+            Assert.Throws<FormatException>(() => new User(pseudo, nom, prenom, mdp));
+        }
 
         [Theory]
+        [MemberData(nameof(MissingData_NoList))]
+        public void TestConstructorWithMissingData_NoList(string pseudo, string nom, string prenom, string mdp)
+        {
+            Assert.Throws<ArgumentException>(() => new User(pseudo, nom, prenom, mdp));
+        }
+
+
+        /*[Theory]
         [MemberData(nameof(DataWithList))]
         public void TestConstructorWithList(string pseudo, string nom, string prenom, string mdp, List<Monstre> monstresVus)
         {
@@ -92,6 +77,43 @@ namespace Tests
             new object[] { "Pseudo", "Nom", 0, "Mdp", new List<Monstre>() },
             new object[] { "Pseudo", "Nom", "Prenom", 0, new List<Monstre>() },
             new object[] { 1, 12, 123, 1234, 12345 }
-            };
+            };*/
+
+
+
+        //Jeu de données valide
+        public static IEnumerable<object[]> ValidData_NoList => new List<object[]>{
+            new object[] { "Pseudo", "Nom", "Prenom", "Mdp123456" },
+            new object[] { "Pseudo", "Nom", "Prenom", 123456 }
+        };
+
+        //Jeu de données invalide car paramètres seulement composés de nombres
+        public static IEnumerable<object[]> InvalidData_NoList => new List<object[]>{
+            new object[] { 5, "Nom", "Prenom", "Mdp" },
+            new object[] { "Pseudo", 12, "Prenom", "Mdp" },
+            new object[] { "Pseudo", "Nom", 22, "Mdp" },
+            new object[] { 1, 12, 123, 1234 }
+        };
+
+        //Jeu de données avec paramètres manquants
+        public static IEnumerable<object[]> MissingData_NoList => new List<object[]>{
+
+            //Test de toutes les possibilités
+            new object[] { "", "", "", "" },
+            new object[] { "Pseudo", "", "", "" },
+            new object[] { "", "Nom", "", "" },
+            new object[] { "Pseudo", "Nom", "", "" },
+            new object[] { "", "", "Prenom", "" },
+            new object[] { "Pseudo", "", "Prenom", "" },
+            new object[] { "", "Nom", "Prenom", "" },
+            new object[] { "Prenom", "Nom", "Prenom", "" },
+            new object[] { "", "", "", "Mdp" },
+            new object[] { "Pseudo", "", "", "Mdp" },
+            new object[] { "", "Nom", "", "Mdp" },
+            new object[] { "Pseudo", "Nom", "", "Mdp" },
+            new object[] { "", "", "Prenom", "Mdp" },
+            new object[] { "Pseudo", "", "Prenom", "Mdp" },
+            new object[] { "", "Nom", "Prenom", "Mdp" }
+        };
     }
 }
