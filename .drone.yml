@@ -9,6 +9,7 @@ trigger:
     - push
 
 steps:
+  #Build pour la version avec les vues (plusieurs minutes)
   - name: build_maui
     image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dotnet7-maui:latest
     commands:
@@ -18,6 +19,7 @@ steps:
       - dotnet publish Vues/Vues.csproj -c Release --no-restore -o $CI_PROJECT_DIR/build/release -f:net7.0-android /p:AndroidSdkDirectory=/usr/lib/android-sdk
     depends_on: [clone]
 
+  #Build pour la version sans les vues (quelques secondes)
   - name: build_net7
     image: mcr.microsoft.com/dotnet/sdk:7.0
     commands:
@@ -27,6 +29,7 @@ steps:
       - dotnet publish MineGuide_linuxOnly.sln -c Release --no-restore -o $CI_PROJECT_DIR/build/release
     depends_on: [clone]
 
+  #Tests après les build(s)
   - name: tests
     image: mcr.microsoft.com/dotnet/sdk:7.0
     commands:
@@ -35,30 +38,7 @@ steps:
       - dotnet test MineGuide_linuxOnly.sln --no-restore
     depends_on: [build_net7, build_maui]
 
-
-  - name: 
-    image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dronesonarplugin-dotnet7
-    secrets: [ SECRET_SONAR_LOGIN ]
-    settings:
-      sonar_host: https://codefirst.iut.uca.fr/sonar/
-      sonar_token:
-        from_secret: SECRET_SONAR_LOGIN
-    commands:
-      - cd Sources/
-      - dotnet restore MineGuide_linuxOnly.sln
-      - dotnet sonarscanner begin /k:MineGuide /d:sonar.host.url=$${PLUGIN_SONAR_HOST} /d:sonar.coverageReportPaths="coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions="Tests/**" /d:sonar.login=$${PLUGIN_SONAR_TOKEN} 
-      - dotnet build MineGuide_linuxOnly.sln -c Release --no-restore
-      - dotnet test MineGuide_linuxOnly.sln --logger trx --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "XPlat Code Coverage"
-      - reportgenerator -reports:"**/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"coveragereport"
-      - dotnet publish MineGuide_linuxOnly.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
-      - dotnet sonarscanner end /d:sonar.login=$${PLUGIN_SONAR_TOKEN}
-    when:
-      event:
-        - push
-    depends_on: [tests]
-
-
-
+  #Déploiement de la CI sur Sonar (Inspection de code)
   - name: code-inspection-linux-only
     image: hub.codefirst.iut.uca.fr/marc.chevaldonne/codefirst-dronesonarplugin-dotnet7
     secrets: [ SECRET_SONAR_LOGIN ]
@@ -77,3 +57,7 @@ steps:
       - reportgenerator -reports:"**/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"../Documentation/coveragereport"
       - dotnet publish MineGuide_linuxOnly.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
       - dotnet sonarscanner end /d:sonar.login=$${sonar_token}
+    when:
+      event:
+        - push
+    depends_on: [tests]
