@@ -36,7 +36,7 @@ steps:
       - cd Sources/
       - dotnet restore MineGuide_linuxOnly.sln
       - dotnet test MineGuide_linuxOnly.sln --no-restore
-    depends_on: [build_net7, build_maui]
+    depends_on: [build_net7]
 
   #Déploiement de la CI sur Sonar (Inspection de code)
   - name: code-inspection-linux-only
