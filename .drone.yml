@@ -41,7 +41,7 @@ steps:
     secrets: [ SECRET_SONAR_LOGIN ]
     settings:
       sonar_host: https://codefirst.iut.uca.fr/sonar/
-      sonar_token: sonar_token
+      sonar_token:
         from_secret: SECRET_SONAR_LOGIN
     commands:
       - cd Sources/
