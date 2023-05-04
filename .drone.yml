@@ -54,7 +54,9 @@ steps:
       - dotnet sonarscanner begin /k:$${project_key} /d:sonar.host.url=$${sonar_host} /d:sonar.coverageReportPaths="../Documentation/coveragereport/SonarQube.xml" /d:sonar.coverage.exclusions=$${coverage_exclusions} /d:sonar.login=$${sonar_token} 
       - dotnet build MineGuide_linuxOnly.sln -c Release --no-restore
       - dotnet test MineGuide_linuxOnly.sln --logger trx --no-restore /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "XPlat Code Coverage"
-      - reportgenerator -reports:"../Documentation/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"../Documentation/coveragereport"
+      - cd ..
+      - reportgenerator -reports:"Documentation/coverage.cobertura.xml" -reporttypes:SonarQube -targetdir:"Documentation/coveragereport"
+      - cd Sources/
       - dotnet publish MineGuide_linuxOnly.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
       - dotnet sonarscanner end /d:sonar.login=$${sonar_token}
     when:
