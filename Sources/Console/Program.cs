@@ -2,6 +2,7 @@
 
 using Model;
 using System;
+using System.Diagnostics.Metrics;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
@@ -55,47 +56,57 @@ void testMonstre()
 }*/
 
 
-int menuAccueil(){
-    string? choix;
-    displayTitle("Menu principal");
-    displayMenu(new List<string> { "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application" });
-    choix = Console.ReadLine();
+void menuAccueil(){
+
+    string? choix = "Something"; // Obligé de l'initialiser à quelquechose d'autre que null...
     while(choix != null)
     {
-        if (choix == "1")
-        {
-            Console.Clear();
-            Console.WriteLine("Choix 1");
-            menuConnexion();
-            return 1;
-        }
-        else if (choix == "2")
-        {
-            Console.Clear();
-            Console.WriteLine("Choix 2");
-            menuInscription();
-            return 2;
-        }
-        else if (choix == "3")
-        {
-            Console.Clear();
-            Console.WriteLine("Choix 3");
-            monsterPage();
-            return 3;
-        }
-        else if (choix == "4")
+        displayTitle("Menu principal");
+        displayMenu(new List<string> { "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application" });
+        choix = Console.ReadLine();
+        if (string.IsNullOrWhiteSpace(choix))   // Si l'utilisateur a juste cliqué sur Entrée, ou s'il a tapé des espaces puis a validé
         {
             Console.Clear();
             Console.WriteLine("Exit");
-            return 4;
+            return;
         }
         else
         {
-            // Si l'utilisateur entre autre chose que 1, 2, 3 ou 4
-            Console.WriteLine("Écris un nombre compris entre 1 et 3, ou juste tape sur la touche Entrée pour quitter.");
+            switch (choix)
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("Choix 1");
+                    //menuConnexion();
+                    break;
+
+                case "2":
+                    Console.Clear();
+                    Console.WriteLine("Choix 2");
+                    //menuInscription();
+                    break;
+
+                case "3":
+                    Console.Clear();
+                    Console.WriteLine("Choix 3");
+                    //monsterPage();
+                    break;
+
+                case "4":
+                    Console.Clear();
+                    Console.WriteLine("Fermeture de l'application en cours...");
+                    return;
+
+                default:
+                    // Pour toutes les autres possiblités non comprise entre 1 et 4.
+                    // Par exemple les chaînes de caractères, les nombres > 4 et < 1, ainsi que toutes les choses possibles...
+                    Console.Clear();
+                    Console.WriteLine($"La valeur {choix} n'est pas valide. Veuillez réessayer.");
+                    break;
+            }
         }
     }
-    return 0;
+    return;
 }
 
 string ReadPassword()
@@ -297,4 +308,4 @@ int monsterPage()
     return 0;
 }
 
-int codeRetour = menuAccueil();
+menuAccueil();
