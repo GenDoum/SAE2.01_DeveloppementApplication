@@ -15,6 +15,7 @@ namespace Modèle
     /// </summary>
     public class Conseil
     {
+        /*
         public User Auteur { get; set; }
         public string Texte { get; private set; }
         public Monstre LeMonstre { get; set; }
@@ -51,7 +52,7 @@ namespace Modèle
         public void removeConseil()
         {
 
-        }
+        }*/
 
     }
 }
