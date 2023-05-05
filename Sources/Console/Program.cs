@@ -54,6 +54,7 @@ int menuAccueil(){
         {
             Console.Clear();
             Console.WriteLine("Choix 2");
+            menuInscription();
             return 2;
         }
         else if (choix == "3")
@@ -118,8 +119,8 @@ int menuConnexion()
     int i = 1;
     int nbRetries = 0;
     nbRetries++;
-    int exists = 0;
-    while (exists == 0)
+    bool exists = false;
+    while (exists == false)
     {
         if (nbRetries >= 3)
         {
@@ -154,12 +155,78 @@ int menuConnexion()
             continue;
         }
         exists = ub.checkIfExists(id, psswd);
-        if ( exists == 0)
+        if ( !exists ) // Si le nom d'utilisateur ou le mot de passe ne correspondent pas, ou s'ils ne sont pas présent dans la base de données
         {
             Console.WriteLine("Erreur, identifiant ou mot de passe incorrect.");
         }
     }
     monsterPage();
+    return 0;
+}
+
+int menuInscription()
+{
+    string pseudo;
+    string nom;
+    string prenom;
+    string mdp;
+    int n = 1; //Itérateur du nombre d'essais
+    while (n <= 3)
+    {
+        Console.WriteLine($"Tentatives : {n}");
+        Console.Write("Prénom : ");
+        prenom = Console.ReadLine();
+        if (string.IsNullOrEmpty(prenom))
+        {
+            Console.Clear();
+            n++;
+            continue;
+        }
+        Console.Write("Nom : ");
+        nom = Console.ReadLine();
+        if (string.IsNullOrEmpty(nom))
+        {
+            Console.Clear();
+            n++;
+            continue;
+        }
+        Console.Write("Pseudo : ");
+        pseudo = Console.ReadLine();
+        if (string.IsNullOrEmpty(pseudo))
+        {
+            Console.Clear();
+            n++;
+            continue;
+        }
+        Console.Write("Mot de passe : ");
+        mdp = ReadPassword();
+        if (string.IsNullOrEmpty(mdp))
+        {
+            Console.Clear();
+            n++;
+            continue;
+        }
+
+        if(ub.checkIfPseudoExists(pseudo))
+        {
+            Console.Clear();
+            Console.WriteLine("Erreur, ce pseudo est déjà pris.");
+            n++;
+        }
+        else if (ub.addUser(pseudo, nom, prenom, mdp))
+        {
+            Console.WriteLine("Utilisateur ajouté avec succès !");
+            break;
+        }
+    }
+
+    if (n >= 3)
+    {
+        Console.WriteLine("Trop de tentatives. Réessayez plus tard.");
+        return -1;
+    }
+
+    Console.WriteLine("Inscription réussie !");
     return 0;
 }
 

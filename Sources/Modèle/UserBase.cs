@@ -35,22 +35,47 @@ namespace Model
         /// </summary>
         /// <param name="username">Identifiant (pseudo) de l'utilisateur</param>
         /// <param name="password">Mot de passe de l'utilisateur</param>
-        public int checkIfExists(string username, string password)
+        public bool checkIfExists(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                return 0;
+                return false;
             }
             foreach (User u in ListUsers)
             {
-                if (username.Equals(u.Pseudo) && u.verifyPssw(password))
+                if (checkIfPseudoExists(username) && u.verifyPssw(password))
                 {
-                    return 5;
+                    return true;
                 }
             }
-            return 0;
-
+            return false;
         }
 
+        public bool checkIfPseudoExists(string username)
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                return false;
+            }
+            foreach (User u in ListUsers)
+            {
+                if (username.Equals(u.Pseudo))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool addUser(string pseudo, string nom, string prenom, string pssw)
+        {
+            bool exists = checkIfExists(pseudo, pssw);
+            if ( exists )    // Si le nom d'utilisateur a été trouvé dans la base de données
+            {
+                return false;
+            }
+            User user = new User(pseudo, nom, prenom, pssw); //POUR L'INSTANT -> Ne peux pas ajouter dans le stub
+            return true;
+        }
     }
 }
