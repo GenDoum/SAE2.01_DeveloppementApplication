@@ -5,10 +5,29 @@ using System;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
-///Déclaration du STUB
-
+// Déclaration du STUB
 UserBase ub = new UserBase();
 MonsterBase monsterBase = new MonsterBase();
+
+//======================================= Fonctions d'affichage ============================================
+void displayTitle(string text)
+{
+    Console.WriteLine();
+    Console.WriteLine($"-==========- {text} -==========-");
+    Console.WriteLine();
+}
+
+void displayMenu(List<string> text)
+{
+    int i = 1;
+    foreach (string item in text)
+    {
+        Console.WriteLine($"\t{i}. {item}");
+        i++;
+    }
+}
+
+
 /*
 void testMonstre()
 {
@@ -38,8 +57,8 @@ void testMonstre()
 
 int menuAccueil(){
     string? choix;
-    Console.WriteLine("Menu - Connexion / Inscription");
-    Console.WriteLine("\t1 - Connexion\n\t2 - Inscription\n\t3 - Connexion plus tard\n\t4 - Fermer\n");
+    displayTitle("Menu principal");
+    displayMenu(new List<string> { "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application" });
     choix = Console.ReadLine();
     while(choix != null)
     {
