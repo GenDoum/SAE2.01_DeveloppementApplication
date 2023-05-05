@@ -57,4 +57,6 @@ steps:
       - reportgenerator -reports:'**/coverage.cobertura.xml' -reporttypes:SonarQube -targetdir:"coveragereport" -verbosity:Verbose
       - dotnet publish MineGuide_linuxOnly.sln -c Release --no-restore -o CI_PROJECT_DIR/build/release
       - dotnet sonarscanner end /d:sonar.login=$${sonar_token}
+    branch:
+      - develop
     depends_on: [tests]
