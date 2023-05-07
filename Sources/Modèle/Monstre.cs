@@ -7,6 +7,10 @@ public class Monstre
 {
     public int Id { get; set; } = 1;
     public string Name { get; set; }
+    public string Dangerosite { get; private init; }
+        //EN FAIT IL FAUDRAIT FAIRE UN ENUM DU TYPE DE DANGEROSITÉ, pour rajouter lors de
+        //l'affichage de la liste des monstres une couleur selon ça,
+        //genre rouge dangereux, violet hyper dangereux, et vert passif
     public string Description { get; set; } = string.Empty;
     
     
@@ -32,16 +36,17 @@ public class Monstre
     }
     private List<string> appearance = null!;
 
-    public Monstre(int id, string name, string desc, List<string> characList, List<string> appearList)
+    public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList)
     {
         Id = id;
         Name = name;
+        Dangerosite = danger;
         Description = desc;
         CharacteristicsList = characList;
         AppearanceList = appearList;
-        if (string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Description))
+        if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Description) || string.IsNullOrWhiteSpace(danger))
         {
-            throw new ArgumentException("Un monstre doit avoir un nom et une description!");
+            throw new ArgumentException("Un monstre doit avoir un nom, une description et une dangerosité!");
         }
     }
 }
