@@ -23,6 +23,7 @@ namespace Model
 
         public User(string pseudo, string nom, string prenom, string mdp, List<Monstre>? monstresVus = null)
         {
+
             if (string.IsNullOrWhiteSpace(pseudo) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(mdp))
             {
                 throw new ArgumentException("Un User doit avoir un pseudo, un nom, un prénom et un mot de passe au minimum !");

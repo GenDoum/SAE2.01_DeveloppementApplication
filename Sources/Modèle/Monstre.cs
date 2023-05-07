@@ -16,13 +16,13 @@ public class Monstre
     
     public List<string> CharacteristicsList
     {
-        get; private init;
+        get; init;
     }
 
     
     public List<string> AppearanceList
     {
-        get; private init;
+        get; init;
     }
 
     public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList)
