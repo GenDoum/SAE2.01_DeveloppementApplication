@@ -25,7 +25,6 @@ void exitAppConsole()
     Thread.Sleep(800);
     Console.WriteLine("\tA bientôt !");
     Console.WriteLine();
-    return;
 }
 
 // Cette fonction permet d'écrire une string en rouge, le plus souvent lorsque l'on veut notifier une erreur
@@ -94,8 +93,6 @@ void menuAccueil(){
                 return;
         }
     } while ( choix != -1 );
-    
-    return;
 }
 
 int menuConnexion()
@@ -104,7 +101,7 @@ int menuConnexion()
     int nbTries = 1; // Initialise le nombre d'essais à 1
     bool exists = false;
 
-    while (exists == false)
+    while (exists!)
     {
         if (nbTries > 3) // Si il y a eu plus de 3 essais effectués
         {
@@ -232,7 +229,7 @@ int menuInscription()
     return 0;
 }
 
-int menuMontres()
+void menuMontres()
 {
     int choix;
     do
@@ -266,19 +263,19 @@ int menuMontres()
                 break;
 
             case 4:
-                return 0;
+                return;
 
             default:
                 // Pour toutes les autres possiblités non comprise entre -1 et 3
                 // (normalement pas possible, mais on est jamais trop prudent)
                 Console.Clear();
                 writeLineError($"La valeur {choix} n'est pas valide.");
-                return -1;
+                return;
         }
     } while (choix != -1); // Tant que l'utilisateur n'appuie pas sur Echap
 
 
-    return 0;
+    return;
 }
 
 //======================================= Fonctions d'affichage ============================================//
@@ -330,7 +327,7 @@ void displayAllMonstersLegend()
 // Fonction de recherche de monstre, mise à jour de la liste à chaque touche appuyée
 void rechercheMonstre()
 {
-    List<Monstre> m = new List<Monstre>();
+    List<Monstre> m;
     Console.Clear();
     ConsoleKeyInfo carac;
     string listCarac = "";

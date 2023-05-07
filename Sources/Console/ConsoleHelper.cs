@@ -34,21 +34,18 @@ namespace System {
                     System.Console.Write("*");
                     psswrd += info.KeyChar;
                 }
-                else if (info.Key == ConsoleKey.Backspace)
+                else if (info.Key == ConsoleKey.Backspace && !string.IsNullOrEmpty(psswrd))
                 {
-                    if (!string.IsNullOrEmpty(psswrd))
-                    {
-                        // Supprime un élément de la liste de char de psswrd
-                        psswrd = psswrd.Substring(0, psswrd.Length - 1);
-                        // Récupère la position du curseur
-                        int pos = System.Console.CursorLeft;
-                        // Déplace le curseur d'un à gauche
-                        System.Console.SetCursorPosition(pos - 1, System.Console.CursorTop);
-                        // Remplace par un espace dans la console
-                        System.Console.Write(" ");
-                        // Déplace le curseur d'une position à gauche encore
-                        System.Console.SetCursorPosition(pos - 1, System.Console.CursorTop);
-                    }
+                    // Supprime un élément de la liste de char de psswrd
+                    psswrd = psswrd.Substring(0, psswrd.Length - 1);
+                    // Récupère la position du curseur
+                    int pos = System.Console.CursorLeft;
+                    // Déplace le curseur d'un à gauche
+                    System.Console.SetCursorPosition(pos - 1, System.Console.CursorTop);
+                    // Remplace par un espace dans la console
+                    System.Console.Write(" ");
+                    // Déplace le curseur d'une position à gauche encore
+                    System.Console.SetCursorPosition(pos - 1, System.Console.CursorTop);
                 }
                 info = System.Console.ReadKey(true);
             }

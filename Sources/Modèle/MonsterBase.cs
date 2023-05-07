@@ -32,14 +32,9 @@ namespace Model
 
         public List<Monstre> search(string texte, MonsterBase mb)
         {
-            List<Monstre> lm = new List<Monstre>();
-
-            foreach (Monstre m in mb.ListMonsters)
-            {
-                if (m.Name.Contains(texte, System.StringComparison.CurrentCultureIgnoreCase))
-                   lm.Add(m);
-            }
-            return lm;
+            return (from Monstre m in mb.ListMonsters
+                    where m.Name.Contains(texte, System.StringComparison.CurrentCultureIgnoreCase)
+                    select m).ToList(); // LINQ
         }
     }
 }
