@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,12 +59,9 @@ namespace Model
                 return false;
             }
 
-            foreach (var _ in ListUsers.Where(u => username.Equals(u.Pseudo)).Select(u => new { }))
-            {
-                return true;
-            }
-
-            return false;
+            return (from User u in ListUsers
+                    where username.Equals(u.Pseudo)
+                    select true).FirstOrDefault();
         }
 
         public bool addUser(string pseudo, string nom, string prenom, string pssw)
