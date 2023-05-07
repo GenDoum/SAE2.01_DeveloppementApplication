@@ -47,7 +47,7 @@ steps:
       sonar_token:
         from_secret: SECRET_SONAR_LOGIN
       project_key: MineGuide101
-      coverage_exclusions: Tests/**, Console/**
+      coverage_exclusions: "Tests/**""Console/**"
     commands:
       - cd Sources/
       - dotnet restore MineGuide_linuxOnly.sln
