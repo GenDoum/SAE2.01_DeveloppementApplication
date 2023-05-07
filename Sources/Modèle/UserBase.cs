@@ -57,13 +57,14 @@ namespace Model
             {
                 return false;
             }
-            foreach (User u in ListUsers)
+
+            foreach (var _ in from User u in ListUsers
+                              where username.Equals(u.Pseudo)
+                              select new { })
             {
-                if (username.Equals(u.Pseudo))
-                {
-                    return true;
-                }
+                return true;
             }
+
             return false;
         }
 
@@ -74,7 +75,8 @@ namespace Model
             {
                 return false;
             }
-            User user = new User(pseudo, nom, prenom, pssw); //POUR L'INSTANT -> Ne peux pas ajouter dans le stub
+            User user = new User(pseudo, nom, prenom, pssw); //POUR L'INSTANT, de manière non permanente
+            ListUsers.Add(user);
             return true;
         }
     }

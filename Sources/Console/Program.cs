@@ -273,9 +273,6 @@ void menuMontres()
                 return;
         }
     } while (choix != -1); // Tant que l'utilisateur n'appuie pas sur Echap
-
-
-    return;
 }
 
 //======================================= Fonctions d'affichage ============================================//
@@ -344,12 +341,9 @@ void rechercheMonstre()
         {
             listCarac += carac.KeyChar;
         }
-        else if (carac.Key == ConsoleKey.Backspace)
+        else if (carac.Key == ConsoleKey.Backspace && !string.IsNullOrEmpty(listCarac))
         {
-            if (!string.IsNullOrEmpty(listCarac))
-            {
-                listCarac = listCarac.Remove(listCarac.Length - 1, 1);
-            }
+            listCarac = listCarac.Remove(listCarac.Length - 1, 1);
         }
         
         Console.Write(listCarac);
