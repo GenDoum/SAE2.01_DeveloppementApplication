@@ -58,9 +58,7 @@ namespace Model
                 return false;
             }
 
-            foreach (var _ in from User u in ListUsers
-                              where username.Equals(u.Pseudo)
-                              select new { })
+            foreach (var _ in ListUsers.Where(u => username.Equals(u.Pseudo)).Select(u => new { }))
             {
                 return true;
             }
