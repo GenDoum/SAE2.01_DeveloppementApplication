@@ -25,6 +25,15 @@ namespace Tests
         }
 
         [Theory]
+        [MemberData(nameof(WrongPasswordData_NoList))]
+        public void TestConstructorWrongPassword_NoList(string pseudo, string nom, string prenom, string mdp)
+        {
+            User u = new User(pseudo, nom, prenom, "LE VRAI MOT DE PASSE");
+            // Vérifie si le mot de passe ne correspond pas au mot de passe "LE VRAI MOT DE PASSE"
+            Assert.False(u.verifyPssw(mdp));
+        }
+
+        [Theory]
         [MemberData(nameof(MissingData_NoList))]
         public void TestConstructorWithMissingData_NoList(string pseudo, string nom, string prenom, string mdp)
         {
@@ -93,6 +102,14 @@ namespace Tests
             new object[] { "Pseudo", 12, "Prenom", "Mdp" },
             new object[] { "Pseudo", "Nom", 22, "Mdp" },
             new object[] { 1, 12, 123, 1234 }
+        };
+
+        //Jeu de données avec mot de passe erroné
+        public static IEnumerable<object[]> WrongPasswordData_NoList => new List<object[]>{
+            new object[] { "Moi", "Nom", "Prenom", "Mdp" },
+            new object[] { "Nikoala", "Nom", "Prenom", "Nikoala" },
+            new object[] { "osuplayer123", "Nom", "Prenom", "osu727" },
+            new object[] { "Moi", "Moi", "Moi", "Moi"}
         };
 
         //Jeu de données avec paramètres manquants
