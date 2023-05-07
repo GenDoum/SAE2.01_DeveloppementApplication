@@ -45,10 +45,6 @@ namespace Model
             Prenom = prenom;
             Mdp = mdp;
             monstresDejaVu = monstresVus;
-            if (string.IsNullOrWhiteSpace(pseudo) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(mdp))
-            {
-                throw new ArgumentException("Un User doit avoir un pseudo, un nom, un prénom et un mot de passe au minimum!");
-            }
         }
 
         public bool verifyPssw(string pssw)
