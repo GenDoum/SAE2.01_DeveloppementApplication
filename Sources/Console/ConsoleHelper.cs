@@ -8,7 +8,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 
 namespace System {
-    public class ConsoleHelper
+    public static class ConsoleHelper
     {
         public static void displayTitle(string title, bool clear)
         {
@@ -43,7 +43,7 @@ namespace System {
                         // Récupère la position du curseur
                         int pos = System.Console.CursorLeft;
                         // Déplace le curseur d'un à gauche
-                        System.Console.SetCursorPosition(pos - 1,   System.Console.CursorTop);
+                        System.Console.SetCursorPosition(pos - 1, System.Console.CursorTop);
                         // Remplace par un espace dans la console
                         System.Console.Write(" ");
                         // Déplace le curseur d'une position à gauche encore
