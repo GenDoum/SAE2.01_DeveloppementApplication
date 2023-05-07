@@ -21,7 +21,7 @@ namespace Model
         private string Mdp { get; set; }
         public List<Monstre>? monstresDejaVu { get; private set; }
 
-        public User(string pseudo, string nom, string prenom, string mdp)
+        public User(string pseudo, string nom, string prenom, string mdp, List<Monstre>? monstresVus = null)
         {
             if (string.IsNullOrWhiteSpace(pseudo) || string.IsNullOrWhiteSpace(nom) || string.IsNullOrWhiteSpace(prenom) || string.IsNullOrWhiteSpace(mdp))
             {
@@ -34,20 +34,11 @@ namespace Model
             bool isPrenomNumeric = int.TryParse(prenom, out _);
 
             //Si une des variables est convertissable en int, alors c'est une chaine de caractère uniquement composée de nombres
-            if ( isPseudoNumeric || isNomNumeric || isPrenomNumeric )
+            if (isPseudoNumeric || isNomNumeric || isPrenomNumeric)
             {
                 //Alors on renvoie une exception appelée "FormatException"
                 throw new FormatException("Un User ne peux pas avoir de pseudo/nom/prénom composé uniquement de nombres !");
             }
-
-            Pseudo = pseudo;
-            Nom = nom;
-            Prenom = prenom;
-            Mdp = mdp;
-        }
-
-        public User(string pseudo, string nom, string prenom, string mdp, List<Monstre> monstresVus)
-        {
             Pseudo = pseudo;
             Nom = nom;
             Prenom = prenom;

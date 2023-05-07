@@ -5,36 +5,25 @@ namespace Model;
 
 public class Monstre
 {
-    public int Id { get; set; } = 1;
+    public int Id { get; set; }
     public string Name { get; set; }
     public string Dangerosite { get; private init; }
         //EN FAIT IL FAUDRAIT FAIRE UN ENUM DU TYPE DE DANGEROSITÉ, pour rajouter lors de
         //l'affichage de la liste des monstres une couleur selon ça,
         //genre rouge dangereux, violet hyper dangereux, et vert passif
-    public string Description { get; set; } = string.Empty;
+    public string Description { get; set; }
     
     
     public List<string> CharacteristicsList
     {
-        get {
-            return characteristic;
-        }
-        set {
-            characteristic = value;
-        }
+        get; private init;
     }
-    private List<string> characteristic = null!;
 
     
     public List<string> AppearanceList
     {
-        get => appearance;
-        set
-        {
-            appearance = value;
-        }
+        get; private init;
     }
-    private List<string> appearance = null!;
 
     public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList)
     {
