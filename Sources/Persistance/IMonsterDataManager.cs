@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Modèle
+namespace Persistance
 {
-    public interface IRechercheMonstre
+    public interface IMonsterDataManager
     {
-        public List<Monstre> search(string texte);
+        void saveMonsters(List<Monstre> monstres);
+        List<Monstre> loadMonsters();
     }
 }

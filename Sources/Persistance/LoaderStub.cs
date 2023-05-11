@@ -1,19 +1,20 @@
 ﻿using System;
+using Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Persistance
 {
     /// <summary>
     /// Le stub "émule" une base de données, elle permet simplement d'imiter le rôle du stockage des 
     /// données, par exemple en ajoutant plusieurs utilisateurs dans une base de données.
     /// </summary>
-    public class Stub
+    public class LoaderStub : IUserDataManager
     {
-        public Stub() { }
+        public LoaderStub() { }
         public List<User> loadUsers() ///CHANGER VISIBILITEE, CAR PAS BIEN DE LAISSER A TOUT LE MONDE
         {
             List<User> lu = new List<User>();
@@ -45,6 +46,11 @@ namespace Model
             lm.Add(new Monstre(15, "Slime", "hostile", "Je connais le multiclonage !", new List<string> { "Les slimes peuvent apparaître avec des tailles différentes.", "S'il n'est pas trop petit, il se divisera en quatre."}, new List<string> { "Apparencegrand", "apparence petit"}));
             lm.Add(new Monstre(16, "Araignée", "hostile", " je sais pas quoi mettre mdrrrrr", new List<string> { "L'arraignée est capable de grimper au mur", " Si vous en rencontrait une en journée et en extérieur elle sera inoffensive, mais dans une caverne ou pendant la nuit elle vous attaquera." }, new List<string> { "une seule apparence" }));
             return lm;
+        }
+
+        void IUserDataManager.saveUsers(List<User> users)
+        {
+            Console.WriteLine("This is a stub, so no 'save' possible !");
         }
     }
 }

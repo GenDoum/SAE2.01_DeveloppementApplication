@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Persistance
 {
-    /// <summary>
-    /// Cette classe permet d'initialiser une base de données d'utilisateurs, en appelant pour le
-    /// moment le stub. Elle permet également de manipuler ces données.
-    /// </summary>
-    public class UserBase
+    public class UserManager : IUserDataManager
     {
+        public IUserDataManager Pers { get; set; }
+
         private List<User> users = null!;
         public List<User> ListUsers
         {
@@ -25,10 +23,24 @@ namespace Model
                 users = value;
             }
         }
-
-        public UserBase()
+        void addUser(User u)
         {
-            ListUsers = new Stub().loadUsers();
+
+        }
+
+        void removeUser(User u)
+        {
+
+        }
+
+        void IUserDataManager.saveUsers(List<User> users)
+        {
+            
+        }
+
+        List<User> IUserDataManager.loadUsers()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -74,6 +86,11 @@ namespace Model
             User user = new User(pseudo, nom, prenom, pssw); //POUR L'INSTANT, de manière non permanente
             ListUsers.Add(user);
             return true;
+        }
+
+        public UserManager(IUserDataManager dataMngr) {
+            Pers = dataMngr;
+            ListUsers = new LoaderStub().loadUsers();
         }
     }
 }

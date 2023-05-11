@@ -1,14 +1,15 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Model;
+using Persistance;
 using System;
 using System.Diagnostics.Metrics;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
-// Déclaration du STUB
-UserBase ub = new UserBase();
-MonsterBase monsterBase = new MonsterBase();
+// Déclaration des Managers (et de leur méthode de sauvegarde)
+UserManager userMngr = new UserManager(new LoaderStub());
+MonsterManager monsterMngr = new MonsterManager(new LoaderStub());
 
 //======================================= Fonctions d'affichage ============================================//
 
