@@ -32,15 +32,15 @@ namespace Persistance
         {
 
         }
-
+        //CHANGER VISIBILITE CAR ATTENTION
         void IUserDataManager.saveUsers(List<User> users)
         {
-            
+            Pers.saveUsers(users);
         }
 
         List<User> IUserDataManager.loadUsers()
         {
-            throw new NotImplementedException();
+            return Pers.loadUsers();
         }
 
         /// <summary>

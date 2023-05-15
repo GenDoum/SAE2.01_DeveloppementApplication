@@ -8,8 +8,8 @@ using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
 // Déclaration des Managers (et de leur méthode de sauvegarde)
-UserManager userMngr = new UserManager(new LoaderStub());
-MonsterManager monsterMngr = new MonsterManager(new LoaderStub());
+UserManager userMngr = new UserManager(new LoaderXML());
+//MonsterManager ub = new MonsterManager(new LoaderStub());
 
 //======================================= Fonctions d'affichage ============================================//
 
@@ -49,7 +49,7 @@ void menuAccueil(){
     do
     {
         choix = ConsoleHelper.MultipleChoice("Menu principal", true,
-        "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application");
+        "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application", "[TEST] - LoadUsers", "[TEST] - LoadUsers");
 
         //Traitement du choix de l'utilisateur
         switch (choix)
@@ -98,11 +98,11 @@ void menuAccueil(){
 
 int menuConnexion()
 {
-    string? id, psswd;
+    string id, psswd;
     int nbTries = 1; // Initialise le nombre d'essais à 1
     bool exists = false;
 
-    while (exists!)
+    while (!exists)
     {
         if (nbTries > 3) // Si il y a eu plus de 3 essais effectués
         {
@@ -136,7 +136,7 @@ int menuConnexion()
             continue;
         }
 
-        exists = ub.checkIfExists(id, psswd);
+        exists = userMngr.checkIfExists(id, psswd);
         if ( !exists ) // Si le nom d'utilisateur ou le mot de passe ne correspondent pas,
                        // ou s'ils ne sont pas présent dans la base de données.
         {
@@ -208,7 +208,7 @@ int menuInscription()
             continue;
         }
 
-        if(ub.checkIfPseudoExists(pseudo))
+        if(userMngr.checkIfPseudoExists(pseudo))
         {
             Console.Clear();
             ConsoleHelper.displayTitle("Inscription", true);
@@ -217,7 +217,7 @@ int menuInscription()
             System.Threading.Thread.Sleep(1500);
             n++;
         }
-        else if (ub.addUser(pseudo, nom, prenom, mdp))
+        else if (userMngr.addUser(pseudo, nom, prenom, mdp))
         {
             break;
         }
@@ -279,6 +279,7 @@ void menuMontres()
 //======================================= Fonctions d'affichage ============================================//
 void displayAllMonsters()
 {
+    /*
     ConsoleHelper.displayTitle("Index des monstres - Affichage des monstres", true);
     displayAllMonstersLegend();
     Console.WriteLine();
@@ -303,7 +304,7 @@ void displayAllMonsters()
                 Console.ResetColor();
                 continue;
         }
-    }
+    }*/
 }
 
 void displayAllMonstersLegend()
@@ -324,7 +325,7 @@ void displayAllMonstersLegend()
 
 // Fonction de recherche de monstre, mise à jour de la liste à chaque touche appuyée
 void rechercheMonstre()
-{
+{/*
     List<Monstre> m;
     Console.Clear();
     ConsoleKeyInfo carac;
@@ -358,7 +359,7 @@ void rechercheMonstre()
         carac = Console.ReadKey(true);
     }
     writeLineError("Retour à la page précédente...");
-    Thread.Sleep(1000);
+    Thread.Sleep(1000);*/
 }
 
 

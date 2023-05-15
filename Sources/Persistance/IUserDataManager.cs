@@ -9,7 +9,8 @@ namespace Persistance
 {
     public interface IUserDataManager
     {
-        void saveUsers(List<User> users);
-        List<User> loadUsers();
+        //A CHANGER VISIBILITEE -> pour pas que tout le monde puisse load et save :)
+        public void saveUsers(List<User> users);
+        public List<User> loadUsers();
     }
 }
