@@ -49,7 +49,7 @@ void menuAccueil(){
     do
     {
         choix = ConsoleHelper.MultipleChoice("Menu principal", true,
-        "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application", "[TEST] - LoadUsers", "[TEST] - LoadUsers");
+        "Connexion", "Inscription", "Continuer en tant qu'invité", "Quitter l'application", "[TEST] - LoadUsers", "[TEST] - SaveUsers");
 
         //Traitement du choix de l'utilisateur
         switch (choix)
@@ -84,6 +84,14 @@ void menuAccueil(){
 
             case 3:
                 exitAppConsole();
+                return;
+
+            case 4:
+                userMngr.loadUsers();
+                return;
+
+            case 5:
+                userMngr.saveUsers(userMngr.ListUsers);
                 return;
 
             default:

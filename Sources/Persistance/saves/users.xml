@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Model">
+  <User>
+    <Mdp>mdp</Mdp>
+    <Nom>dede</Nom>
+    <Prenom>dodo</Prenom>
+    <Pseudo>DedeDu42</Pseudo>
+    <monstresDejaVu />
+  </User>
+  <User>
+    <Mdp>feur</Mdp>
+    <Nom>Monchanin</Nom>
+    <Prenom>Liam</Prenom>
+    <Pseudo>Moi</Pseudo>
+    <monstresDejaVu />
+  </User>
+  <User>
+    <Mdp>niblondeau</Mdp>
+    <Nom>Blondeau</Nom>
+    <Prenom>Nicolas</Prenom>
+    <Pseudo>Nikoala</Pseudo>
+    <monstresDejaVu />
+  </User>
+  <User>
+    <Mdp>mdp</Mdp>
+    <Nom>Doumir</Nom>
+    <Prenom>Yannis</Prenom>
+    <Pseudo>Yadoumir</Pseudo>
+    <monstresDejaVu />
+  </User>
+  <User>
+    <Mdp>oSu!727</Mdp>
+    <Nom>Bonetti</Nom>
+    <Prenom>Martin</Prenom>
+    <Pseudo>osuplayer123</Pseudo>
+    <monstresDejaVu />
+  </User>
+</ArrayOfUser>

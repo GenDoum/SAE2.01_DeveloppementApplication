@@ -32,16 +32,18 @@ namespace Persistance
         {
 
         }
-        //CHANGER VISIBILITE CAR ATTENTION
-        void IUserDataManager.saveUsers(List<User> users)
-        {
-            Pers.saveUsers(users);
-        }
 
-        List<User> IUserDataManager.loadUsers()
+        public List<User> loadUsers()
         {
             return Pers.loadUsers();
         }
+
+        public void saveUsers(List<User> users)
+        {
+            Pers.saveUsers(users);
+        }
+        //CHANGER VISIBILITE CAR ATTENTION
+        //Pers.saveUsers(users);
 
         /// <summary>
         /// Cette méthode vérifie si l'utilisateur est présent dans la base de données
@@ -88,9 +90,11 @@ namespace Persistance
             return true;
         }
 
+        
+
         public UserManager(IUserDataManager dataMngr) {
             Pers = dataMngr;
-            ListUsers = new LoaderStub().loadUsers();
+            ListUsers = new LoaderXML().loadUsers(); //CHOIX ICI DE LA METHODE DE CHARGEMENT INITIAL DES UTILISATEURS
         }
     }
 }

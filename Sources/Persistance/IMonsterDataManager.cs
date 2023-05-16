@@ -9,7 +9,7 @@ namespace Persistance
 {
     public interface IMonsterDataManager
     {
-        void saveMonsters(List<Monstre> monstres);
-        List<Monstre> loadMonsters();
+        public void saveMonsters(List<Monstre> monstres);
+        public List<Monstre> loadMonsters();
     }
 }
