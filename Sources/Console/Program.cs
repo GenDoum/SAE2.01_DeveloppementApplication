@@ -215,7 +215,6 @@ int menuInscription()
             n++;
             continue;
         }
-
         if(userMngr.checkIfPseudoExists(pseudo))
         {
             Console.Clear();
@@ -235,6 +234,7 @@ int menuInscription()
     Console.WriteLine("\tInscription réussie !");
     Console.ResetColor ();
     System.Threading.Thread.Sleep(2000); // Pause de 2 secondes
+
     return 0;
 }
 

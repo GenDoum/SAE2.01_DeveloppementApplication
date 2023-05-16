@@ -12,13 +12,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Persistance
 {
-
     public class LoaderXML : IUserDataManager, IMonsterDataManager
     {
         static string path = "../../../../Persistance/saves/";
-        static string fichierXML = "users.xml";
-        static string monstreXML = "monsters.xml";
-
+        static string fichierUserXML = "users.xml";
+        static string fichierMonstreXML = "monsters.xml";
 
         public static void sauvegarderListUsers()
         {
@@ -26,14 +24,12 @@ namespace Persistance
         }
         List<Monstre> IMonsterDataManager.loadMonsters()
         {
-            #region Deserialisation
             var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
             List<Monstre> monsters;
-            using (Stream s = File.OpenRead(monstreXML))
+            using (Stream s = File.OpenRead(fichierMonstreXML))
             {
                 monsters = serialiserXML.ReadObject(s) as List<Monstre>;
             }
-            #endregion
             return monsters;
         }
 
@@ -48,7 +44,7 @@ namespace Persistance
             Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), path)); // Setup le chemin d'accès
             var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
             XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true }; // Pour avoir le format xml dans le fichier ( indentation etc... )
-            using (TextWriter tw = File.CreateText(monstreXML))
+            using (TextWriter tw = File.CreateText(fichierMonstreXML))
             {
                 using (XmlWriter writer = XmlWriter.Create(tw, xmlSettings))
                 {
@@ -63,7 +59,7 @@ namespace Persistance
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
 
             XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true }; // Pour avoir le format xml dans le fichier ( indentation etc... )
-            using (TextWriter tw = File.CreateText(fichierXML))
+            using (TextWriter tw = File.CreateText(fichierUserXML))
             {
                 using (XmlWriter writer = XmlWriter.Create(tw, xmlSettings))
                 {
@@ -76,7 +72,7 @@ namespace Persistance
         {
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
             List<User> users;
-            using (Stream s = File.OpenRead(path + fichierXML))
+            using (Stream s = File.OpenRead(path + fichierUserXML))
             {
                 users = serialiserXML.ReadObject(s) as List<User>;
             }
