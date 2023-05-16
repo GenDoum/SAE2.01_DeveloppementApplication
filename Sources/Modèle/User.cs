@@ -18,14 +18,19 @@ namespace Model
     [DataContract]
     public class User
     {
-        [DataMember]
+        [DataMember(Order = 3)]
         public string Pseudo { get; private set; }
-        [DataMember]
+
+        [DataMember(Order = 1)]
         public string Nom { get; private set; }
-        [DataMember]
+
+        [DataMember(Order = 2)]
         public string Prenom { get; private set; }
-        [DataMember]
+
+        [DataMember(Order = 4)]
         private string Mdp { get; set; }
+
+
         [DataMember]
         public List<Monstre>? monstresDejaVu { get; private set; }
 

@@ -20,7 +20,12 @@ namespace Persistance
             List<User> lu = new List<User>();
             lu.Add(new User("DedeDu42", "dede", "dodo", "mdp", new List<Monstre> { }));
             lu.Add(new User("Moi", "Monchanin", "Liam", "feur", new List<Monstre> { }));
-            lu.Add(new User("Nikoala", "Blondeau", "Nicolas", "niblondeau", new List<Monstre> { }));
+            lu.Add(new User("Nikoala", "Blondeau", "Nicolas", "niblondeau", new List<Monstre> { 
+                                                                                    new Monstre(2, 
+                                                                                    "Mouton", "passif", "Je suis présent un peu partout, sauf dnas le desert.", 
+                                                                                    new List<string> { "Avec une cisaille il est possible de raser la laine d'un mouton, il se retrouvera sans laine.","Pour faire repousser la laine d'un mouton, il faut qu'il ait de l'herbe sous ses pattes pour qu'il puisse manger. Une fois l'herbe mangée, la laine repousse instantanément !" }, 
+                                                                                    new List<string> { "Apparence1", "App2", "App3" }) }));
+
             lu.Add(new User("Yadoumir", "Doumir", "Yannis", "mdp", new List<Monstre> { }));
             lu.Add(new User("osuplayer123", "Bonetti", "Martin", "oSu!727", new List<Monstre> { }));
             return lu;

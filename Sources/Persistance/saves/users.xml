@@ -1,38 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUser xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Model">
   <User>
-    <Mdp>mdp</Mdp>
+    <monstresDejaVu i:nil="true" />
     <Nom>dede</Nom>
     <Prenom>dodo</Prenom>
     <Pseudo>DedeDu42</Pseudo>
-    <monstresDejaVu />
+    <Mdp>mdp</Mdp>
   </User>
   <User>
-    <Mdp>feur</Mdp>
+    <monstresDejaVu i:nil="true" />
     <Nom>Monchanin</Nom>
     <Prenom>Liam</Prenom>
     <Pseudo>Moi</Pseudo>
-    <monstresDejaVu />
+    <Mdp>feur</Mdp>
   </User>
   <User>
-    <Mdp>niblondeau</Mdp>
+    <monstresDejaVu i:nil="true" />
     <Nom>Blondeau</Nom>
     <Prenom>Nicolas</Prenom>
     <Pseudo>Nikoala</Pseudo>
-    <monstresDejaVu />
+    <Mdp>niblondeau</Mdp>
   </User>
   <User>
-    <Mdp>mdp</Mdp>
+    <monstresDejaVu i:nil="true" />
     <Nom>Doumir</Nom>
     <Prenom>Yannis</Prenom>
     <Pseudo>Yadoumir</Pseudo>
-    <monstresDejaVu />
+    <Mdp>mdp</Mdp>
   </User>
   <User>
-    <Mdp>oSu!727</Mdp>
+    <monstresDejaVu i:nil="true" />
     <Nom>Bonetti</Nom>
     <Prenom>Martin</Prenom>
     <Pseudo>osuplayer123</Pseudo>
-    <monstresDejaVu />
+    <Mdp>oSu!727</Mdp>
+  </User>
+  <User>
+    <monstresDejaVu i:nil="true" />
+    <Nom>PasMonchanin</Nom>
+    <Prenom>PasMoi</Prenom>
+    <Pseudo>PasLiam</Pseudo>
+    <Mdp>pasfeur</Mdp>
+  </User>
+  <User>
+    <monstresDejaVu i:nil="true" />
+    <Nom>PasMonchanin</Nom>
+    <Prenom>PasLiam</Prenom>
+    <Pseudo>PasMoi</Pseudo>
+    <Mdp>pasfeur</Mdp>
+  </User>
+  <User>
+    <monstresDejaVu i:nil="true" />
+    <Nom>Aled</Nom>
+    <Prenom>Jémal</Prenom>
+    <Pseudo>osKour</Pseudo>
+    <Mdp>aidezmwa</Mdp>
+  </User>
+  <User>
+    <monstresDejaVu i:nil="true" />
+    <Nom>TestNom</Nom>
+    <Prenom>TestPrenom</Prenom>
+    <Pseudo>TestPseudo</Pseudo>
+    <Mdp>TestMdp</Mdp>
   </User>
 </ArrayOfUser>
