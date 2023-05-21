@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Reflection.Metadata;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -35,10 +36,8 @@ namespace Model
         {
             get; init;
         }
-
-        //public List<Conseil> ListeConseils { get; init; }
-
-        public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList/*, List<Conseil> conseilList*/)
+        public List<Conseil> ListConseils { get; set; }
+        public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList, List<Conseil> conseilList)
         {
             Id = id;
             Name = name;
@@ -46,7 +45,7 @@ namespace Model
             Description = desc;
             CharacteristicsList = characList;
             AppearanceList = appearList;
-            //ListeConseils = conseilList;
+            ListConseils = conseilList;
             if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Description) || string.IsNullOrWhiteSpace(danger))
             {
                 throw new ArgumentException("Un monstre doit avoir un nom, une description et une dangerosité!");

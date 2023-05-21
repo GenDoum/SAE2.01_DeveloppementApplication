@@ -9,10 +9,12 @@ using System.Xml;
 using System.IO;
 using System.Collections.ObjectModel;
 using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.CompilerServices;
 
 namespace Persistance
 {
-    public class LoaderXML : IUserDataManager, IMonsterDataManager
+    // Pas possible au final de factoriser la code je pense pcq les proto son différent à chaque fois et on peut pas changer le prototype dans un appel
+    public class LoaderXml : IUserDataManager, IMonsterDataManager
     {
         static string path = "../../../../Persistance/saves/";
         static string fichierUserXML = "users.xml";
@@ -20,12 +22,13 @@ namespace Persistance
 
         public static void sauvegarderListUsers()
         {
-
+            
+            throw new NotImplementedException();
         }
         List<Monstre> IMonsterDataManager.loadMonsters()
         {
             var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
-            List<Monstre> monsters;
+            List<Monstre>? monsters;
             using (Stream s = File.OpenRead(fichierMonstreXML))
             {
                 monsters = serialiserXML.ReadObject(s) as List<Monstre>;
@@ -68,10 +71,10 @@ namespace Persistance
             }
         }
 
-        public List<User> loadUsers()
+        public List<User> loadUsers() 
         {
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
-            List<User> users;
+            List<User>? users;
             using (Stream s = File.OpenRead(path + fichierUserXML))
             {
                 users = serialiserXML.ReadObject(s) as List<User>;
@@ -84,5 +87,6 @@ namespace Persistance
             }
             return users;
         }
+
     }
 }

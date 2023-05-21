@@ -22,7 +22,7 @@ namespace Modèle
     {
         [DataMember(Order = 1)]
         // Faire une condition du supression il fut que la personne qui ai créé le conseil soit la même que celle qui suprime le conseil.
-        public int Id { get; }
+        public readonly int Id = 0;
         int idConseil = 0; // Initialisateur de ID
         [DataMember(Order = 2)]
         public User Auteur { get; set; }

@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Model;
+using Modèle;
 using Persistance;
 using System;
 using System.Diagnostics.Metrics;
@@ -8,7 +9,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
 // Déclaration des Managers (et de leur méthode de sauvegarde)
-UserManager userMngr = new UserManager(new LoaderXML());
+UserManager userMngr = new UserManager(new LoaderXml());
 //MonsterManager ub = new MonsterManager(new LoaderStub());
 
 //======================================= Fonctions d'affichage ============================================//
@@ -371,4 +372,14 @@ void rechercheMonstre()
 }
 
 
-menuAccueil();
+//menuAccueil();
+User auteur = new User("pseudo", "nom", "prenom", "mdp", new List<Monstre> { });
+
+// Création d'un monstre
+Monstre monstre = new Monstre(1, "Dragon", "Dangereux", "Un redoutable dragon cracheur de feu.", new List<string>(), new List<string>(), new List<Conseil>());
+
+// Création d'un conseil
+Conseil conseil = new Conseil(auteur, "Soyez prudent lors de votre rencontre avec le dragon.", monstre);
+
+// Affichage du conseil
+conseil.affichConseil();

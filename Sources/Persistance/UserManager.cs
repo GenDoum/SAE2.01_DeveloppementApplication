@@ -25,12 +25,12 @@ namespace Persistance
         }
         void addUser(User u)
         {
-
+            throw new NotImplementedException();
         }
 
         void removeUser(User u)
         {
-
+            throw new NotImplementedException();
         }
 
         public List<User> loadUsers()
@@ -94,7 +94,7 @@ namespace Persistance
 
         public UserManager(IUserDataManager dataMngr) {
             Pers = dataMngr;
-            ListUsers = new LoaderXML().loadUsers(); //CHOIX ICI DE LA METHODE DE CHARGEMENT INITIAL DES UTILISATEURS
+            ListUsers = new LoaderXml().loadUsers(); //CHOIX ICI DE LA METHODE DE CHARGEMENT INITIAL DES UTILISATEURS
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Persistance
             List<User>? user2;
             using (FileStream s2 = File.OpenRead("monsters.json"))
             {
-                user2 = jsonMonsterSerializer.ReadObject(s2) as List<User>;
+                user2 = jsonUserSerializer.ReadObject(s2) as List<User>;
             }
             return user2;
             //throw new NotImplementedException();
@@ -53,7 +53,7 @@ namespace Persistance
 
         void IUserDataManager.saveUsers(List<User> users)
         {
-            jsonMonsterSerializer.WriteObject(memoryStream, users);
+            jsonUserSerializer.WriteObject(memoryStream, users);
             using (FileStream s = File.Create("monsters.json"))
                 using (var writer = JsonReaderWriterFactory.CreateJsonWriter(
                     memoryStream,
@@ -63,7 +63,7 @@ namespace Persistance
             {
                 memoryStream.WriteTo(s);
             }
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
