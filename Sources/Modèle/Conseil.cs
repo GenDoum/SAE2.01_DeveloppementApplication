@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 
 
 
-namespace Modèle
+namespace Model
 {
     /// <summary>
     /// La classe conseil permet à un utilisateur de poster un conseil sur la page d'un monstre.
