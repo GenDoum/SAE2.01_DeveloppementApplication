@@ -25,7 +25,7 @@ namespace Persistance
         }
         void IMonsterDataManager.saveMonsters(List<Monstre> monstres)
         {
-            
+            throw new NotImplementedException();
         }
 
         List<Monstre> IMonsterDataManager.loadMonsters()

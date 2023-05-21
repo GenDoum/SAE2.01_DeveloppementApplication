@@ -22,7 +22,6 @@ namespace Persistance
 
         public static void sauvegarderListUsers()
         {
-            
             throw new NotImplementedException();
         }
         List<Monstre> IMonsterDataManager.loadMonsters()
