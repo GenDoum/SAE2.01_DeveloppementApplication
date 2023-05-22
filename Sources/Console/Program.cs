@@ -10,7 +10,10 @@ using System.Reflection.PortableExecutable;
 
 // Déclaration des Managers (et de leur méthode de sauvegarde)
 UserManager userMngr = new UserManager(new LoaderXml());
-//MonsterManager ub = new MonsterManager(new LoaderStub());
+MonsterManager monsterBase = new MonsterManager(new LoaderXml());
+
+// Variables statiques
+bool isUserConnected = false;
 
 //======================================= Fonctions d'affichage ============================================//
 
@@ -47,6 +50,10 @@ void menuAccueil(){
     Console.ResetColor();
     int choix;
 
+    userMngr.loadUsers();
+    displayAllUsers();
+    Thread.Sleep(2000);
+
     do
     {
         choix = ConsoleHelper.MultipleChoice("Menu principal", true,
@@ -56,7 +63,10 @@ void menuAccueil(){
         switch (choix)
         {
             case -1:
-                // Lorsque l'utilisateur appuie sur Echap, alors quitter l'application.
+                // Lorsque l'utilisateur appuie sur Echap, alors sauvegarder et quitter l'application.
+                userMngr.saveUsers(userMngr.ListUsers);
+                displayAllUsers();
+                Thread.Sleep(2000);
                 exitAppConsole();
                 break;
             case 0:
@@ -89,10 +99,12 @@ void menuAccueil(){
 
             case 4:
                 userMngr.loadUsers();
+                displayAllUsers();
                 return;
 
             case 5:
                 userMngr.saveUsers(userMngr.ListUsers);
+                displayAllUsers();
                 return;
 
             default:
@@ -154,6 +166,7 @@ int menuConnexion()
         }
         else
         {
+            isUserConnected = true;
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\tConnexion réussie !");
@@ -244,14 +257,23 @@ void menuMontres()
     int choix;
     do
     {
-        choix = ConsoleHelper.MultipleChoice("Index des monstres", true,
-        "Afficher la liste des montres", "Afficher les informations d'un monstre", "Recherche", "Filtrer", "Retour à l'accueil");
+        if (isUserConnected)
+        {
+            choix = ConsoleHelper.MultipleChoice("Index des monstres", true,
+                "Afficher la liste des monstres", "Afficher les informations d'un monstre", "Recherche", "Filtrer", "Retour à l'accueil", "Ecrire un conseil");
+        }
+        else
+        {
+            choix = ConsoleHelper.MultipleChoice("Index des monstres", true,
+                "Afficher la liste des monstres", "Afficher les informations d'un monstre", "Recherche", "Filtrer", "Retour à l'accueil");
+        }
 
         switch (choix)
         {
             case -1:
                 // Lorsque l'utilisateur appuie sur Echap, retourner à l'accueil.
                 Console.Clear();
+                isUserConnected = false;
                 break;
             case 0:
                 Console.Clear();
@@ -260,7 +282,9 @@ void menuMontres()
 
             case 1:
                 Console.Clear();
-                //================= A FAIRE =================//
+                string texte = rechercheMonstre();
+                List<Monstre> m;
+                afficherUnMonstre(monsterBase.search(texte.ToString()));
                 break;
 
             case 2:
@@ -273,22 +297,28 @@ void menuMontres()
                 break;
 
             case 4:
+                Console.Clear();
+                //================= A FAIRE =================//
                 return;
 
             default:
                 // Pour toutes les autres possiblités non comprise entre -1 et 3
                 // (normalement pas possible, mais on est jamais trop prudent)
                 Console.Clear();
+                isUserConnected = false;
                 writeLineError($"La valeur {choix} n'est pas valide.");
                 return;
         }
     } while (choix != -1); // Tant que l'utilisateur n'appuie pas sur Echap
 }
 
+void afficherUnMonstre(List<Monstre> m)
+{
+
+}
 //======================================= Fonctions d'affichage ============================================//
 void displayAllMonsters()
 {
-    /*
     ConsoleHelper.displayTitle("Index des monstres - Affichage des monstres", true);
     displayAllMonstersLegend();
     Console.WriteLine();
@@ -313,8 +343,19 @@ void displayAllMonsters()
                 Console.ResetColor();
                 continue;
         }
-    }*/
+    }
+    Console.ReadKey();
 }
+
+void displayAllUsers()
+{
+    Console.WriteLine();
+    foreach (User u in userMngr.ListUsers)
+    {
+        Console.WriteLine($"{u.Pseudo} --> {u.Prenom} {u.Nom}");
+    }
+}
+
 
 void displayAllMonstersLegend()
 {
@@ -333,8 +374,8 @@ void displayAllMonstersLegend()
 }
 
 // Fonction de recherche de monstre, mise à jour de la liste à chaque touche appuyée
-void rechercheMonstre()
-{/*
+string rechercheMonstre()
+{
     List<Monstre> m;
     Console.Clear();
     ConsoleKeyInfo carac;
@@ -360,7 +401,7 @@ void rechercheMonstre()
         Console.Write(listCarac);
         Console.WriteLine();
         Console.WriteLine();
-        m = monsterBase.search(listCarac.ToString(), monsterBase);
+        m = monsterBase.search(listCarac.ToString());
         foreach (Monstre mnstr in m)
         {
             Console.WriteLine($"\t- {mnstr.Name}");
@@ -368,7 +409,8 @@ void rechercheMonstre()
         carac = Console.ReadKey(true);
     }
     writeLineError("Retour à la page précédente...");
-    Thread.Sleep(1000);*/
+    Thread.Sleep(1000);
+    return listCarac;
 }
 
 
@@ -383,3 +425,4 @@ Conseil conseil = new Conseil(auteur, "Soyez prudent lors de votre rencontre ave
 
 // Affichage du conseil
 conseil.affichConseil();
+menuAccueil();

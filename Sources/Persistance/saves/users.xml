@@ -63,4 +63,11 @@
     <Pseudo>TestPseudo</Pseudo>
     <Mdp>TestMdp</Mdp>
   </User>
+  <User>
+    <monstresDejaVu i:nil="true" />
+    <Nom>FJDKSLFJKLDS</Nom>
+    <Prenom>NKLFF</Prenom>
+    <Pseudo>FJDSKLFJKLSDF</Pseudo>
+    <Mdp>A</Mdp>
+  </User>
 </ArrayOfUser>

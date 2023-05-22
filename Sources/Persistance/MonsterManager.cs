@@ -25,12 +25,12 @@ namespace Persistance
         }
         void IMonsterDataManager.saveMonsters(List<Monstre> monstres)
         {
-            throw new NotImplementedException();
+            Pers.saveMonsters(monstres);
         }
 
         List<Monstre> IMonsterDataManager.loadMonsters()
         {
-            throw new NotImplementedException();
+            return Pers.loadMonsters();
         }
 
         public List<Monstre> search(string texte)
@@ -39,7 +39,6 @@ namespace Persistance
                     where m.Name.Contains(texte, System.StringComparison.CurrentCultureIgnoreCase)
                     select m).ToList(); // LINQ
         }
-
 
         public MonsterManager(IMonsterDataManager dataMngr) {
             Pers = dataMngr;
