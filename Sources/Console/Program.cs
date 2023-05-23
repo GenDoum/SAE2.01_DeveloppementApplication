@@ -424,5 +424,8 @@ Monstre monstre = new Monstre(1, "Dragon", "Dangereux", "Un redoutable dragon cr
 Conseil conseil = new Conseil(auteur, "Soyez prudent lors de votre rencontre avec le dragon.", monstre);
 
 // Affichage du conseil
-conseil.affichConseil();
-menuAccueil();
+/*conseil.affichConseil();
+menuAccueil();*/
+
+Monstre uiui = new Monstre(1, "Poule", "passif", "Je suis un animal présent un peu partout, sauf dans le desert car il fait beaucoup trop chaud. Mais j'aime beaucoup la jungle !", new List<string> { "Quand une poule est tué il y a 3.12% de chance que la poule laisse tomber un oeuf " }, new List<string> { "Apparence1", "App2", "App3" }, new List<Conseil> { });
+Console.WriteLine(uiui.ImageLink);

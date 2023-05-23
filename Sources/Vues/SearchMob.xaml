@@ -3,158 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:shape="Microsoft.Maui.Controls.Shapes"
-             x:Class="Vues.SearchMob"
-             BackgroundImageSource="backcollection.jpg"
-             >
-    <toolkit:DockLayout>
+             x:Class="Vues.SearchMob">
+             <!--BackgroundImageSource="backcollection.jpg"-->
 
+    <Grid ColumnDefinitions="Auto,*">
+        <ListView x:Name="ListeMonstres" ItemsSource="{Binding lesMonstres}" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <ImageButton Source="{Binding ImageLink}" WidthRequest="303"/>
+                    </StackLayout>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout BindingContext="{Binding SelectedItem, Source={x:Reference ListeMonstres}}">
+            
+        </StackLayout>
+    </Grid>
 
-
-        <VerticalStackLayout
-            BackgroundColor="{StaticResource BleuFonce}"
-            toolkit:DockLayout.DockPosition="Left"
-            WidthRequest="300"
-            >
-
-
-            <HorizontalStackLayout>
-                <ImageButton
-                    Source="exit.png"
-                    WidthRequest="10"
-                    HeightRequest="10"
-                    BackgroundColor="{StaticResource BleuFonce}"
-                    
-                    />
-
-                <SearchBar Placeholder="Rechercher un monstre"
-                           PlaceholderColor="DimGray"
-                           CancelButtonColor="DimGray"
-                           WidthRequest="300"/>
-            </HorizontalStackLayout>
-
-            <ScrollView VerticalScrollBarVisibility="Always" >
-                <VerticalStackLayout>
-                    <!-- Mob Hostile Overworld -->
-                    <ImageButton Source="zombie.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="squelette.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="creeper.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="araignee.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="phantom.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="enderman.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="slime.png"
-                                     WidthRequest="303"/>
-                    <!-- Mob Passif -->
-                    <ImageButton Source="cow.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="sheep.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="pig.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="poule.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="loup.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="chat.png"
-                                     WidthRequest="303"/>
-                    <!-- Boss -->
-                    <ImageButton Source="wither.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="dragon.png"
-                                     WidthRequest="303"/>
-                    <ImageButton Source="warden.png"
-                                     WidthRequest="303"/>
-                </VerticalStackLayout>
-            </ScrollView>
-
-
-
-
-        </VerticalStackLayout>
-        <!--  -->
-        <toolkit:DockLayout
-            toolkit:DockLayout.DockPosition="Right"
-            WidthRequest="500"
-           
-            >
-
-            <!-- Image du mob -->
-
-            <Image Source="zoombie.png"
-                           HeightRequest="400"
-                           Margin="-10, 50, 0, 0"
-                          
-                           toolkit:DockLayout.DockPosition="Top"/>
-            <!-- Particularité -->
-            <Frame
-                    Margin="40">
-                <Label
-                        toolkit:DockLayout.DockPosition="Bottom"
-                        Text="Particularité :"
-                        FontSize="Medium">
-
-
-
-                </Label>
-            </Frame>
-
-
-        </toolkit:DockLayout>
-
-
-        <VerticalStackLayout
-            toolkit:DockLayout.DockPosition="Top">
-            <HorizontalStackLayout>
-                <Label Text="Déjà vu ?"
-                       FontSize="20"
-                       TextColor="White"
-                       Margin="7"></Label>
-                <CheckBox
-                    Color="{StaticResource BleuFonce}"></CheckBox>
-            </HorizontalStackLayout>
-            <Frame
-                Margin="40">
-                <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Text="Description :"
-                    FontSize="Medium">
-                </Label>
-            </Frame>
-            <Frame
-                Margin="40">
-                <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Text="Caractéristiques :"
-                    FontSize="Medium">
-                </Label>
-            </Frame>
-            <Frame
-                Margin="40">
-                <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"
-                    Text="Conseil :"
-                    FontSize="Medium">
-                </Label>
-            </Frame>
-            <Frame
-                Margin="40">
-                <Label
-                    BackgroundColor="White"
-                    toolkit:DockLayout.DockPosition="Bottom"                 
-                    Text="Apparence :"
-                    FontSize="Medium">
-                </Label>
-            </Frame>
-
-        </VerticalStackLayout>
-
-    </toolkit:DockLayout>
 </ContentPage>
