@@ -106,14 +106,14 @@ namespace Model
             monstresDejaVu = monstresVus;
         }
         
-        public User()
+        /*public User()
         {
             Pseudo = null;
             Nom = null;
             Prenom = null;
             Mdp = null;
             monstresDejaVu = null;
-        }
+        }*/
 
         public bool verifyPssw(string pssw)
         {
