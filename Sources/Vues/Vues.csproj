@@ -62,6 +62,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Modèle\Modèle.csproj" />
+	  <ProjectReference Include="..\Persistance\Persistance.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Compile Update="Accueil.xaml.cs">
 	    <DependentUpon>Accueil.xaml</DependentUpon>
 	  </Compile>

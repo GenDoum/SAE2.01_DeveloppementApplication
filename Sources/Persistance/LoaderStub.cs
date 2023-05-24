@@ -12,7 +12,7 @@ namespace Persistance
     /// Le stub "émule" une base de données, elle permet simplement d'imiter le rôle du stockage des 
     /// données, par exemple en ajoutant plusieurs utilisateurs dans une base de données.
     /// </summary>
-    public class LoaderStub : IUserDataManager
+    public class LoaderStub : IUserDataManager, IMonsterDataManager
     {
         public LoaderStub() { }
         public List<User> loadUsers() ///CHANGER VISIBILITEE, CAR PAS BIEN DE LAISSER A TOUT LE MONDE
@@ -39,7 +39,7 @@ namespace Persistance
             lm.Add(new Monstre(2, "Mouton", "passif", "Je suis présent un peu partout, sauf dnas le desert.", new List<string> { "Avec une cisaille il est possible de rasé la laine d'un mouton, il se retoruvera sans laine.", "Pour faire repousser la laine d'un mouton il faut qu'il ai de l'herbe sous ses pattes pour qu'il puisse manger. Une fois manger la laine repousse instantanément !" }, new List<string> { "Apparence1", "App2", "App3" }, new List<Conseil> { }));
             lm.Add(new Monstre(3, "Cochon", "passif", "Je suis un animal présent partout, sauf dans le desert ou il fait trop chaud pour moi.", new List<string>{ "La reproduction de cochon peut se faire avec des carottes et des patates crues."}, new List<string> { "Apparence1", "App2", "App3" }, new List<Conseil> { }));
             lm.Add(new Monstre(4, "Warden", "boss", "Je ne vous voit pas mais je sais où vous êtes", new List<string> { "Le warden est aveugle mais il entend tous les bruit autour de lui.", "Il apparait dans une caverne spécial appeler les abîmes quand on y marche en faisant trop de bruit.", "Il s'agit du seul monstre qui ai une animation d'apparation, il sort du sol.", "Il est capable de tirer des rayon laser à l'endroit d'où proviennes les bruit qu'il entend." }, new List<string> { "Une seul apparence pour lui" }, new List<Conseil> { }));
-            lm.Add(new Monstre(5, "Ender dragon", "boss", "Si vous arrivez à me vaincre, vous aurez accompli tout ce qui était possible de faire dans ce monde.", new List<string> { "L'Ender dragon est le boss de fin de minecraft.", "Pour le vaincre il faut trouver le portail inter-dimensionnel qui se cache quelque part dans votre monde.", "Une fois vaincu, il laissera son oeuf ainsi qu'un portail qui vous permettra de rentrer chez vous." }, new List<string> { "Une seul apparence pour lui" }, new List<Conseil> { }));
+            lm.Add(new Monstre(5, "EnderDragon", "boss", "Si vous arrivez à me vaincre, vous aurez accompli tout ce qui était possible de faire dans ce monde.", new List<string> { "L'Ender dragon est le boss de fin de minecraft.", "Pour le vaincre il faut trouver le portail inter-dimensionnel qui se cache quelque part dans votre monde.", "Une fois vaincu, il laissera son oeuf ainsi qu'un portail qui vous permettra de rentrer chez vous." }, new List<string> { "Une seul apparence pour lui" }, new List<Conseil> { }));
             lm.Add(new Monstre(6, "Wither", "boss", "Une fois que je vous ai aperçue, je ne vous lâcherais plus jusqu'à ce que mort s'ensuive.", new List<string> { "Pour le faire apparaitre, il vous faudrat la tête de 3 wither squelette.", "Le wither lance des tête qui repousse instantanément.", "Ces têtes peuvent vous empoissoné jusqu'à la mort" }, new List<string> { "Apparence de chargement", "Apparence d'attaque", "Apparence mid life" }, new List<Conseil> { }));
             lm.Add(new Monstre(7, "Vache", "passif", "Je suis un peu partout dans le monde, mais plus particulièrement dans les plaines.", new List<string> { "Les vaches apparaissent par groupe de quatres minimum.", "Elle peuvent donner du lait grâce à un sceau, ce lait enlève tout les effets de potion que vous aurez" }, new List<string> { "Vache de base", "vache champignon" }, new List<Conseil> { }));
             lm.Add(new Monstre(8, "Loup", "passif", "Je deviens vite aggressif lorsque l'on m'attaque.", new List<string> { "Les loups peuvent être apprivoisé grâce à des os.", " Une fois apprivoisé" }, new List<string> { "Apparence nature", "Apparence méchant", "Apparence apprivoisé" }, new List<Conseil> { }));
@@ -50,11 +50,16 @@ namespace Persistance
             lm.Add(new Monstre(13, "Phantom", "hostile", "Dormez ou je viendrais", new List<string> { "Le phantom apparaît lorsque vous ne dormez pas pendant plus de trois jour d'affilés.", "Ils sont difficile à atteindre pusiqu'il vole plutôt vite" }, new List<string>{"Apparence 1"}, new List<Conseil> { }));
             lm.Add(new Monstre(14, "Enderman", "hostile", "Ne me regardez pas ! ", new List<string> { "Si vous regardez un enderman dans les yeux, il se mettra à vous attaquer, autrement, il est inoffensif", " Gardez le contact visuel avec, lui le fera changer d'avis au bout de quelques secondes sur l'agressivité qu'il a envers vous.", "Il est capable de prendre des blocks et les reposer ailleurs." }, new List<string> { "apparence 1", "apparence avec un bloc" }, new List<Conseil> { }));
             lm.Add(new Monstre(15, "Slime", "hostile", "Je connais le multiclonage !", new List<string> { "Les slimes peuvent apparaître avec des tailles différentes.", "S'il n'est pas trop petit, il se divisera en quatre."}, new List<string> { "Apparencegrand", "apparence petit"}, new List<Conseil> { }));
-            lm.Add(new Monstre(16, "Araignée", "hostile", " je sais pas quoi mettre mdrrrrr", new List<string> { "L'arraignée est capable de grimper au mur", " Si vous en rencontrait une en journée et en extérieur elle sera inoffensive, mais dans une caverne ou pendant la nuit elle vous attaquera." }, new List<string> { "une seule apparence" }, new List<Conseil> { }));
+            lm.Add(new Monstre(16, "Araignee", "hostile", " je sais pas quoi mettre mdrrrrr", new List<string> { "L'arraignée est capable de grimper au mur", " Si vous en rencontrait une en journée et en extérieur elle sera inoffensive, mais dans une caverne ou pendant la nuit elle vous attaquera." }, new List<string> { "une seule apparence" }, new List<Conseil> { }));
             return lm;
         }
 
         void IUserDataManager.saveUsers(List<User> users)
+        {
+            Console.WriteLine("This is a stub, so no 'save' possible !");
+        }
+
+        void IMonsterDataManager.saveMonsters(List<Monstre> monstres)
         {
             Console.WriteLine("This is a stub, so no 'save' possible !");
         }

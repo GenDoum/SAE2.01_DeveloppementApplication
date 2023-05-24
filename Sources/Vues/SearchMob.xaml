@@ -5,20 +5,25 @@
              xmlns:shape="Microsoft.Maui.Controls.Shapes"
              x:Class="Vues.SearchMob">
              <!--BackgroundImageSource="backcollection.jpg"-->
-
-    <Grid ColumnDefinitions="Auto,*">
-        <ListView x:Name="ListeMonstres" ItemsSource="{Binding lesMonstres}" Grid.Column="0">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Horizontal">
-                        <ImageButton Source="{Binding ImageLink}" WidthRequest="303"/>
-                    </StackLayout>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <StackLayout BindingContext="{Binding SelectedItem, Source={x:Reference ListeMonstres}}">
-            
-        </StackLayout>
+    <Grid ColumnDefinitions="Auto, *">
+        <Grid RowDefinitions="Auto, *" RowSpacing="25" WidthRequest="300">
+            <HorizontalStackLayout Grid.Row="0">
+                <ImageButton Source="exit.png" WidthRequest="20"/>
+                <SearchBar Placeholder="Rechercher un monstre"
+                            PlaceholderColor="DimGray"
+                            CancelButtonColor="DimGray"/>
+            </HorizontalStackLayout>
+            <ListView ItemsSource="{Binding ListMonsters}" Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <ImageButton Source="{Binding ImageLink}"/>
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </Grid>
-
 </ContentPage>

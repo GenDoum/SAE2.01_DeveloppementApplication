@@ -40,7 +40,8 @@ namespace Persistance
                     select m).ToList(); // LINQ
         }
 
-        public MonsterManager(IMonsterDataManager dataMngr) {
+        public MonsterManager(IMonsterDataManager dataMngr)
+        {
             Pers = dataMngr;
             ListMonsters = new LoaderStub().loadMonsters();
         }

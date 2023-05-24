@@ -5,7 +5,7 @@ namespace Vues
 {
     public partial class App : Application
     {
-        MonsterManager mnstrMngr = new MonsterManager(new LoaderXml());
+        public MonsterManager monsterManager { get; private set; } = new MonsterManager(new LoaderStub());
 
         public App()
         {

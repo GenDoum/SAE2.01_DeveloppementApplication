@@ -7,7 +7,7 @@ public partial class SearchMob : ContentPage
 	public SearchMob()
 	{
 		InitializeComponent();
-		BindingContext = (App.Current as App).mnstrMngr;
+		BindingContext = (Application.Current as App).monsterManager;
 
     }
 }

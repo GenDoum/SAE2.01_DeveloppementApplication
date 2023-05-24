@@ -4,26 +4,25 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Vues"
-    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutBehavior="Disabled"
     Shell.FlyoutWidth="60">
-
     <ShellContent
         ContentTemplate="{DataTemplate local:Accueil}"
         FlyoutIcon="home.png"
         Route="Accueil" />
-    <ShellContent
+        <ShellContent
         ContentTemplate="{DataTemplate local:Connexion}"
         FlyoutIcon="cadena.png"
         Route="Connexion" />
-    <ShellContent
+        <ShellContent
         ContentTemplate="{DataTemplate local:Inscription}"
         FlyoutIcon="cadena.png"
         Route="Inscriiption" />
-    <ShellContent
+        <ShellContent
         ContentTemplate="{DataTemplate local:SearchMob}"
         FlyoutIcon="cadena.png"
         Route="SearchMob" />
-    <ShellContent
+        <ShellContent
         ContentTemplate="{DataTemplate local:Favoris}"
         FlyoutIcon="star.png"
         Route="Favoris" />
@@ -31,5 +30,4 @@
         ContentTemplate="{DataTemplate local:Collection}"
         FlyoutIcon="star.png"
         Route="Collection" />
-
 </Shell>

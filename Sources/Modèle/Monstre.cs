@@ -16,7 +16,7 @@ namespace Model
         {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
@@ -89,5 +89,22 @@ namespace Model
                 throw new ArgumentException("Un monstre doit avoir un nom, une description et une dangerosité!");
             }
         }
+
+        public override string ToString()
+        => $"{Name} ({Description})";
+
+        public bool Equals(Monstre? other)
+        => Name.Equals(other.Name);
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(obj, null)) return false;
+            if (ReferenceEquals(obj, this)) return true;
+            if (GetType() != obj.GetType()) return false;
+            return Equals(obj as Monstre);
+        }
+
+        public override int GetHashCode()
+            => base.GetHashCode();
     }
 } 

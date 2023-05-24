@@ -67,12 +67,15 @@
             HeightRequest="100"
             />
         <Button
+            Clicked="Connection_Clicked"
             Style="{StaticResource buttonStyle}"
             Text="Se connecter" />
         <Button
+            Clicked="Inscription_Clicked"
             Style="{StaticResource buttonStyle}"
             Text="Créer un compte" />
-        <Label
+        <Button
+            Clicked="Invite_Clicked"
             Style="{StaticResource labelStyleBottom}"
             Text="Me connecter plus tard"
             HeightRequest="20" />
