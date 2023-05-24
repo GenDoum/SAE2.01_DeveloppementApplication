@@ -6,8 +6,8 @@ public partial class Inscription : ContentPage
 {
     List<User> users = new List<User>();
     UserManager userMngr = new UserManager(new LoaderXml());
-    public User user { get; set; } = new User();
-	public Inscription()
+    //public User user { get; set; } = new User();
+	/*public Inscription()
 	{
 		InitializeComponent();
         BindingContext=user;
@@ -19,5 +19,5 @@ public partial class Inscription : ContentPage
         userMngr.saveUsers(users);
         
     }
-
+    */
 }
