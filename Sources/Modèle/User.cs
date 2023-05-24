@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 using Xunit;
 
 namespace Model
@@ -16,19 +18,63 @@ namespace Model
     /// </summary>
 
     [DataContract]
-    public class User
+    public class User : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+    void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         [DataMember(Order = 3)]
-        public string Pseudo { get; private set; }
+        public string Pseudo 
+        {
+            get => Pseudo;
+            set
+            {
+                if (Pseudo == value)
+                    return;
+                Pseudo = value;
+                OnPropertyChanged();
+            }
+        }
 
         [DataMember(Order = 1)]
-        public string Nom { get; private set; }
+        public string Nom
+        {
+            get => Nom;
+            set
+            {
+                if (Nom == value)
+                    return;
+                Nom = value;
+                OnPropertyChanged();
+            }
+        }
 
         [DataMember(Order = 2)]
-        public string Prenom { get; private set; }
+        public string Prenom
+        {
+            get => Prenom;
+            set
+            {
+                if (Prenom == value)
+                    return;
+                Prenom = value;
+                OnPropertyChanged();
+            }
+        }
 
         [DataMember(Order = 4)]
-        private string Mdp { get; set; }
+        private string Mdp
+        {
+            get => Mdp;
+            set
+            {
+                if (Mdp == value)
+                    return;
+                Mdp = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         [DataMember]
@@ -58,6 +104,15 @@ namespace Model
             Prenom = prenom;
             Mdp = mdp;
             monstresDejaVu = monstresVus;
+        }
+        
+        public User()
+        {
+            Pseudo = null;
+            Nom = null;
+            Prenom = null;
+            Mdp = null;
+            monstresDejaVu = null;
         }
 
         public bool verifyPssw(string pssw)

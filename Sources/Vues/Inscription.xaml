@@ -57,11 +57,18 @@
                 Source="inscription.png"
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
-            <Entry Placeholder="Nom"/>
-            <Entry Placeholder="Prénom" />
-            <Entry Placeholder="Identifiant" />
-            <Entry Placeholder="Mot de passe" />
-            <Button Style="{StaticResource buttonStyle}" Text="Valider" />
+            <Entry Placeholder="Nom"
+                   Text="{Binding Nom}"/>
+            <Entry Placeholder="Prénom"
+                   Text="{Binding Prenom}"/>
+            <Entry Placeholder="Identifiant"
+                   Text="{Binding Pseudo}"/>
+            <Entry Placeholder="Mot de passe"
+                   Text="{Binding Mdp}"
+                   IsPassword="True"/>
+            <Button Style="{StaticResource buttonStyle}" 
+                    Text="Valider"
+                    Clicked="Valid_Clicked"/>
         </FlexLayout>
     </toolkit:DockLayout>
 </ContentPage>

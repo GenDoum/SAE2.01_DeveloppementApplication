@@ -11,6 +11,7 @@ using System.Reflection.PortableExecutable;
 // Déclaration des Managers (et de leur méthode de sauvegarde)
 UserManager userMngr = new UserManager(new LoaderXml());
 MonsterManager monsterBase = new MonsterManager(new LoaderStub());
+userMngr.addUser
 
 // Variables statiques
 bool isUserConnected = false;

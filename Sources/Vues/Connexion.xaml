@@ -58,7 +58,8 @@
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
             <Entry Placeholder="Identifiant" />
-            <Entry Placeholder="Mot de passe" />
+            <Entry Placeholder="Mot de passe"
+                   IsPassword="True"/>
             <Button Style="{StaticResource buttonStyle}"
                     Text="Valider" />
         </FlexLayout>
