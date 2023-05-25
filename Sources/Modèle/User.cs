@@ -26,55 +26,58 @@ namespace Model
         [DataMember(Order = 3)]
         public string Pseudo 
         {
-            get => Pseudo;
+            get => pseudo;
             set
             {
-                if (Pseudo == value)
+                if (pseudo == value)
                     return;
-                Pseudo = value;
+                pseudo = value;
                 OnPropertyChanged();
             }
         }
+        private string pseudo;
 
         [DataMember(Order = 1)]
         public string Nom
         {
-            get => Nom;
+            get => nom;
             set
             {
-                if (Nom == value)
+                if (nom == value)
                     return;
-                Nom = value;
+                nom = value;
                 OnPropertyChanged();
             }
         }
+        private string nom;
 
         [DataMember(Order = 2)]
         public string Prenom
         {
-            get => Prenom;
+            get => prenom;
             set
             {
-                if (Prenom == value)
+                if (prenom == value)
                     return;
-                Prenom = value;
+                prenom = value;
                 OnPropertyChanged();
             }
         }
+        private string prenom;
 
         [DataMember(Order = 4)]
         private string Mdp
         {
-            get => Mdp;
+            get => mdp;
             set
             {
-                if (Mdp == value)
+                if (mdp == value)
                     return;
-                Mdp = value;
+                mdp = value;
                 OnPropertyChanged();
             }
         }
-
+        private string mdp;
 
         [DataMember]
         public List<Monstre>? monstresDejaVu { get; private set; }

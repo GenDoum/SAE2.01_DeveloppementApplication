@@ -33,13 +33,13 @@ namespace Tests
             Assert.False(u.verifyPssw(mdp));
         }
 
+
         [Theory]
         [MemberData(nameof(MissingData_NoList))]
         public void TestConstructorWithMissingData_NoList(string pseudo, string nom, string prenom, string mdp)
         {
             Assert.Throws<ArgumentException>(() => new User(pseudo, nom, prenom, mdp));
         }
-
 
         /*[Theory]
         [MemberData(nameof(DataWithList))]

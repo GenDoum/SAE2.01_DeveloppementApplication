@@ -26,22 +26,6 @@ namespace Persistance
         static string fichierUserXML = "users.xml";
         static string fichierMonstreXML = "monsters.xml";
         
-        /*static string path = "/Saves/";
-        //static string path = Directory.GetCurrentDirectory() + "/../../";
-        static string fichierUserXML = "users.xml";
-        static string fichierMonstreXML = "monsters.xml";
-        */
-        bool exists = System.IO.Directory.Exists(Path.Combine(path, "/Saves/"));
-        
-        // Serialisation / Deserialisation de Monstres
-        public void Chargement()
-        {
-            if (!exists)
-            {
-                Directory.CreateDirectory(path + "/Saves/");
-            }
-        }
-        
         void IMonsterDataManager.saveMonsters(List<Monstre> monstres)
         {
             //Chargement();
@@ -94,7 +78,7 @@ namespace Persistance
         }
         public List<User> loadUsers()
         {
-            Chargement();
+            //Chargement();
             Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), path));
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
             List<User>? users;
