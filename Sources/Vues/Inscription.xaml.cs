@@ -19,5 +19,4 @@ public partial class Inscription : ContentPage
         userMngr.saveUsers(users);
         
     }
-    
 }

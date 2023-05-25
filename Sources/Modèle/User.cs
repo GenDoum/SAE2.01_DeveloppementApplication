@@ -13,7 +13,7 @@ namespace Model
 {
     /// <summary>
     /// La classe User représente un utilisateur ayant pour identifiant son pseudo (publique),
-    /// son nom et prénom en privé, pour une utilisation ultérieure et/ou pour identifier de manière
+    /// son nom et prénom, pour une utilisation ultérieure et/ou pour identifier de manière
     /// plus simple l'utilisateur dans la base de donnée (car un pseudo n'est pas forcément explicite)
     /// </summary>
     [DataContract]

@@ -7,6 +7,23 @@ namespace Vues
     public partial class App : Application
     {
         public MonsterManager monsterManager { get; private set; } = new MonsterManager(new LoaderStub());
+        public UserManager userManager { get; private set; } = new UserManager(new LoaderXml());
+
+        private User user;
+        public User User
+        {
+            get
+            {
+                return user;
+            }
+            set
+            {
+                user = value;
+                OnPropertyChanged("User");
+            }
+        }
+
+        private Monstre monstreSelectionne;
         public Monstre MonstreSelectionne {
             get
             {
@@ -18,7 +35,6 @@ namespace Vues
                 OnPropertyChanged("MonstreSelectionne");
             }
         }
-        private Monstre monstreSelectionne;
         public App()
         {
             InitializeComponent();

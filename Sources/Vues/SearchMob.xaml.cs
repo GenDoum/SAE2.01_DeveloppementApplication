@@ -8,7 +8,6 @@ public partial class SearchMob : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = (Application.Current as App).monsterManager;
-
     }
 
 	public void OnClick(object sender, ItemTappedEventArgs e)

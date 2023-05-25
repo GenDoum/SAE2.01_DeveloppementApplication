@@ -19,9 +19,10 @@
             <FlexLayout.Resources>
                 <Style TargetType="Entry">
                     <Setter Property="WidthRequest" Value="250" />
-                    <Setter Property="BackgroundColor" Value="{StaticResource Gray300}" />
+                    <Setter Property="BackgroundColor" Value="{StaticResource Gray200}" />
                     <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
-                    <Setter Property="Margin" Value="3" />
+                    <Setter Property="Margin" Value="3"/>
+                    <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
                 </Style>
                 <Style x:Key="buttonStyle" TargetType="Button">
                     <Setter Property="FontSize" Value="Small" />
@@ -57,11 +58,11 @@
                 Source="connexion.png"
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
-            <Entry Placeholder="Identifiant" />
-            <Entry Placeholder="Mot de passe"
-                   IsPassword="True"/>
+            <Entry Placeholder="Identifiant" ReturnType="Next" Completed="Id_Entry_Completed" />
+            <Entry Placeholder="Mot de passe" IsPassword="True" ReturnType="Done" Completed="Mdp_Entry_Completed"/>
             <Button Style="{StaticResource buttonStyle}"
-                    Text="Valider" />
+                    Text="Valider"
+                    Clicked="ValiderClicked"/>
         </FlexLayout>
     </toolkit:DockLayout>
 </ContentPage>

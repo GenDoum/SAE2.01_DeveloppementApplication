@@ -73,8 +73,14 @@ namespace Model
         public List<Conseil> ListConseils { get; set; }
 
         public string ImageLink { get; init ; }
+        public string CardLink { get; init; }
         public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList, List<Conseil> conseilList)
         {
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(danger))
+            {
+                throw new ArgumentException("Un monstre doit avoir un nom, une description et une dangerosité!");
+            }
+
             Id = id;
             Name = name;
             Dangerosite = danger;
@@ -83,11 +89,7 @@ namespace Model
             AppearanceList = appearList;
             ListConseils = conseilList;
             ImageLink = name.ToLower() + ".png";
-
-            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Description) || string.IsNullOrWhiteSpace(danger))
-            {
-                throw new ArgumentException("Un monstre doit avoir un nom, une description et une dangerosité!");
-            }
+            CardLink = "collection" + name.ToLower() + ".png";
         }
 
         public override string ToString()
@@ -105,6 +107,6 @@ namespace Model
         }
 
         public override int GetHashCode()
-            => base.GetHashCode();
+            => Name.GetHashCode();
     }
 } 

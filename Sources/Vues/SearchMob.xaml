@@ -13,7 +13,7 @@
                             PlaceholderColor="DimGray"
                             CancelButtonColor="DimGray"/>
             </HorizontalStackLayout>
-            <ListView x:Name="ListV" ItemsSource="{Binding ListMonsters}" Grid.Row="1" ItemTapped="OnClick">
+            <ListView x:Name="ListViewMonsters" ItemsSource="{Binding ListMonsters}" Grid.Row="1" ItemTapped="OnClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -25,20 +25,22 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Grid Grid.Column="1" RowDefinitions="*,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListV}}">
-            <Label Text="{Binding Name}"/>
-            <HorizontalStackLayout>
-                <!-- Image du mob -->
-                <Image Source="{Binding ImageLink}" MaximumHeightRequest="400"/>
-
-                <!-- Caractéristiques -->
-                <Frame Margin="40">
+        <ScrollView Grid.Column="1">
+            <Grid Grid.Column="1" RowDefinitions="Auto,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Padding="25" BackgroundColor="LightBlue">
+                    <!-- Caractéristiques -->
                     <Label
+                        BackgroundColor="DarkSalmon"
+                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                        Grid.Column="0"
                         Text="{Binding Description, StringFormat=Description : \{0\}}"
                         FontSize="Medium">
                     </Label>
-                </Frame>
-            </HorizontalStackLayout>
-        </Grid>
+
+                    <!-- Image du mob -->
+                    <Image Grid.Column="1" Source="{Binding CardLink}" HeightRequest="600"/>
+                </Grid>
+            </Grid>
+        </ScrollView>
     </Grid>
 </ContentPage>
