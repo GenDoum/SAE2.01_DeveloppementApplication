@@ -79,7 +79,7 @@ namespace Model
         }
         private string mdp;
 
-        [DataMember]
+        [DataMember(Order = 5)]
         public List<Monstre>? monstresDejaVu { get; private set; }
 
         public User(string pseudo, string nom, string prenom, string mdp, List<Monstre>? monstresVus = null)

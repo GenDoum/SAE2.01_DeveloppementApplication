@@ -94,7 +94,7 @@ namespace Persistance
 
         public UserManager(IUserDataManager dataMngr) {
             Pers = dataMngr;
-            ListUsers = new LoaderXml().loadUsers(); //CHOIX ICI DE LA METHODE DE CHARGEMENT INITIAL DES UTILISATEURS
+            ListUsers = new LoaderStub().loadUsers(); //CHOIX ICI DE LA METHODE DE CHARGEMENT INITIAL DES UTILISATEURS
         }
     }
 }

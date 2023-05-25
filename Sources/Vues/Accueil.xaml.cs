@@ -1,4 +1,6 @@
-﻿namespace Vues
+﻿using System.Windows.Input;
+
+namespace Vues
 {
     public partial class Accueil : ContentPage
     {

@@ -74,11 +74,15 @@
             Clicked="Inscription_Clicked"
             Style="{StaticResource buttonStyle}"
             Text="Créer un compte" />
-        <Button
-            Clicked="Invite_Clicked"
+        <Label
             Style="{StaticResource labelStyleBottom}"
             Text="Me connecter plus tard"
-            HeightRequest="20" />
+            HeightRequest="20">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Invite_Clicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+            
         
         <!--IMAGE SORTIE APPLI A FAIRE - EXIT avec porte style minecraft-->
     </FlexLayout>

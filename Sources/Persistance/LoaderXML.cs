@@ -22,7 +22,7 @@ namespace Persistance
 /// </summary>
     public class LoaderXml : IUserDataManager, IMonsterDataManager 
     {
-        static string path = "/Saves/";
+        static string path = "../../../../Persistance/saves/";
         static string fichierUserXML = "users.xml";
         static string fichierMonstreXML = "monsters.xml";
         

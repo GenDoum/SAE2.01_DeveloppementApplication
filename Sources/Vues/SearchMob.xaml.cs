@@ -10,4 +10,9 @@ public partial class SearchMob : ContentPage
 		BindingContext = (Application.Current as App).monsterManager;
 
     }
+
+	public void OnClick(object sender, ItemTappedEventArgs e)
+	{
+		(App.Current as App).MonstreSelectionne = e.Item as Monstre;
+	}
 }

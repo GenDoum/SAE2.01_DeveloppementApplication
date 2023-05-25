@@ -13,17 +13,32 @@
                             PlaceholderColor="DimGray"
                             CancelButtonColor="DimGray"/>
             </HorizontalStackLayout>
-            <ListView ItemsSource="{Binding ListMonsters}" Grid.Row="1">
+            <ListView x:Name="ListV" ItemsSource="{Binding ListMonsters}" Grid.Row="1" ItemTapped="OnClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <VerticalStackLayout>
-                                <ImageButton Source="{Binding ImageLink}"/>
+                                <Image Source="{Binding ImageLink}"/>
                             </VerticalStackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
+        <Grid Grid.Column="1" RowDefinitions="*,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListV}}">
+            <Label Text="{Binding Name}"/>
+            <HorizontalStackLayout>
+                <!-- Image du mob -->
+                <Image Source="{Binding ImageLink}" MaximumHeightRequest="400"/>
+
+                <!-- Caractéristiques -->
+                <Frame Margin="40">
+                    <Label
+                        Text="{Binding Description, StringFormat=Description : \{0\}}"
+                        FontSize="Medium">
+                    </Label>
+                </Frame>
+            </HorizontalStackLayout>
         </Grid>
     </Grid>
 </ContentPage>
