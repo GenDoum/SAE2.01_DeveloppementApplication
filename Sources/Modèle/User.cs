@@ -105,7 +105,7 @@ namespace Model
             monstresDejaVu = monstresVus;
         }
         
-        /*
+        
         public User()
         {
             Pseudo = null;
@@ -114,7 +114,7 @@ namespace Model
             Mdp = null;
             monstresDejaVu = null;
         }
-        */
+        
 
         public bool verifyPssw(string pssw)
         {

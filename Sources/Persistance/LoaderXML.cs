@@ -14,23 +14,41 @@ using System.Dynamic;
 using System.Xml.Linq;
 
 namespace Persistance
-{
-    public class LoaderXml : IUserDataManager, IMonsterDataManager
+{/// <summary>
+///  Le problème vient du GetCurrentDirectory, le prof à dit que c'était le sujet du prochain cour donc je mets ça en pose.
+///  Chelou que ça marchait avant et je suis pas le seul à qui sa fait ça
+///  Avant il me mettait dans les fichiers du projet mais plus maintenant
+///  EN POSE
+/// </summary>
+    public class LoaderXml : IUserDataManager, IMonsterDataManager 
     {
-        static string path = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../../"));
+        static string path = "/Saves/";
+        static string fichierUserXML = "users.xml";
+        static string fichierMonstreXML = "monsters.xml";
+        
+        /*static string path = "/Saves/";
         //static string path = Directory.GetCurrentDirectory() + "/../../";
         static string fichierUserXML = "users.xml";
         static string fichierMonstreXML = "monsters.xml";
-
-
+        */
+        bool exists = System.IO.Directory.Exists(Path.Combine(path, "/Saves/"));
+        
         // Serialisation / Deserialisation de Monstres
-
+        public void Chargement()
+        {
+            if (!exists)
+            {
+                Directory.CreateDirectory(path + "/Saves/");
+            }
+        }
+        
         void IMonsterDataManager.saveMonsters(List<Monstre> monstres)
         {
-            Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory())); // Setup le chemin d'accès
+            //Chargement();
+            Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), path)); // Setup le chemin d'accès
             var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
             XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true }; // Pour avoir le format xml dans le fichier ( indentation etc... )
-            using (TextWriter tw = File.CreateText(Path.Combine(path, fichierMonstreXML)))
+            using (TextWriter tw = File.CreateText(Path.Combine(fichierMonstreXML)))
             {
                 using (XmlWriter writer = XmlWriter.Create(tw, xmlSettings))
                 {
@@ -40,11 +58,13 @@ namespace Persistance
         }
         public List<Monstre> loadMonsters()
         {
+            //Chargement();
+            Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), path));
             var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
             List<Monstre>? monsters;
             try
             {
-                using (Stream s = File.OpenRead(Path.Combine(path, fichierMonstreXML)))
+                using (Stream s = File.OpenRead(fichierMonstreXML))
                 {
                     monsters = serialiserXML.ReadObject(s) as List<Monstre>;
                 }
@@ -56,11 +76,29 @@ namespace Persistance
             return new List<Monstre> { };
         }
         // Serialisation / Deserialisation de Users
+        void IUserDataManager.saveUsers(List<User> users)// Serialise correctement juste voir comment l'appelé en fonction de IUserDataManager
+        {
+            //Chargement();
+
+            Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), path)); // Setup le chemin d'accès
+            var serialiserXML = new DataContractSerializer(typeof(List<User>));
+
+            XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true }; // Pour avoir le format xml dans le fichier ( indentation etc... )
+            using (TextWriter tw = File.CreateText(fichierUserXML))
+            {
+                using (XmlWriter writer = XmlWriter.Create(tw, xmlSettings))
+                {
+                    serialiserXML.WriteObject(writer, users);
+                }
+            }
+        }
         public List<User> loadUsers()
         {
+            Chargement();
+            Directory.SetCurrentDirectory(Path.Combine(Directory.GetCurrentDirectory(), path));
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
             List<User>? users;
-            using (Stream s = File.OpenRead(Path.Combine(path, fichierUserXML)))
+            using (Stream s = File.OpenRead(fichierUserXML))
             {
                 users = serialiserXML.ReadObject(s) as List<User>;
             }
@@ -70,24 +108,5 @@ namespace Persistance
             }
             return users;
         }
-
-        void IUserDataManager.saveUsers(List<User> users)// Serialise correctement juste voir comment l'appelé en fonction de IUserDataManager
-        {
-            Directory.CreateDirectory("Saves");
-            Directory.SetCurrentDirectory(path);
-            var serialiserXML = new DataContractSerializer(typeof(List<User>));
-            
-            XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true }; // Pour avoir le format xml dans le fichier ( indentation etc... )
-            using (TextWriter tw = File.CreateText("users.xml"))
-            {
-                using (XmlWriter writer = XmlWriter.Create(tw, xmlSettings))
-                {
-                    serialiserXML.WriteObject(writer, users);
-                }
-            }
-        }
-        
-        
-
     }
 }
