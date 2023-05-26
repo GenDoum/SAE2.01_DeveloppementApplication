@@ -22,7 +22,6 @@ namespace Vues
                 OnPropertyChanged("User");
             }
         }
-
         private Monstre monstreSelectionne;
         public Monstre MonstreSelectionne {
             get

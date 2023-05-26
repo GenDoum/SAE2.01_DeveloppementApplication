@@ -76,9 +76,14 @@
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
                     <!-- Infos du monstre MODIFIE LE BINDING-->
-                    <VerticalStackLayout Grid.Column="0">
+                    <VerticalStackLayout Grid.Column="0"
+                                         Grid.Row="0">
                         <HorizontalStackLayout>
                             <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
                             <CheckBox Color="Green"/>
@@ -88,7 +93,7 @@
                         </Border>
 
                         <Border Style="{StaticResource sectionStyle}">
-                            <Label FontSize="Medium" Style="{Binding Dangerosite,Converter=}" Text="{Binding Dangerosite, StringFormat=Danger : '\{0\}'}"/>
+                            <!-- <Label FontSize="Medium" Style="{Binding Dangerosite,Converter=}" Text="{Binding Dangerosite, StringFormat=Danger : '\{0\}'}"/>  Ta ligne qui empêchait de lancer-->
                         </Border>
 
                         <Border Style="{StaticResource sectionStyle}">
@@ -98,8 +103,34 @@
                         <Border Style="{StaticResource sectionStyle}">
                             <Label FontSize="Medium" Text="{Binding AppearanceList, StringFormat='\{0\}'}"/>
                         </Border>
+                        <!-- Conseils -->
+                        <Border Style="{StaticResource sectionStyle}">
+                            <ScrollView>
+                                <Grid RowDefinitions="Auto, *"
+                                      ColumnDefinitions="*, 10, 10">
+                                    <ImageButton Grid.Row="1"
+                                                 HeightRequest="10"
+                                                 WidthRequest="10"
+                                                 Source="pencil.png"/>
+                                    <ImageButton Grid.Row="2"
+                                                 HeightRequest="10"
+                                                 WidthRequest="10"
+                                                 Source="bin.png"/>
+                                    <ListView x:Name="ListeViewConseils" ItemsSource="{Binding ListMonsters}" Grid.Row="1" Grid.Column="0">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <VerticalStackLayout>
+                                                        <Label FontSize="Medium" Text="{Binding ListConseils, StringFormat='\{0\}'}"/>
+                                                    </VerticalStackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Grid>
+                            </ScrollView>
+                        </Border>
                     </VerticalStackLayout>
-
                     <!-- Image du mob -->
                     <Image Grid.Column="1" Source="{Binding CardLink}"  HeightRequest="600" HorizontalOptions="End"/>
                 </Grid>

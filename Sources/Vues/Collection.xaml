@@ -19,9 +19,7 @@
 
 
         <FlexLayout
-            Wrap="Wrap"
-            >
-            
+            Wrap="Wrap">
             <Image Source="cartedragon.png"
                    HeightRequest="300"
                    Margin="5, 5, 0, 0"></Image>
