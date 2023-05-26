@@ -15,6 +15,8 @@ public partial class Connexion : ContentPage
 
 	public async void ValiderClicked(object sender, EventArgs e)
 	{
+        id = IdEntry.Text;
+        mdp = PsswEntry.Text;
         foreach (User u in (Application.Current as App).userManager.ListUsers)
         {
             if ((Application.Current as App).userManager.checkIfExists(id, mdp) && u.verifyPssw(mdp))
@@ -25,7 +27,7 @@ public partial class Connexion : ContentPage
         }
         return;
     }
-
+    /*
     private void Id_Entry_Completed(object sender, EventArgs e)
     {
         id = ((Entry)sender).Text;
@@ -34,5 +36,5 @@ public partial class Connexion : ContentPage
     private void Mdp_Entry_Completed(object sender, EventArgs e)
     {
         mdp = ((Entry)sender).Text;
-    }
+    }*/
 }

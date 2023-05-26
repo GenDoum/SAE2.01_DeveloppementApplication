@@ -18,7 +18,24 @@
                     <DataTemplate>
                         <ViewCell>
                             <VerticalStackLayout>
-                                <Image Source="{Binding ImageLink}"/>
+                                <Image Source="{Binding ImageLink}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroupList>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="PointerOver">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Opacity" Value="0.9" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateGroupList>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Image>
                             </VerticalStackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -26,19 +43,35 @@
             </ListView>
         </Grid>
         <ScrollView Grid.Column="1">
-            <Grid Grid.Column="1" RowDefinitions="Auto,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
+            <Grid RowDefinitions="Auto,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
                 <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Padding="25" BackgroundColor="LightBlue">
-                    <!-- Caractéristiques -->
-                    <Label
-                        BackgroundColor="DarkSalmon"
-                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                        Grid.Column="0"
-                        Text="{Binding Description, StringFormat=Description : \{0\}}"
-                        FontSize="Medium">
-                    </Label>
-
+                    
+                    <!-- Infos du monstre BUG AVEC LES FRAMES, ESSAYE DE VOIR POUR QUE CE SOIT BEAU ET QUE LE TEXTE SOIT PAS COUPE + MODIFIE LE BINDING-->
+                    <VerticalStackLayout Grid.Column="0">
+                        <HorizontalStackLayout>
+                            <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
+                            <CheckBox Color="{StaticResource BleuFonce}"/>
+                        </HorizontalStackLayout>
+                        <Frame Margin="0" HorizontalOptions="Center" >
+                            <Label BackgroundColor="White" FontSize="Medium"
+                                   Text="{Binding Description, StringFormat=Description : \{0\}}"/>
+                        </Frame>
+                        <Frame Margin="0">
+                            <Label BackgroundColor="White" FontSize="Medium"
+                                   Text="{Binding Description, StringFormat=Caractéristiques : \{0\}}"/>
+                        </Frame>
+                        <Frame Margin="0">
+                            <Label BackgroundColor="White" FontSize="Medium"
+                                   Text="{Binding Description, StringFormat=Apparences : \{0\}}"/>
+                        </Frame>
+                        <Frame Margin="0">
+                            <Label BackgroundColor="White" FontSize="Medium"
+                                   Text="{Binding Description, StringFormat=Conseils : \{0\}}"/>
+                        </Frame>
+                    </VerticalStackLayout>
+                    
                     <!-- Image du mob -->
-                    <Image Grid.Column="1" Source="{Binding CardLink}" HeightRequest="600"/>
+                    <Image Grid.Column="1" Source="{Binding CardLink}"  HeightRequest="600"/>
                 </Grid>
             </Grid>
         </ScrollView>

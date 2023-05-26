@@ -58,8 +58,8 @@
                 Source="connexion.png"
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
-            <Entry Placeholder="Identifiant" ReturnType="Next" Completed="Id_Entry_Completed" />
-            <Entry Placeholder="Mot de passe" IsPassword="True" ReturnType="Done" Completed="Mdp_Entry_Completed"/>
+            <Entry x:Name="IdEntry" Placeholder="Identifiant" ReturnType="Next" />
+            <Entry x:Name="PsswEntry" Placeholder="Mot de passe" IsPassword="True" ReturnType="Next" />
             <Button Style="{StaticResource buttonStyle}"
                     Text="Valider"
                     Clicked="ValiderClicked"/>
