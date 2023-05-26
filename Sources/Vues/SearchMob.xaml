@@ -3,14 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:shape="Microsoft.Maui.Controls.Shapes"
-             x:Class="Vues.SearchMob">
+             x:Class="Vues.SearchMob"
+             BackgroundImageSource="backcollection.jpg">
              <!--BackgroundImageSource="backcollection.jpg"-->
     <Grid ColumnDefinitions="Auto, *">
+        <Grid.Resources>
+            <Style x:Key="sectionStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="#735751" />
+                <Setter Property="StrokeThickness" Value="4" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#efccb2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#f6ccb2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </Grid.Resources>
         <Grid RowDefinitions="Auto, *" RowSpacing="25" WidthRequest="300"
               BackgroundColor="{StaticResource buttonBackgroundColor}">
             <HorizontalStackLayout Grid.Row="0">
-                <ImageButton Source="exit.png" WidthRequest="20"
-                             BackgroundColor="{StaticResource buttonBackgroundColor}"/>
+                <ImageButton Source="exit.png" WidthRequest="20"/>
                 <SearchBar Placeholder="Rechercher un monstre"
                             PlaceholderColor="DimGray"
                             CancelButtonColor="DimGray"/>
@@ -44,48 +69,39 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <ScrollView Grid.Column="1" BackgroundColor="{StaticResource Blue300Accent}">
+        <ScrollView Grid.Column="1" Margin="10">
             <Grid RowDefinitions="Auto,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
-                <Grid Grid.Row="0" Padding="25" >
+                <Grid Grid.Row="0" Padding="25">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <!-- Infos du monstre MODIFIE LE BINDING-->
                     <VerticalStackLayout Grid.Column="0">
                         <HorizontalStackLayout>
                             <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
-                            <CheckBox Color="{StaticResource BleuFonce}"/>
+                            <CheckBox Color="Green"/>
                         </HorizontalStackLayout>
-                        <Frame Margin="0, 0, 0, 30"
-                               HorizontalOptions="Fill"
-                                >
-                            <Label BackgroundColor="White" FontSize="Medium"
-                                   Text="{Binding Description, StringFormat=Description : \{0\}}"/>
-                        </Frame>
-                        <Frame Margin="0, 0, 0, 30"
-                               HorizontalOptions="FillAndExpand" 
-                               >
-                            <Label BackgroundColor="White" FontSize="Medium"
-                                   Text="{Binding Description, StringFormat=Caractéristiques : \{0\}}"/>
-                        </Frame>
-                        <Frame Margin="0, 0, 0, 30" 
-                               HorizontalOptions="FillAndExpand" 
-                               >
-                            <Label BackgroundColor="White" FontSize="Medium"
-                                   Text="{Binding Description, StringFormat=Apparences : \{0\}}"/>
-                        </Frame>
-                        <Frame Margin="0, 0, 0, 30" 
-                               HorizontalOptions="FillAndExpand" 
-                               >
-                            <Label BackgroundColor="White" FontSize="Medium"
-                                   Text="{Binding Description, StringFormat=Conseils : \{0\}}"/>
-                        </Frame>
+                        <Border Style="{StaticResource sectionStyle}">
+                            <Label FontSize="Medium" Text="{Binding Description, StringFormat='\{0\}'}"/>
+                        </Border>
+
+                        <Border Style="{StaticResource sectionStyle}">
+                            <Label FontSize="Medium" Style="{Binding Dangerosite,Converter=}" Text="{Binding Dangerosite, StringFormat='\{0\}'}"/>
+                        </Border>
+
+                        <Border Style="{StaticResource sectionStyle}">
+                            <Label FontSize="Medium" Text="{Binding CharacteristicsList, StringFormat='\{0\}'}"/>
+                        </Border>
+
+                        <Border Style="{StaticResource sectionStyle}">
+                            <Label FontSize="Medium" Text="{Binding AppearanceList, StringFormat='\{0\}'}"/>
+                        </Border>
                     </VerticalStackLayout>
-                    
+
                     <!-- Image du mob -->
-                    <Image Grid.Column="1" Source="{Binding CardLink}"  HeightRequest="600" HorizontalOptions="EndAndExpand"/>
+                    <Image Grid.Column="1" Source="{Binding CardLink}"  HeightRequest="600" HorizontalOptions="End"/>
                 </Grid>
             </Grid>
         </ScrollView>
