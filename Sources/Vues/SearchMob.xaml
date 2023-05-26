@@ -88,7 +88,7 @@
                         </Border>
 
                         <Border Style="{StaticResource sectionStyle}">
-                            <Label FontSize="Medium" Style="{Binding Dangerosite,Converter=}" Text="{Binding Dangerosite, StringFormat='\{0\}'}"/>
+                            <Label FontSize="Medium" Style="{Binding Dangerosite,Converter=}" Text="{Binding Dangerosite, StringFormat=Danger : '\{0\}'}"/>
                         </Border>
 
                         <Border Style="{StaticResource sectionStyle}">

@@ -131,7 +131,13 @@
     </Style>
 
     <Style x:Key="passif" TargetType="Label">
+        <Setter Property="BackgroundColor" Value="Green" />
+    </Style>
+    <Style x:Key="hostile" TargetType="Label">
         <Setter Property="BackgroundColor" Value="Red" />
+    </Style>
+    <Style x:Key="boss" TargetType="Label">
+        <Setter Property="BackgroundColor" Value="Purple" />
     </Style>
     
     <Style TargetType="Frame">
