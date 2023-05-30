@@ -89,27 +89,42 @@
                             <CheckBox Color="Green"/>
                         </HorizontalStackLayout>
                         <Border Style="{StaticResource sectionStyle}">
-                            <Label FontSize="Medium" Text="{Binding Description, StringFormat='\{0\}'}"/>
+                            <Label FontSize="Medium" Text="{Binding Description, StringFormat='{0}'}"/>
+                        </Border>
+                        <Border Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
+                            <Label FontSize="Small" Text="{Binding Dangerosite, StringFormat='Dangerosité : {0}'}"/>
                         </Border>
 
                         <Border Style="{StaticResource sectionStyle}">
-                            <!-- <Label FontSize="Medium" Style="{Binding Dangerosite,Converter=}" Text="{Binding Dangerosite, StringFormat=Danger : '\{0\}'}"/>  Ta ligne qui empêchait de lancer-->
+                            <ListView ItemsSource="{Binding CharacteristicsList}" Grid.Row="1">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Label FontSize="Medium" Text="{Binding ., StringFormat='{0}'}"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Border>
 
                         <Border Style="{StaticResource sectionStyle}">
-                            <Label FontSize="Medium" Text="{Binding CharacteristicsList, StringFormat='\{0\}'}"/>
-                        </Border>
-
-                        <Border Style="{StaticResource sectionStyle}">
-                            <Label FontSize="Medium" Text="{Binding AppearanceList, StringFormat='\{0\}'}"/>
+                            <ListView ItemsSource="{Binding AppearanceList}" Grid.Row="1">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Label FontSize="Medium" Text="{Binding ., StringFormat='{0}'}"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Border>
                         <!-- Conseils -->
 
-                        <Border Style="{StaticResource sectionStyle}">
+                        <Border Grid.Row="3" Style="{StaticResource sectionStyle}">
                             <StackLayout>
                                 <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
                                 <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
-                                    <Editor Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                    <Editor x:Name="texteConseilEntry" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
                                     <Button Text="Valider" Clicked="OnValiderConseilClicked" />
                                     <Button Text="Annuler" Clicked="OnExitConseilClicked" />
                                 </StackLayout>

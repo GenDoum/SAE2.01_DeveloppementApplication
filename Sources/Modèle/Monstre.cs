@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Reflection.Metadata;
 using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Model
 {
@@ -70,11 +71,12 @@ namespace Model
             get; init;
         }
 
-        public List<Conseil> ListConseils { get; set; }
+        [DataMember(Order = 7, EmitDefaultValue = false)]
+        public ObservableCollection<Conseil> ListConseils { get; set; }
 
         public string ImageLink { get; init ; }
         public string CardLink { get; init; }
-        public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList, List<Conseil> conseilList)
+        public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList, ObservableCollection<Conseil> conseilList)
         {
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(danger))
             {

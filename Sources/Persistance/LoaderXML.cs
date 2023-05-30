@@ -12,7 +12,6 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.CompilerServices;
 using System.Dynamic;
 using System.Xml.Linq;
-using Microsoft.VisualBasic;
 
 namespace Persistance
 {/// <summary>
@@ -23,7 +22,7 @@ namespace Persistance
 /// </summary>
     public class LoaderXml : IUserDataManager, IMonsterDataManager 
     {
-        static string Dirpath = "lol"/*FileSystem.Current.AppDataDirectory*/;
+        static string Dirpath = "";
         static string fichierUserXML = "users.xml";
         static string fichierMonsterXML = "monsters.xml";
         static string fullPathUser = Path.Combine(Dirpath, fichierUserXML);

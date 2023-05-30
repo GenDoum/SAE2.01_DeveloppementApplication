@@ -34,8 +34,6 @@ public partial class SearchMob : ContentPage
 
         if (addConseilLayout != null)
         {
-            var texteConseilEntry = addConseilLayout.Children[1] as Editor;
-
             // récupère les valeurs des champs pour ajouter un conseil
             var texteConseil = texteConseilEntry.Text;
 
