@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Persistance
 {
@@ -32,9 +33,9 @@ namespace Persistance
             return lu;
         }
 
-        public List<Monstre> loadMonsters() ///SAME
+        public ObservableCollection<Monstre> loadMonsters() ///SAME
         {
-            List<Monstre> lm = new List<Monstre>();
+            ObservableCollection<Monstre> lm = new ObservableCollection<Monstre>();
             User user = new User("ddd", "ddd", "ddd", "ddd");
             Monstre monstre = new Monstre(1, "monstre", "dangereux", "je suis gentil tkt", new List<string> { }, new List<string> { }, new List<Conseil> { });
             Conseil conseil = new Conseil(user, "Voili voilou", monstre);

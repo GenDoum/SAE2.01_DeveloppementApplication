@@ -106,33 +106,28 @@
                         <!-- Conseils -->
 
                         <Border Style="{StaticResource sectionStyle}">
-                            <ListView x:Name="ListViewConseils" ItemsSource="{Binding ListConseils}" Grid.Row="1">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-                                                <Label Text="{Binding Texte}" Grid.Row="0" Grid.Column="0" />
-                                                <!-- Bouton d'ajout de conseil -->
-                                                <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
-                                                <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
-                                                    <Entry Placeholder="Pseudo" PlaceholderColor="{StaticResource Gray500}"/>
-                                                    <Entry Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
-                                                    <!-- Bouton pour valider l'ajout du conseil -->
-                                                    <Button Text="Valider" Clicked="OnValiderConseilClicked" />
-                                                </StackLayout>
-                                            </Grid>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                            <StackLayout>
+                                <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+                                <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                    <Editor Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                    <Button Text="Valider" Clicked="OnValiderConseilClicked" />
+                                    <Button Text="Annuler" Clicked="OnExitConseilClicked" />
+                                </StackLayout>
+                                <ListView x:Name="ListViewConseils" ItemsSource="{Binding ListConseils}" Grid.Row="1">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, Auto">
+                                                    <Label Text="{Binding Id}" Grid.Column="0"/>
+                                                    <Label Text="{Binding Auteur}" Grid.Column="0"/>
+                                                    <Label Text="{Binding Texte}" Grid.Column="1" />
+                                                    <!-- Bouton d'ajout de conseil -->
+                                                </Grid>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
                         </Border>
                     </VerticalStackLayout>
                     <!-- Image du mob -->

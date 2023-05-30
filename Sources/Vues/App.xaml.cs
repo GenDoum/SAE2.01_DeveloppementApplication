@@ -6,7 +6,7 @@ namespace Vues
 {
     public partial class App : Application
     {
-        public MonsterManager monsterManager { get; private set; } = new MonsterManager(new LoaderStub());
+        public MonsterManager monsterManager { get; private set; } = new MonsterManager(new LoaderXml());
         public UserManager userManager { get; private set; } = new UserManager(new LoaderXml());
 
         private User user;

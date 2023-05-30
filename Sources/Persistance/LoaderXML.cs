@@ -12,6 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.CompilerServices;
 using System.Dynamic;
 using System.Xml.Linq;
+using Microsoft.VisualBasic;
 
 namespace Persistance
 {/// <summary>
@@ -22,16 +23,18 @@ namespace Persistance
 /// </summary>
     public class LoaderXml : IUserDataManager, IMonsterDataManager 
     {
-        static string path = "../../Utilisateurs";
+        static string Dirpath = "lol"/*FileSystem.Current.AppDataDirectory*/;
         static string fichierUserXML = "users.xml";
-        static string fichierMonstreXML = "monsters.xml";
-        
+        static string fichierMonsterXML = "monsters.xml";
+        static string fullPathUser = Path.Combine(Dirpath, fichierUserXML);
+        static string fullPathMonster = Path.Combine(Dirpath, fichierMonsterXML);
+
         void IMonsterDataManager.saveMonsters(List<Monstre> monstres)
         {
-            Directory.SetCurrentDirectory(path); // Setup le chemin d'accès
+            Directory.SetCurrentDirectory(Dirpath); // Setup le chemin d'accès
             var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
             XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true }; // Pour avoir le format xml dans le fichier ( indentation etc... )
-            using (TextWriter tw = File.CreateText(Path.Combine(fichierMonstreXML)))
+            using (TextWriter tw = File.CreateText(Path.Combine(fichierMonsterXML)))
             {
                 using (XmlWriter writer = XmlWriter.Create(tw, xmlSettings))
                 {
@@ -39,28 +42,28 @@ namespace Persistance
                 }
             }
         }
-        public List<Monstre> loadMonsters()
+        public ObservableCollection<Monstre> loadMonsters()
         {
-            Directory.SetCurrentDirectory(path);
-            var serialiserXML = new DataContractSerializer(typeof(List<Monstre>));
-            List<Monstre>? monsters;
+            Directory.SetCurrentDirectory(Dirpath);
+            var serialiserXML = new DataContractSerializer(typeof(ObservableCollection<Monstre>));
+            ObservableCollection<Monstre>? monsters;
             try
             {
-                using (Stream s = File.OpenRead(fichierMonstreXML))
+                using (Stream s = File.OpenRead(fichierMonsterXML))
                 {
-                    monsters = serialiserXML.ReadObject(s) as List<Monstre>;
+                    monsters = serialiserXML.ReadObject(s) as ObservableCollection<Monstre>;
                 }
             }
             catch (FileNotFoundException e) {
                 throw new FileNotFoundException("The XML file used to load a list of monsters is missing.", e);
             }
             if (monsters != null) return monsters; // ça va faire un code smells
-            return new List<Monstre> { };
+            return new ObservableCollection<Monstre> { };
         }
         // Serialisation / Deserialisation de Users
         void IUserDataManager.saveUsers(List<User> users)// Serialise correctement juste voir comment l'appelé en fonction de IUserDataManager
         {
-            Directory.SetCurrentDirectory(path);
+            Directory.SetCurrentDirectory(Dirpath);
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
             XmlWriterSettings xmlSettings = new XmlWriterSettings() { Indent = true };
             using (TextWriter tw = File.CreateText(fichierUserXML))
@@ -73,7 +76,7 @@ namespace Persistance
         }
         public List<User> loadUsers()
         {
-            Directory.SetCurrentDirectory(path);
+            Directory.SetCurrentDirectory(Dirpath);
             var serialiserXML = new DataContractSerializer(typeof(List<User>));
             List<User>? users;
             using (Stream s = File.OpenRead(fichierUserXML))
