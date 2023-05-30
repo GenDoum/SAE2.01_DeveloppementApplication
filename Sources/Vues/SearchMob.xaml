@@ -119,26 +119,18 @@
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
-
-                                                <!-- Affichage du conseil -->
                                                 <Label Text="{Binding Texte}" Grid.Row="0" Grid.Column="0" />
-
                                                 <!-- Bouton d'ajout de conseil -->
                                                 <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
-
-                                                <!-- Champs à remplir pour ajouter un conseil (affichés après avoir appuyé sur le bouton) -->
                                                 <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
-                                                    <!-- Champs pour le nouvel auteur et texte du conseil -->
                                                     <Entry Placeholder="Pseudo" PlaceholderColor="{StaticResource Gray500}"/>
                                                     <Entry Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
-
                                                     <!-- Bouton pour valider l'ajout du conseil -->
                                                     <Button Text="Valider" Clicked="OnValiderConseilClicked" />
                                                 </StackLayout>
                                             </Grid>
                                         </ViewCell>
                                     </DataTemplate>
-
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Border>
