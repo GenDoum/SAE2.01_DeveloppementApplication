@@ -5,7 +5,7 @@
              xmlns:shape="Microsoft.Maui.Controls.Shapes"
              x:Class="Vues.SearchMob"
              BackgroundImageSource="backcollection.jpg">
-             <!--BackgroundImageSource="backcollection.jpg"-->
+    <!--BackgroundImageSource="backcollection.jpg"-->
     <Grid ColumnDefinitions="Auto, *">
         <Grid.Resources>
             <Style x:Key="sectionStyle" TargetType="Border">
@@ -77,7 +77,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -104,31 +104,43 @@
                             <Label FontSize="Medium" Text="{Binding AppearanceList, StringFormat='\{0\}'}"/>
                         </Border>
                         <!-- Conseils -->
+
                         <Border Style="{StaticResource sectionStyle}">
-                            <ScrollView>
-                                <Grid RowDefinitions="Auto, *"
-                                      ColumnDefinitions="*, 10, 10">
-                                    <ImageButton Grid.Row="1"
-                                                 HeightRequest="10"
-                                                 WidthRequest="10"
-                                                 Source="pencil.png"/>
-                                    <ImageButton Grid.Row="2"
-                                                 HeightRequest="10"
-                                                 WidthRequest="10"
-                                                 Source="bin.png"/>
-                                    <ListView x:Name="ListeViewConseils" ItemsSource="{Binding ListMonsters}" Grid.Row="1" Grid.Column="0">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <ViewCell>
-                                                    <VerticalStackLayout>
-                                                        <Label FontSize="Medium" Text="{Binding ListConseils, StringFormat='\{0\}'}"/>
-                                                    </VerticalStackLayout>
-                                                </ViewCell>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </Grid>
-                            </ScrollView>
+                            <ListView x:Name="ListViewConseils" ItemsSource="{Binding ListConseils}" Grid.Row="1">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Affichage du conseil -->
+                                                <Label Text="{Binding Texte}" Grid.Row="0" Grid.Column="0" />
+
+                                                <!-- Bouton d'ajout de conseil -->
+                                                <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+
+                                                <!-- Champs à remplir pour ajouter un conseil (affichés après avoir appuyé sur le bouton) -->
+                                                <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                                    <!-- Champs pour le nouvel auteur et texte du conseil -->
+                                                    <Entry Placeholder="Pseudo" PlaceholderColor="{StaticResource Gray500}"/>
+                                                    <Entry Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+
+                                                    <!-- Bouton pour valider l'ajout du conseil -->
+                                                    <Button Text="Valider" Clicked="OnValiderConseilClicked" />
+                                                </StackLayout>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Border>
                     </VerticalStackLayout>
                     <!-- Image du mob -->
