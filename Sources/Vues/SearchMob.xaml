@@ -88,8 +88,8 @@
                             <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
                             <CheckBox Color="Green"/>
                         </HorizontalStackLayout>
-                        <Border Style="{StaticResource sectionStyle}">
-                            <Label FontSize="Medium" Text="{Binding Description, StringFormat='{0}'}"/>
+                        <Border Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
+                            <Label FontSize="Small" Text="{Binding Description, StringFormat='{0}'}"/>
                         </Border>
                         <Border Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
                             <Label FontSize="Small" Text="{Binding Dangerosite, StringFormat='Dangerosité : {0}'}"/>
