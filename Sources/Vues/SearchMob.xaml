@@ -35,7 +35,7 @@
         <Grid RowDefinitions="Auto, *" RowSpacing="25" WidthRequest="300"
               BackgroundColor="{StaticResource buttonBackgroundColor}">
             <HorizontalStackLayout Grid.Row="0">
-                <ImageButton Source="exit.png" WidthRequest="20"/>
+                <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}"/>
                 <SearchBar Placeholder="Rechercher un monstre"
                             PlaceholderColor="DimGray"
                             CancelButtonColor="DimGray"/>
@@ -71,7 +71,7 @@
         </Grid>
         <ScrollView Grid.Column="1" Margin="10">
             <Grid RowDefinitions="Auto,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
-                <Grid Grid.Row="0" Padding="25">
+                <Grid Grid.Row="0" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="*"/>

@@ -57,15 +57,19 @@
                 Source="inscription.png"
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
-            <Entry Placeholder="Identifiant"
-                   Text="{Binding Pseudo}"/>
-            <Entry Placeholder="Nom"
+            <HorizontalStackLayout>
+                <Entry Placeholder="Nom"
                    Text="{Binding Nom}"/>
-            <Entry Placeholder="Prénom"
+                <Entry Placeholder="Prénom"
                    Text="{Binding Prenom}"/>
-            <Entry Placeholder="Mot de passe"
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Entry Placeholder="Identifiant"
+                   Text="{Binding Pseudo}"/>
+                <Entry Placeholder="Mot de passe"
                    Text="{Binding Mdp}"
                    IsPassword="True"/>
+            </HorizontalStackLayout>
             <Button Style="{StaticResource buttonStyle}" 
                     Text="Valider"
                     Clicked="Valid_Clicked"/>
