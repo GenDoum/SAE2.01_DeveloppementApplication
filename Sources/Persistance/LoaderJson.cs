@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -14,12 +15,12 @@ namespace Persistance
         DataContractJsonSerializer jsonUserSerializer = new DataContractJsonSerializer(typeof(List<User>));
         DataContractJsonSerializer jsonMonsterSerializer = new DataContractJsonSerializer(typeof(List<Monstre>));
         MemoryStream memoryStream = new MemoryStream();
-        List<Monstre> IMonsterDataManager.loadMonsters()
+        ObservableCollection<Monstre> IMonsterDataManager.loadMonsters()
         {
-            List<Monstre>? monstre2;
+            ObservableCollection<Monstre>? monstre2;
             using (FileStream s2 = File.OpenRead("monsters.json"))
             {
-                monstre2 = jsonMonsterSerializer.ReadObject(s2) as List<Monstre>;
+                monstre2 = jsonMonsterSerializer.ReadObject(s2) as ObservableCollection<Monstre>;
             }
             return monstre2;
             //throw new NotImplementedException();

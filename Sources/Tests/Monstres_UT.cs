@@ -1,5 +1,5 @@
 using Model;
-
+using System.Collections.ObjectModel;
 
 namespace Tests
 
@@ -9,7 +9,7 @@ namespace Tests
         [Fact]
         public void TestFullConstructor()
         {
-            Monstre a = new Monstre(0, "Name", "Hostility", "This is my description", new List<string> { "Carac 1", "Carac 2", "Carac 3" }, new List<string> { "App 1", "App 2", "App 3" }, new List<Conseil>());
+            Monstre a = new Monstre(0, "Name", "Hostility", "This is my description", new List<string> { "Carac 1", "Carac 2", "Carac 3" }, new List<string> { "App 1", "App 2", "App 3" }, new ObservableCollection<Conseil>());
             User usetUT = new User("pseudo", "nom", "prenom", "mdp", new List<Monstre>());
             Conseil conseilUT = new Conseil(usetUT, "conseil de fou furieux", a);
             Assert.NotNull(a);
@@ -23,10 +23,10 @@ namespace Tests
         [Fact]
         public void TestVoidConstructor()
         {
-            Monstre a = new Monstre(0, "Name", "Hostility", "This is my description", new List<string> { "Carac 1", "Carac 2", "Carac 3" }, new List<string> { "App 1", "App 2", "App 3" }, new List<Conseil>());
+            Monstre a = new Monstre(0, "Name", "Hostility", "This is my description", new List<string> { "Carac 1", "Carac 2", "Carac 3" }, new List<string> { "App 1", "App 2", "App 3" }, new ObservableCollection<Conseil>());
             User usetUT = new User("pseudo", "nom", "prenom", "mdp", new List<Monstre>());
             Conseil conseilUT = new Conseil(usetUT, "conseil de fou furieux", a);
-            Assert.Throws<ArgumentException>(() => new Monstre(0, "", "", "", new List<string> { "" }, new List<string> { "" }, new List<Conseil> {conseilUT}));
+            Assert.Throws<ArgumentException>(() => new Monstre(0, "", "", "", new List<string> { "" }, new List<string> { "" }, new ObservableCollection<Conseil> {conseilUT}));
         }
     }
 }

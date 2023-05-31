@@ -4,6 +4,7 @@ using Model;
 using Modèle;
 using Persistance;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics.Metrics;
 using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
@@ -418,7 +419,7 @@ menuAccueil();
 User auteur = new User("pseudo", "nom", "prenom", "mdp", new List<Monstre> { });
 
 // Création d'un monstre
-Monstre monstre = new Monstre(1, "Dragon", "Dangereux", "Un redoutable dragon cracheur de feu.", new List<string>(), new List<string>(), new List<Conseil>());
+Monstre monstre = new Monstre(1, "Dragon", "Dangereux", "Un redoutable dragon cracheur de feu.", new List<string>(), new List<string>(), new ObservableCollection<Conseil>());
 
 // Création d'un conseil
 Conseil conseil = new Conseil(auteur, "Soyez prudent lors de votre rencontre avec le dragon.", monstre);

@@ -1,6 +1,7 @@
 ﻿using Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ namespace Persistance
     {
         public IMonsterDataManager Pers { get; set; }
 
-        private List<Monstre> monsters = null!;
-        public List<Monstre> ListMonsters
+        private ObservableCollection<Monstre> monsters = null!;
+        public ObservableCollection<Monstre> ListMonsters
         {
             get
             {
@@ -28,7 +29,7 @@ namespace Persistance
             Pers.saveMonsters(monstres);
         }
 
-        List<Monstre> IMonsterDataManager.loadMonsters()
+        ObservableCollection<Monstre> IMonsterDataManager.loadMonsters()
         {
             return Pers.loadMonsters();
         }
