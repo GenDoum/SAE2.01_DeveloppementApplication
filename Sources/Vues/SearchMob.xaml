@@ -31,15 +31,66 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource buttonBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1.05" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <Grid RowDefinitions="Auto, *" RowSpacing="25" WidthRequest="300"
               BackgroundColor="{StaticResource buttonBackgroundColor}">
-            <HorizontalStackLayout Grid.Row="0">
-                <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}"/>
-                <SearchBar Placeholder="Rechercher un monstre"
+            <VerticalStackLayout>
+                <HorizontalStackLayout Grid.Row="0">
+                    <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}"/>
+                    <SearchBar Placeholder="Rechercher un monstre"
                             PlaceholderColor="DimGray"
                             CancelButtonColor="DimGray"/>
-            </HorizontalStackLayout>
+                </HorizontalStackLayout>
+                <Button Style="{StaticResource buttonStyle}"
+                        Grid.Row="1"  
+                        Text="Filtrer"
+                        Clicked="FilterClicked"/>
+                <HorizontalStackLayout x:Name="Filtrer">
+                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                          RowDefinitions="Auto">
+                        <Label Grid.Column="0">Passive</Label>
+                        <CheckBox x:Name="passive" 
+                                  Color="Green"
+                                  Grid.Column="1"/>
+                        <Label Grid.Column="2">Hostile</Label>
+                        <CheckBox x:Name="hostile" 
+                                  Color="Red"
+                                  Grid.Column="3"/>
+                        <Label Grid.Column="4">Boss</Label>
+                        <CheckBox x:Name="boss" 
+                                  Color="Purple"
+                                  Grid.Column="5"/>
+                    </Grid>
+
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
             <ListView x:Name="ListViewMonsters" ItemsSource="{Binding ListMonsters}" Grid.Row="1" ItemTapped="OnClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>

@@ -1,9 +1,11 @@
+using Microsoft.Maui.Controls;
 using Model;
 
 namespace Vues;
 
 public partial class SearchMob : ContentPage
 {
+    
     string appearanceSelected { get; set; } = string.Empty;
     public SearchMob()
 	{
@@ -54,6 +56,8 @@ public partial class SearchMob : ContentPage
 
         }
     }
+
+
     private void OnExitConseilClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -74,5 +78,22 @@ public partial class SearchMob : ContentPage
     {
         appearanceSelected = e.Item as string;
         imageCollection.Source = imageLinkConverter(appearanceSelected);
+    }
+
+    private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
+
+    public void FilterClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("Filter");
+
+    }
+
+    private void passive_CheckedChanged(object sender, EventArgs e)
+    {
+        
     }
 }
