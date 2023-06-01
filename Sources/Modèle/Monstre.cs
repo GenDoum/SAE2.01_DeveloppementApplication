@@ -75,7 +75,7 @@ namespace Model
         public ObservableCollection<Conseil> ListConseils { get; set; }
 
         public string ImageLink { get; init ; }
-        public string CardLink { get; init; }
+
         public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList, ObservableCollection<Conseil> conseilList)
         {
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(danger))
@@ -91,7 +91,6 @@ namespace Model
             AppearanceList = appearList;
             ListConseils = conseilList;
             ImageLink = name.ToLower() + ".png";
-            CardLink = "collection" + name.ToLower() + ".png";
         }
 
         public override string ToString()

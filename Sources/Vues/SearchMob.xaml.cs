@@ -4,16 +4,19 @@ namespace Vues;
 
 public partial class SearchMob : ContentPage
 {
-	public SearchMob()
+    string appearanceSelected { get; set; } = string.Empty;
+    public SearchMob()
 	{
 		InitializeComponent();
 		BindingContext = (Application.Current as App).monsterManager;
+        imageCollection.BindingContext = this;
     }
 
 	public void OnClick(object sender, ItemTappedEventArgs e)
 	{
 		(App.Current as App).MonstreSelectionne = e.Item as Monstre;
-	}
+        imageCollection.Source = imageLinkConverter((App.Current as App).MonstreSelectionne.AppearanceList.First());
+    }
     private void OnAddConseilClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -59,4 +62,17 @@ public partial class SearchMob : ContentPage
         texteConseilEntry.Text = string.Empty;
         addConseilLayout.IsVisible = false;
     }
-}	
+
+    private string imageLinkConverter(string imageLink)
+    {
+        imageLink = String.Concat(imageLink.Where(c => !Char.IsWhiteSpace(c)));
+        imageLink = "collection" + imageLink.ToLower() + ".png";
+        return imageLink;
+    }
+
+    private void ListAppearance_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        appearanceSelected = e.Item as string;
+        imageCollection.Source = imageLinkConverter(appearanceSelected);
+    }
+}

@@ -70,84 +70,93 @@
             </ListView>
         </Grid>
         <ScrollView Grid.Column="1" Margin="10">
-            <Grid RowDefinitions="Auto,*,*,*" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
-                <Grid Grid.Row="0" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+            
+            <!-- Grid du Detail contenant toutes les informations du monstre -->
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
+                <Grid ColumnDefinitions="3*, *" Grid.Row="0">
 
-                    <!-- Infos du monstre MODIFIE LE BINDING-->
-                    <VerticalStackLayout Grid.Column="0"
-                                         Grid.Row="0">
-                        <HorizontalStackLayout>
-                            <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
-                            <CheckBox Color="Green"/>
-                        </HorizontalStackLayout>
-                        <Border Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
-                            <Label FontSize="Small" Text="{Binding Description, StringFormat='{0}'}"/>
+                    <HorizontalStackLayout Grid.Column="0" VerticalOptions="Start">
+                        <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
+                        <CheckBox Color="Green"/>
+                    </HorizontalStackLayout>
+
+                    <VerticalStackLayout VerticalOptions="Center" Grid.Column="0">
+                        <!-- Description du monstre -->
+                        <Border Style="{StaticResource sectionStyle}">
+                            <StackLayout>
+                                <Label TextDecorations="Underline" Text="Description :" FontSize="Medium"/>
+                                <Label FontSize="Small" Text="{Binding Description, StringFormat='{0}'}"/>
+                            </StackLayout>
                         </Border>
-                        <Border Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
+                    </VerticalStackLayout>
+                    
+                    <!-- Image du monstre -->
+                    <VerticalStackLayout Grid.Column="1">
+                        <Image  x:Name="imageCollection" HeightRequest="600" HorizontalOptions="End"/>
+                        <Border Grid.Row="1" Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
                             <Label FontSize="Small" Text="{Binding Dangerosite, StringFormat='Dangerosité : {0}'}"/>
                         </Border>
+                    </VerticalStackLayout>
+                </Grid>
 
-                        <Border Style="{StaticResource sectionStyle}">
+                <StackLayout Grid.Row="1">
+                    <Border Style="{StaticResource sectionStyle}">
+                        <StackLayout>
+                            <Label TextDecorations="Underline" Text="Caractéristiques du monstre :" FontSize="Medium"/>
                             <ListView ItemsSource="{Binding CharacteristicsList}" Grid.Row="1">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <Label FontSize="Medium" Text="{Binding ., StringFormat='{0}'}"/>
+                                            <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small"/>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                        </Border>
+                        </StackLayout>
+                    </Border>
 
-                        <Border Style="{StaticResource sectionStyle}">
-                            <ListView ItemsSource="{Binding AppearanceList}" Grid.Row="1">
+                    <Border Style="{StaticResource sectionStyle}">
+                        <StackLayout>
+                            <Label TextDecorations="Underline" Text="Apparences :" FontSize="Medium"/>
+                            <ListView x:Name="ListAppearance" ItemsSource="{Binding AppearanceList}" Grid.Row="1" ItemTapped="ListAppearance_ItemTapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <Label FontSize="Medium" Text="{Binding ., StringFormat='{0}'}"/>
+                                            <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small"/>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                        </Border>
-                        <!-- Conseils -->
+                        </StackLayout>
+                    </Border>
 
-                        <Border Grid.Row="3" Style="{StaticResource sectionStyle}">
-                            <StackLayout>
-                                <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
-                                <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
-                                    <Editor x:Name="texteConseilEntry" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
-                                    <Button Text="Valider" Clicked="OnValiderConseilClicked" />
-                                    <Button Text="Annuler" Clicked="OnExitConseilClicked" />
-                                </StackLayout>
-                                <ListView x:Name="ListViewConseils" ItemsSource="{Binding ListConseils}" Grid.Row="1">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, Auto">
-                                                    <Label Text="{Binding Id}" Grid.Column="0"/>
-                                                    <Label Text="{Binding Auteur}" Grid.Column="0"/>
-                                                    <Label Text="{Binding Texte}" Grid.Column="1" />
-                                                    <!-- Bouton d'ajout de conseil -->
-                                                </Grid>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                    <!-- Conseils -->
+
+                    <Border Grid.Row="3" Style="{StaticResource sectionStyle}">
+                        <StackLayout>
+                            <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+                            <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                <Editor x:Name="texteConseilEntry" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                <Button Text="Valider" Clicked="OnValiderConseilClicked" />
+                                <Button Text="Annuler" Clicked="OnExitConseilClicked" />
                             </StackLayout>
-                        </Border>
-                    </VerticalStackLayout>
-                    <!-- Image du mob -->
-                    <Image Grid.Column="1" Source="{Binding CardLink}"  HeightRequest="600" HorizontalOptions="End"/>
-                </Grid>
+                            <ListView x:Name="ListViewConseils" ItemsSource="{Binding ListConseils}" Grid.Row="1">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid RowDefinitions="Auto" ColumnDefinitions="Auto, Auto">
+                                                <Label Text="{Binding Id}" Grid.Column="0"/>
+                                                <Label Text="{Binding Auteur}" Grid.Column="0"/>
+                                                <Label Text="{Binding Texte}" Grid.Column="1" />
+                                                <!-- Bouton d'ajout de conseil -->
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Border>
+                </StackLayout>
             </Grid>
         </ScrollView>
     </Grid>
