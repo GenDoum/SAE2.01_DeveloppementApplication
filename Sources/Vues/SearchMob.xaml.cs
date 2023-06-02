@@ -93,11 +93,6 @@ public partial class SearchMob : ContentPage
         {
             afficherFiltres.IsVisible |= true;
         }
-        /*
-        if (afficherFiltres != null)
-        {
-            afficherFiltres.IsVisible = true;
-        }*/
     }
 
     private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
