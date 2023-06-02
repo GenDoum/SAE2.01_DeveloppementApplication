@@ -95,11 +95,6 @@
                                   Grid.Column="5"
                                   IsChecked="True"
                                   CheckedChanged="boss_CheckedChanged"/>
-                        <Button BackgroundColor="{StaticResource buttonBackgroundColor}"
-                                BorderColor="Black"
-                                Text="Annuler"
-                                Clicked="ExitFilter"
-                                Grid.Row="1"/>
                     </Grid>
                 </HorizontalStackLayout>
             </VerticalStackLayout>

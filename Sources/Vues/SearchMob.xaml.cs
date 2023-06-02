@@ -85,22 +85,19 @@ public partial class SearchMob : ContentPage
     {
         var button = sender as Button;
         var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("HorizonFilterClicked");
+        if (afficherFiltres.IsVisible)
+        {
+            afficherFiltres.IsVisible = false;
+        }
+        else
+        {
+            afficherFiltres.IsVisible |= true;
+        }
+        /*
         if (afficherFiltres != null)
         {
             afficherFiltres.IsVisible = true;
-        }
-
-    }
-    
-    private void ExitFilter(object sender, EventArgs e) // Enlever les filtres
-    {
-        var button = sender as Button;
-        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("HorizonFilterClicked");
-        var enleverFiltres = button?.Parent?.FindByName<Grid>("GridFilter");
-        if (enleverFiltres != null) 
-        { 
-            afficherFiltres.IsVisible = false;
-        }
+        }*/
     }
 
     private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
