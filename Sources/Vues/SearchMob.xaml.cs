@@ -78,6 +78,29 @@ public partial class SearchMob : ContentPage
     {
         appearanceSelected = e.Item as string;
         imageCollection.Source = imageLinkConverter(appearanceSelected);
+
+    }
+
+    private void FilterClicked(object sender, EventArgs e) // Afficher les filtres
+    {
+        var button = sender as Button;
+        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("HorizonFilterClicked");
+        if (afficherFiltres != null)
+        {
+            afficherFiltres.IsVisible = true;
+        }
+
+    }
+    
+    private void ExitFilter(object sender, EventArgs e) // Enlever les filtres
+    {
+        var button = sender as Button;
+        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("HorizonFilterClicked");
+        var enleverFiltres = button?.Parent?.FindByName<Grid>("GridFilter");
+        if (enleverFiltres != null) 
+        { 
+            afficherFiltres.IsVisible = false;
+        }
     }
 
     private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -85,15 +108,13 @@ public partial class SearchMob : ContentPage
 
     }
 
-    public void FilterClicked(object sender, EventArgs e)
+    private void hostile_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        var button = sender as Button;
-        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("Filter");
 
     }
 
-    private void passive_CheckedChanged(object sender, EventArgs e)
+    private void boss_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        
+
     }
 }

@@ -68,27 +68,39 @@
                             PlaceholderColor="DimGray"
                             CancelButtonColor="DimGray"/>
                 </HorizontalStackLayout>
-                <Button Style="{StaticResource buttonStyle}"
-                        Grid.Row="1"  
+                <Button Grid.Row="1"  
                         Text="Filtrer"
+                        BackgroundColor="{StaticResource buttonBackgroundColor}"
+                        BorderColor="Black"
                         Clicked="FilterClicked"/>
-                <HorizontalStackLayout x:Name="Filtrer">
+                <HorizontalStackLayout x:Name="HorizonFilterClicked" IsVisible="False">
                     <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
-                          RowDefinitions="Auto">
+                          RowDefinitions="Auto, Auto"
+                          x:Name="GridFilter">
                         <Label Grid.Column="0">Passive</Label>
                         <CheckBox x:Name="passive" 
                                   Color="Green"
-                                  Grid.Column="1"/>
+                                  Grid.Column="1"
+                                  IsChecked="True"
+                                  CheckedChanged="passive_CheckedChanged"/>
                         <Label Grid.Column="2">Hostile</Label>
                         <CheckBox x:Name="hostile" 
                                   Color="Red"
-                                  Grid.Column="3"/>
+                                  Grid.Column="3"
+                                  IsChecked="True"
+                                  CheckedChanged="hostile_CheckedChanged"/>
                         <Label Grid.Column="4">Boss</Label>
-                        <CheckBox x:Name="boss" 
+                        <CheckBox x:Name="boss"
                                   Color="Purple"
-                                  Grid.Column="5"/>
+                                  Grid.Column="5"
+                                  IsChecked="True"
+                                  CheckedChanged="boss_CheckedChanged"/>
+                        <Button BackgroundColor="{StaticResource buttonBackgroundColor}"
+                                BorderColor="Black"
+                                Text="Annuler"
+                                Clicked="ExitFilter"
+                                Grid.Row="1"/>
                     </Grid>
-
                 </HorizontalStackLayout>
             </VerticalStackLayout>
             <ListView x:Name="ListViewMonsters" ItemsSource="{Binding ListMonsters}" Grid.Row="1" ItemTapped="OnClick">
