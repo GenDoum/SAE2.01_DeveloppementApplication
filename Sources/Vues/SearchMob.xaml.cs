@@ -1,5 +1,6 @@
 using Microsoft.Maui.Controls;
 using Model;
+using System.Linq;
 
 namespace Vues;
 
@@ -39,9 +40,7 @@ public partial class SearchMob : ContentPage
 
         if (addConseilLayout != null)
         {
-            // récupère les valeurs des champs pour ajouter un conseil
             var texteConseil = texteConseilEntry.Text;
-
             // Ajouter le nouveau conseil à la liste des conseils du monstre sélectionné
             var selectedMonstre = (App.Current as App).MonstreSelectionne;
             if (selectedMonstre != null && !string.IsNullOrWhiteSpace(texteConseil))
@@ -49,14 +48,11 @@ public partial class SearchMob : ContentPage
                 var nouveauConseil = new Conseil((App.Current as App).User, texteConseil, selectedMonstre);
                 selectedMonstre.ListConseils.Add(nouveauConseil);
             }
-
-            // Réinitialiser les champs et masquer la section d'ajout de conseil
             texteConseilEntry.Text = string.Empty;
             addConseilLayout.IsVisible = false;
 
         }
     }
-
 
     private void OnExitConseilClicked(object sender, EventArgs e)
     {
@@ -95,18 +91,27 @@ public partial class SearchMob : ContentPage
         }
     }
 
+    private void UpdateAffichMobs()
+    {
+        var filtreMobs = ((App.Current as App).monsterManager.ListMonsters).Where(Monstre =>
+            (boss.IsChecked && Monstre.Dangerosite == "BOSS") ||
+            (hostile.IsChecked && Monstre.Dangerosite == "hostile") ||
+            (passive.IsChecked && Monstre.Dangerosite == "passif"));
+
+        ListViewMonsters.ItemsSource = filtreMobs.ToList();
+    }
     private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-
+        UpdateAffichMobs();
     }
 
     private void hostile_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-
+        UpdateAffichMobs();
     }
 
     private void boss_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-
+        UpdateAffichMobs();
     }
 }
