@@ -64,9 +64,11 @@
             <VerticalStackLayout>
                 <HorizontalStackLayout Grid.Row="0">
                     <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}"/>
-                    <SearchBar Placeholder="Rechercher un monstre"
-                            PlaceholderColor="DimGray"
-                            CancelButtonColor="DimGray"/>
+                    <SearchBar x:Name="searchBar" Placeholder="Rechercher un monstre"
+                        PlaceholderColor="DimGray"
+                        CancelButtonColor="DimGray"
+                        TextChanged="SearchBar_TextChanged"
+                        Text="{Binding SearchText, Mode=TwoWay}"/>
                 </HorizontalStackLayout>
                 <Button Style="{StaticResource buttonStyle}"
                         Grid.Row="1"  
@@ -91,12 +93,13 @@
 
                 </HorizontalStackLayout>
             </VerticalStackLayout>
-            <ListView x:Name="ListViewMonsters" ItemsSource="{Binding ListMonsters}" Grid.Row="1" ItemTapped="OnClick">
+            <ListView x:Name="ListViewMonsters" ItemsSource="{Binding MnstrTemp}" Grid.Row="1" ItemTapped="OnClick">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <VerticalStackLayout>
-                                <Image Source="{Binding ImageLink}">
+                                <Image Source="{Binding ImageLink}"> <!-- PROBLEME ICI, LANCE POUR VOIR TU VAS VOIR ça fonctionne 
+                                    mais si tu regardes dans la barre en haut, tu as plein d'erreurs en faisant des recherches -->
                                     <VisualStateManager.VisualStateGroups>
                                         <VisualStateGroupList>
                                             <VisualStateGroup x:Name="CommonStates">
@@ -166,7 +169,7 @@
                         </StackLayout>
                     </Border>
 
-                    <Border Style="{StaticResource sectionStyle}">
+                    <Border Style="{StaticResource sectionStyle}" HeightRequest="160">
                         <StackLayout>
                             <Label TextDecorations="Underline" Text="Apparences :" FontSize="Medium"/>
                             <ListView x:Name="ListAppearance" ItemsSource="{Binding AppearanceList}" Grid.Row="1" ItemTapped="ListAppearance_ItemTapped">

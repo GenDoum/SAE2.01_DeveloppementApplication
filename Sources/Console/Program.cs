@@ -10,7 +10,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Reflection.PortableExecutable;
 
 // Déclaration des Managers (et de leur méthode de sauvegarde)
-UserManager userMngr = new UserManager(new LoaderXml());
+UserManager userMngr = new UserManager(new LoaderStub());
 MonsterManager monsterBase = new MonsterManager(new LoaderStub());
 
 // Variables statiques
@@ -284,7 +284,7 @@ void menuMontres()
             case 1:
                 Console.Clear();
                 string texte = rechercheMonstre();
-                List<Monstre> m;
+                ObservableCollection<Monstre> m;
                 afficherUnMonstre(monsterBase.search(texte.ToString()));
                 break;
 
@@ -313,7 +313,7 @@ void menuMontres()
     } while (choix != -1); // Tant que l'utilisateur n'appuie pas sur Echap
 }
 
-void afficherUnMonstre(List<Monstre> m)
+void afficherUnMonstre(ObservableCollection<Monstre> m)
 {
 
 }
@@ -377,7 +377,7 @@ void displayAllMonstersLegend()
 // Fonction de recherche de monstre, mise à jour de la liste à chaque touche appuyée
 string rechercheMonstre()
 {
-    List<Monstre> m;
+    ObservableCollection<Monstre> m;
     Console.Clear();
     ConsoleKeyInfo carac;
     string listCarac = "";

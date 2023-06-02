@@ -1,16 +1,40 @@
 using Microsoft.Maui.Controls;
 using Model;
+using Persistance;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Vues;
 
-public partial class SearchMob : ContentPage
+public partial class SearchMob : ContentPage, INotifyPropertyChanged
 {
-    
+    public ObservableCollection<Monstre> MnstrTemp { get; set; }
+    private string searchText;
+    public string SearchText
+    {
+        get
+        {
+            return searchText;
+        }
+        set
+        {
+            searchText = value;
+            MnstrTemp = (Application.Current as App).monsterManager.search(searchText);
+            if (searchText == "")
+            {
+                MnstrTemp = (Application.Current as App).monsterManager.ListMonsters;
+            }
+            OnPropertyChanged(nameof(MnstrTemp));
+        }
+    }
     string appearanceSelected { get; set; } = string.Empty;
     public SearchMob()
 	{
 		InitializeComponent();
 		BindingContext = (Application.Current as App).monsterManager;
+        MnstrTemp = (Application.Current as App).monsterManager.ListMonsters;
+        ListViewMonsters.BindingContext = this;
+        searchBar.BindingContext = this;
         imageCollection.BindingContext = this;
     }
 
@@ -95,5 +119,10 @@ public partial class SearchMob : ContentPage
     private void passive_CheckedChanged(object sender, EventArgs e)
     {
         
+    }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
     }
 }
