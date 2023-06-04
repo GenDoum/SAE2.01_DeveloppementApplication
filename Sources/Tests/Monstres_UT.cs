@@ -17,7 +17,7 @@ namespace Tests
             Assert.Equal("Hostility", a.Dangerosite);
             Assert.Equal("This is my description", a.Description);
             Assert.Equal(new List<string> { "Carac 1", "Carac 2", "Carac 3" }, a.CharacteristicsList);
-            Assert.Equal(new List<string> { "App 1", "App 2", "App 3" }, a.AppearanceList); 
+            Assert.Equal(new List<string> { "App 1", "App 2", "App 3" }, a.AppearanceList);
         }
 
         [Fact]
