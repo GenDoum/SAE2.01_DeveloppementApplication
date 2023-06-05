@@ -58,8 +58,9 @@
                 Source="connexion.png"
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
-            <Entry x:Name="IdEntry" Placeholder="Identifiant" ReturnType="Next" />
+            <Entry x:Name="IdEntry" TextChanged="IdEntry_TextChanged" Placeholder="Identifiant" ReturnType="Next" />
             <Entry x:Name="PsswEntry" Placeholder="Mot de passe" IsPassword="True" ReturnType="Next" />
+            <Label x:Name="resultLabel" IsVisible="False" Text="Wrong username or password!" TextColor="Red"/>
             <Button Style="{StaticResource buttonStyle}"
                     Text="Valider"
                     Clicked="ValiderClicked"/>

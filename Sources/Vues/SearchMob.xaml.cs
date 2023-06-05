@@ -49,13 +49,14 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     private void OnAddConseilClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
-        var selectedConseil = button?.BindingContext as Conseil;
 
         // Afficher les champs à remplir pour ajouter un conseil
         var addConseilLayout = button?.Parent?.FindByName<StackLayout>("AddConseilLayout");
         if (addConseilLayout != null)
         {
+            ScrollLayoutThatNeedsToBeRefreshed.IsVisible = false;
             addConseilLayout.IsVisible = true;
+            ScrollLayoutThatNeedsToBeRefreshed.IsVisible = true;
         }
     }
 
@@ -76,7 +77,6 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
             }
             texteConseilEntry.Text = string.Empty;
             addConseilLayout.IsVisible = false;
-
         }
     }
 

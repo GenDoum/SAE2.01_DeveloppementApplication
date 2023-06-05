@@ -130,7 +130,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <ScrollView Grid.Column="1" Margin="10">
+        <ScrollView Grid.Column="1" Margin="10"  x:Name="ScrollLayoutThatNeedsToBeRefreshed">
             
             <!-- Grid du Detail contenant toutes les informations du monstre -->
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">

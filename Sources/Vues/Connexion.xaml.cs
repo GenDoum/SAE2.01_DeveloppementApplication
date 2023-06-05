@@ -23,10 +23,18 @@ public partial class Connexion : ContentPage
             {
                 (Application.Current as App).User = u;
                 await Navigation.PushAsync(new SearchMob());
+                return;
             }
         }
+        resultLabel.IsVisible = true;
         return;
     }
+
+    private void IdEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        resultLabel.IsVisible = false;
+    }
+
     /*
     private void Id_Entry_Completed(object sender, EventArgs e)
     {

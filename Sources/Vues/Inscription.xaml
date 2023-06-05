@@ -58,18 +58,19 @@
                 HeightRequest="70"
                 Margin="0, 0, 0, 30" />
             <HorizontalStackLayout>
-                <Entry Placeholder="Nom"
+                <Entry x:Name="Nom" Placeholder="Nom"
                    Text="{Binding Nom}"/>
-                <Entry Placeholder="Prénom"
+                <Entry x:Name="Prenom" Placeholder="Prénom"
                    Text="{Binding Prenom}"/>
             </HorizontalStackLayout>
             <HorizontalStackLayout>
-                <Entry Placeholder="Identifiant"
+                <Entry x:Name="Id" TextChanged="Id_TextChanged" Placeholder="Identifiant"
                    Text="{Binding Pseudo}"/>
-                <Entry Placeholder="Mot de passe"
+                <Entry x:Name="Mdp" Placeholder="Mot de passe"
                    Text="{Binding Mdp}"
                    IsPassword="True"/>
             </HorizontalStackLayout>
+            <Label x:Name="resultLabel" IsVisible="False" Text="Error, this username is already taken!" TextColor="Red"/>
             <Button Style="{StaticResource buttonStyle}" 
                     Text="Valider"
                     Clicked="Valid_Clicked"/>
