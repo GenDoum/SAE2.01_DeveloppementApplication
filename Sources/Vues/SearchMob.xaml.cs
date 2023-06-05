@@ -1,12 +1,10 @@
 using Microsoft.Maui.Controls;
 using Model;
-<<<<<<< HEAD
 using Persistance;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-=======
 using System.Linq;
->>>>>>> Filter
+
 
 namespace Vues;
 
@@ -28,6 +26,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
             {
                 MnstrTemp = (Application.Current as App).monsterManager.ListMonsters;
             }
+            UpdateAffichMobs();
             OnPropertyChanged(nameof(MnstrTemp));
         }
     }
@@ -120,7 +119,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
     private void UpdateAffichMobs()
     {
-        var filtreMobs = ((App.Current as App).monsterManager.ListMonsters).Where(Monstre =>
+        var filtreMobs = MnstrTemp.Where(Monstre =>
             (boss.IsChecked && Monstre.Dangerosite == "BOSS") ||
             (hostile.IsChecked && Monstre.Dangerosite == "hostile") ||
             (passive.IsChecked && Monstre.Dangerosite == "passif"));
@@ -144,6 +143,6 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
-
+        SearchText = e.NewTextValue;
     }
 }

@@ -146,35 +146,37 @@
                         <Border Style="{StaticResource sectionStyle}">
                             <StackLayout>
                                 <Label TextDecorations="Underline" Text="Description :" FontSize="Medium"/>
-                                <Label FontSize="Small" Text="{Binding Description, StringFormat='{0}'}"/>
+                                <Label FontSize="Small" Text="{Binding Description, StringFormat='{0}'}" HorizontalOptions="Fill"/>
                             </StackLayout>
                         </Border>
+                        <Border Style="{StaticResource sectionStyle}">
+                            <StackLayout>
+                                <Label TextDecorations="Underline" Text="Caractéristiques du monstre :" FontSize="Medium" />
+                                <ListView ItemsSource="{Binding CharacteristicsList}" Grid.Row="0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small"  VerticalOptions="Fill"/>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </Border>
+                        
                     </VerticalStackLayout>
                     
                     <!-- Image du monstre -->
                     <VerticalStackLayout Grid.Column="1">
-                        <Image  x:Name="imageCollection" HeightRequest="600" HorizontalOptions="End"/>
+                        
                         <Border Grid.Row="1" Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
                             <Label FontSize="Small" Text="{Binding Dangerosite, StringFormat='Dangerosité : {0}'}"/>
                         </Border>
+                        <Image  x:Name="imageCollection" HeightRequest="600" HorizontalOptions="End"/>
                     </VerticalStackLayout>
                 </Grid>
 
                 <StackLayout Grid.Row="1">
-                    <Border Style="{StaticResource sectionStyle}">
-                        <StackLayout>
-                            <Label TextDecorations="Underline" Text="Caractéristiques du monstre :" FontSize="Medium"/>
-                            <ListView ItemsSource="{Binding CharacteristicsList}" Grid.Row="1">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small"/>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
-                    </Border>
 
                     <Border Style="{StaticResource sectionStyle}" HeightRequest="160">
                         <StackLayout>
@@ -190,9 +192,8 @@
                             </ListView>
                         </StackLayout>
                     </Border>
-
+                    
                     <!-- Conseils -->
-
                     <Border Grid.Row="3" Style="{StaticResource sectionStyle}">
                         <StackLayout>
                             <Button Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
