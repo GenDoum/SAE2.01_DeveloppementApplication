@@ -1,8 +1,12 @@
 using Microsoft.Maui.Controls;
 using Model;
+<<<<<<< HEAD
 using Persistance;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+=======
+using System.Linq;
+>>>>>>> Filter
 
 namespace Vues;
 
@@ -63,9 +67,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
         if (addConseilLayout != null)
         {
-            // récupère les valeurs des champs pour ajouter un conseil
             var texteConseil = texteConseilEntry.Text;
-
             // Ajouter le nouveau conseil à la liste des conseils du monstre sélectionné
             var selectedMonstre = (App.Current as App).MonstreSelectionne;
             if (selectedMonstre != null && !string.IsNullOrWhiteSpace(texteConseil))
@@ -73,14 +75,11 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
                 var nouveauConseil = new Conseil((App.Current as App).User, texteConseil, selectedMonstre);
                 selectedMonstre.ListConseils.Add(nouveauConseil);
             }
-
-            // Réinitialiser les champs et masquer la section d'ajout de conseil
             texteConseilEntry.Text = string.Empty;
             addConseilLayout.IsVisible = false;
 
         }
     }
-
 
     private void OnExitConseilClicked(object sender, EventArgs e)
     {
@@ -102,23 +101,45 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     {
         appearanceSelected = e.Item as string;
         imageCollection.Source = imageLinkConverter(appearanceSelected);
-    }
-
-    private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
-    {
 
     }
 
-    public void FilterClicked(object sender, EventArgs e)
+    private void FilterClicked(object sender, EventArgs e) // Afficher les filtres
     {
         var button = sender as Button;
-        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("Filter");
-
+        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("HorizonFilterClicked");
+        if (afficherFiltres.IsVisible)
+        {
+            afficherFiltres.IsVisible = false;
+        }
+        else
+        {
+            afficherFiltres.IsVisible |= true;
+        }
     }
 
-    private void passive_CheckedChanged(object sender, EventArgs e)
+    private void UpdateAffichMobs()
     {
-        
+        var filtreMobs = ((App.Current as App).monsterManager.ListMonsters).Where(Monstre =>
+            (boss.IsChecked && Monstre.Dangerosite == "BOSS") ||
+            (hostile.IsChecked && Monstre.Dangerosite == "hostile") ||
+            (passive.IsChecked && Monstre.Dangerosite == "passif"));
+
+        ListViewMonsters.ItemsSource = filtreMobs.ToList();
+    }
+    private void passive_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        UpdateAffichMobs();
+    }
+
+    private void hostile_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        UpdateAffichMobs();
+    }
+
+    private void boss_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        UpdateAffichMobs();
     }
 
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
