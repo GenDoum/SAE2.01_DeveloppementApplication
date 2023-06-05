@@ -1,5 +1,7 @@
 using Model;
 using Persistance;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace Vues;
 
 public partial class Inscription : ContentPage
@@ -20,30 +22,34 @@ public partial class Inscription : ContentPage
         mdp = Mdp.Text;
         nom = Nom.Text;
         prenom = Prenom.Text;
+        User newUser = new User { };
         if ((Application.Current as App).userManager.checkIfPseudoExists(id))
         {
+            resultLabel.Text = "Error, this username is already taken!";
             resultLabel.IsVisible = true;
             return;
             //await Navigation.PushAsync(new SearchMob());
         }
         try
         {
-            User newUser = new User(id, nom, prenom, mdp);
-        }
-        catch (FormatException)
-        {
-            resultLabel.IsVisible = true;
-            resultLabel.Text = "You must complete all entries!";
+            newUser = new User(id, nom, prenom, mdp);
+            (Application.Current as App).userManager.ListUsers.Add(newUser);
+            (Application.Current as App).User = newUser;
+            await Navigation.PopAsync();
         }
         catch (ArgumentException)
         {
             resultLabel.IsVisible = true;
-            resultLabel.Text = "You ";
+            resultLabel.Text = "Vous devez compléter tous les champs.";
         }
-
-        (Application.Current as App).userManager.ListUsers.Add(newUser);
-        (Application.Current as App).User = newUser;
-        await Navigation.PopAsync();
+        catch (FormatException)
+        {
+            resultLabel.IsVisible = true;
+            resultLabel.Text = "Votre identifiant / mot de passe ne peut contenir seulement des nombres !";
+        }
+        //resultLabel.IsVisible = true;
+        //resultLabel.Text = "You must complete all entries!";
+        //resultLabel.IsVisible = true;
         return;
     }
 

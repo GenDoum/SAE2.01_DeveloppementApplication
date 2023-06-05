@@ -21,11 +21,11 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         set
         {
             searchText = value;
-            MnstrTemp = (Application.Current as App).monsterManager.search(searchText);
             if (searchText == "")
             {
                 MnstrTemp = (Application.Current as App).monsterManager.ListMonsters;
             }
+            else MnstrTemp = (Application.Current as App).monsterManager.search(searchText);
             UpdateAffichMobs();
             OnPropertyChanged(nameof(MnstrTemp));
         }
@@ -39,6 +39,10 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         ListViewMonsters.BindingContext = this;
         searchBar.BindingContext = this;
         imageCollection.BindingContext = this;
+        if ((Application.Current as App).User != null)
+        {
+
+        }
     }
 
 	public void OnClick(object sender, ItemTappedEventArgs e)
@@ -51,6 +55,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         var button = sender as Button;
 
         // Afficher les champs à remplir pour ajouter un conseil
+        //FAIRE UN FUCKING X:NAME :>
         var addConseilLayout = button?.Parent?.FindByName<StackLayout>("AddConseilLayout");
         if (addConseilLayout != null)
         {
@@ -63,6 +68,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     private void OnValiderConseilClicked(object sender, EventArgs e)
     {
         var button = sender as Button;
+        //FAIRE UN FUCKING ICI AUSSI X:NAME :>
         var addConseilLayout = button?.Parent?.FindByName<StackLayout>("AddConseilLayout");
 
         if (addConseilLayout != null)

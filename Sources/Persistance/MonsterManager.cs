@@ -42,7 +42,7 @@ namespace Persistance
                     where m.Name.Contains(texte, System.StringComparison.CurrentCultureIgnoreCase)
                     select m).ToList(); // LINQ
             return  new ObservableCollection<Monstre>(listMonstre);
-        }
+        } //BINDER DIRECTEMENT ICI
 
         public MonsterManager(IMonsterDataManager dataMngr)
         {
