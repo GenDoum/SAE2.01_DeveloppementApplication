@@ -1,10 +1,10 @@
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Layouts;
 using Model;
 using Persistance;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-
 
 namespace Vues;
 
@@ -45,35 +45,33 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         }
     }
 
+    public void refreshScrollView()
+    {
+        ScrollLayoutThatNeedsToBeRefreshed.IsVisible = false;
+        ScrollLayoutThatNeedsToBeRefreshed.IsVisible = true;
+    }
 	public void OnClick(object sender, ItemTappedEventArgs e)
 	{
 		(App.Current as App).MonstreSelectionne = e.Item as Monstre;
         imageCollection.Source = imageLinkConverter((App.Current as App).MonstreSelectionne.AppearanceList.First());
+        refreshScrollView();
     }
     private void OnAddConseilClicked(object sender, EventArgs e)
     {
-        var button = sender as Button;
-
         // Afficher les champs à remplir pour ajouter un conseil
-        //FAIRE UN FUCKING X:NAME :>
-        var addConseilLayout = button?.Parent?.FindByName<StackLayout>("AddConseilLayout");
-        if (addConseilLayout != null)
+        if (!AddConseilLayout.IsVisible)
         {
-            ScrollLayoutThatNeedsToBeRefreshed.IsVisible = false;
-            addConseilLayout.IsVisible = true;
-            ScrollLayoutThatNeedsToBeRefreshed.IsVisible = true;
+            AddConseilLayout.IsVisible = true;
+            texteConseilEntry.Text = null;
+            refreshScrollView();
         }
     }
 
     private void OnValiderConseilClicked(object sender, EventArgs e)
     {
-        var button = sender as Button;
-        //FAIRE UN FUCKING ICI AUSSI X:NAME :>
-        var addConseilLayout = button?.Parent?.FindByName<StackLayout>("AddConseilLayout");
-
-        if (addConseilLayout != null)
+        if (AddConseilLayout != null)
         {
-            var texteConseil = texteConseilEntry.Text;
+            string texteConseil = texteConseilEntry.Text;
             // Ajouter le nouveau conseil à la liste des conseils du monstre sélectionné
             var selectedMonstre = (App.Current as App).MonstreSelectionne;
             if (selectedMonstre != null && !string.IsNullOrWhiteSpace(texteConseil))
@@ -81,18 +79,16 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
                 var nouveauConseil = new Conseil((App.Current as App).User, texteConseil, selectedMonstre);
                 selectedMonstre.ListConseils.Add(nouveauConseil);
             }
-            texteConseilEntry.Text = string.Empty;
-            addConseilLayout.IsVisible = false;
+            texteConseilEntry.Text = null;
+            AddConseilLayout.IsVisible = false;
         }
+        refreshScrollView();
     }
 
     private void OnExitConseilClicked(object sender, EventArgs e)
     {
-        var button = sender as Button;
-        var addConseilLayout = button?.Parent?.FindByName<StackLayout>("AddConseilLayout");
-        var texteConseilEntry = addConseilLayout.Children[1] as Editor;
-        texteConseilEntry.Text = string.Empty;
-        addConseilLayout.IsVisible = false;
+        texteConseilEntry.Text = null;
+        AddConseilLayout.IsVisible = false;
     }
 
     private string imageLinkConverter(string imageLink)
@@ -106,21 +102,12 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     {
         appearanceSelected = e.Item as string;
         imageCollection.Source = imageLinkConverter(appearanceSelected);
-
     }
 
-    private void FilterClicked(object sender, EventArgs e) // Afficher les filtres
+    private void FilterClicked(object sender, EventArgs e)
     {
-        var button = sender as Button;
-        var afficherFiltres = button?.Parent?.FindByName<HorizontalStackLayout>("HorizonFilterClicked");
-        if (afficherFiltres.IsVisible)
-        {
-            afficherFiltres.IsVisible = false;
-        }
-        else
-        {
-            afficherFiltres.IsVisible |= true;
-        }
+        // Inverse la valeur booléenne de IsVisible => Permet d'afficher ou non les boutons de filtrage
+        HorizonFilterClicked.IsVisible = !HorizonFilterClicked.IsVisible;
     }
 
     private void UpdateAffichMobs()
@@ -152,8 +139,8 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         SearchText = e.NewTextValue;
     }
 
-    private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
+    private void texteConseilEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
-        //ConseilOptions.IsVisible = true;
+        (ScrollLayoutThatNeedsToBeRefreshed as IView).InvalidateMeasure(); //Permet de recalculer la taille de la scrollView
     }
 }

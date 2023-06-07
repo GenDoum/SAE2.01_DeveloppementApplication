@@ -196,24 +196,29 @@
                     <!-- Conseils -->
                     <Border Grid.Row="3" Style="{StaticResource sectionStyle}">
                         <StackLayout>
+                            <Label TextDecorations="Underline" Text="Conseils :" FontSize="Medium"/>
                             <!-- Bouton d'ajout de conseil -->
-                            <Button x:Name="ButtonAddConseil" IsVisible="False" Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
-                            <StackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
-                                <Editor x:Name="texteConseilEntry" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
-                                <Button Text="Valider" Clicked="OnValiderConseilClicked" />
-                                <Button Text="Annuler" Clicked="OnExitConseilClicked" />
-                            </StackLayout>
-                            <ListView x:Name="ListViewConseils" ItemsSource="{Binding ListConseils}" Grid.Row="1">
+                            <Button x:Name="ButtonAddConseil" HorizontalOptions="End" IsVisible="False" Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+                            <VerticalStackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                <Editor x:Name="texteConseilEntry" TextChanged="texteConseilEntry_TextChanged" AutoSize="TextChanges" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                <Grid ColumnDefinitions="*,*" HorizontalOptions="CenterAndExpand">
+                                    <Button Grid.Column="0" Text="Valider" Clicked="OnValiderConseilClicked" />
+                                    <Button Grid.Column="1" Text="Annuler" Clicked="OnExitConseilClicked" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            <ListView x:Name="ListViewConseils" VerticalOptions="Fill" ItemsSource="{Binding ListConseils}" Grid.Row="1">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <Grid ColumnDefinitions="*, Auto" HeightRequest="15">
+                                            <Grid ColumnDefinitions="*, Auto" MinimumHeightRequest="50" HorizontalOptions="Fill" BackgroundColor="Transparent"> <!-- LA je ne comprends pas : pour que les VisualStates 
+                                                fonctionnent sur tout le grid, et pas que sur le texte du label, il faut rajouter un background?? Bizarre...-->
+                                                
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroupList>
                                                         <VisualStateGroup x:Name="CommonStates">
                                                             <VisualState x:Name="PointerOver">
                                                                 <VisualState.Setters>
-                                                                    <Setter TargetName="ConseilOptions" Property="IsVisible" 
+                                                                    <Setter TargetName="ConseilOptions" Property="IsVisible"
                                                                             Value="true" />
                                                                 </VisualState.Setters>
                                                             </VisualState>
@@ -226,22 +231,21 @@
                                                         </VisualStateGroup>
                                                     </VisualStateGroupList>
                                                 </VisualStateManager.VisualStateGroups>
+                                                
                                                 <HorizontalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Fill">
                                                     <Label BindingContext="{Binding Auteur}" Text="{Binding Pseudo, StringFormat=' {0} :'}" Grid.Column="0"/>
                                                     <Label Text="{Binding Texte, StringFormat=' {0}'}" Grid.Column="1" />
                                                 </HorizontalStackLayout>
+
                                                 <HorizontalStackLayout x:Name="ConseilOptions" Grid.Column="1" IsVisible="False">
-                                                    <ImageButton Scale="0.8" BackgroundColor="Transparent" Source="pencil.png" HeightRequest="15" WidthRequest="15"/>
-                                                    <ImageButton Scale="0.8" BackgroundColor="Transparent" Source="bin.png" HeightRequest="15" WidthRequest="15"/>
+                                                    <ImageButton CornerRadius="6" Scale="0.8" Source="pencil.png" HeightRequest="15" WidthRequest="15"/>
+                                                    <ImageButton CornerRadius="6" Scale="0.8" Source="bin.png" HeightRequest="15" WidthRequest="15"/>
                                                 </HorizontalStackLayout>
+                                            
                                             </Grid>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
-                                <ListView.GestureRecognizers>
-                                    <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered">
-                                    </PointerGestureRecognizer>
-                                </ListView.GestureRecognizers>
                             </ListView>
                         </StackLayout>
                     </Border>
