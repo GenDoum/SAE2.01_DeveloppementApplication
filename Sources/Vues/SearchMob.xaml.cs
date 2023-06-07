@@ -41,7 +41,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         imageCollection.BindingContext = this;
         if ((Application.Current as App).User != null)
         {
-
+            ButtonAddConseil.IsVisible = true;
         }
     }
 
@@ -150,5 +150,10 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
     {
         SearchText = e.NewTextValue;
+    }
+
+    private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
+    {
+        //ConseilOptions.IsVisible = true;
     }
 }

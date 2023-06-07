@@ -53,7 +53,7 @@ namespace Model
             Texte = texte;
             LeMonstre = leMonstre;
         }
-        // Pour afficher les conseils.
+        // FONCTION A DEPLACER -> Dans la console, ON AFFICHE RIEN DANS LE MODEL DJSKLFJDKLFJ :>
         public void affichConseil()
         {
             Console.WriteLine($"Id : {Id}");
