@@ -54,6 +54,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 	{
 		(App.Current as App).MonstreSelectionne = e.Item as Monstre;
         imageCollection.Source = imageLinkConverter((App.Current as App).MonstreSelectionne.AppearanceList.First());
+        AddConseilLayout.IsVisible = false;
         refreshScrollView();
     }
     private void OnAddConseilClicked(object sender, EventArgs e)

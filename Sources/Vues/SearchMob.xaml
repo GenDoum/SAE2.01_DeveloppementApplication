@@ -156,7 +156,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
-                                                <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small"  VerticalOptions="Fill"/>
+                                                <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small" VerticalOptions="Fill"/>
                                             </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
@@ -178,10 +178,10 @@
 
                 <StackLayout Grid.Row="1">
 
-                    <Border Style="{StaticResource sectionStyle}" HeightRequest="160">
+                    <Border Style="{StaticResource sectionStyle}">
                         <StackLayout>
                             <Label TextDecorations="Underline" Text="Apparences :" FontSize="Medium"/>
-                            <ListView x:Name="ListAppearance" ItemsSource="{Binding AppearanceList}" Grid.Row="1" ItemTapped="ListAppearance_ItemTapped">
+                            <ListView x:Name="ListAppearance" VerticalOptions="Fill" ItemsSource="{Binding AppearanceList}" Grid.Row="1" ItemTapped="ListAppearance_ItemTapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
@@ -198,21 +198,20 @@
                         <StackLayout>
                             <Label TextDecorations="Underline" Text="Conseils :" FontSize="Medium"/>
                             <!-- Bouton d'ajout de conseil -->
-                            <Button x:Name="ButtonAddConseil" HorizontalOptions="End" IsVisible="False" Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+                            <Button x:Name="ButtonAddConseil" Margin="8" HorizontalOptions="End" IsVisible="False" Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
                             <VerticalStackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
                                 <Editor x:Name="texteConseilEntry" TextChanged="texteConseilEntry_TextChanged" AutoSize="TextChanges" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
-                                <Grid ColumnDefinitions="*,*" HorizontalOptions="CenterAndExpand">
+                                <Grid ColumnDefinitions="*,*" Padding="8" HorizontalOptions="CenterAndExpand">
                                     <Button Grid.Column="0" Text="Valider" Clicked="OnValiderConseilClicked" />
                                     <Button Grid.Column="1" Text="Annuler" Clicked="OnExitConseilClicked" />
                                 </Grid>
                             </VerticalStackLayout>
-                            <ListView x:Name="ListViewConseils" VerticalOptions="Fill" ItemsSource="{Binding ListConseils}" Grid.Row="1">
+                            <ListView x:Name="ListViewConseils" VerticalOptions="Fill" ItemsSource="{Binding ListConseils}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <Grid ColumnDefinitions="*, Auto" MinimumHeightRequest="50" HorizontalOptions="Fill" BackgroundColor="Transparent"> <!-- LA je ne comprends pas : pour que les VisualStates 
-                                                fonctionnent sur tout le grid, et pas que sur le texte du label, il faut rajouter un background?? Bizarre...-->
-                                                
+                                            <Border BackgroundColor="AntiqueWhite" StrokeThickness="2" StrokeShape="RoundRectangle 10">
+
                                                 <VisualStateManager.VisualStateGroups>
                                                     <VisualStateGroupList>
                                                         <VisualStateGroup x:Name="CommonStates">
@@ -231,24 +230,32 @@
                                                         </VisualStateGroup>
                                                     </VisualStateGroupList>
                                                 </VisualStateManager.VisualStateGroups>
-                                                
-                                                <HorizontalStackLayout Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Fill">
-                                                    <Label BindingContext="{Binding Auteur}" Text="{Binding Pseudo, StringFormat=' {0} :'}" Grid.Column="0"/>
-                                                    <Label Text="{Binding Texte, StringFormat=' {0}'}" Grid.Column="1" />
-                                                </HorizontalStackLayout>
 
-                                                <HorizontalStackLayout x:Name="ConseilOptions" Grid.Column="1" IsVisible="False">
-                                                    <ImageButton CornerRadius="6" Scale="0.8" Source="pencil.png" HeightRequest="15" WidthRequest="15"/>
-                                                    <ImageButton CornerRadius="6" Scale="0.8" Source="bin.png" HeightRequest="15" WidthRequest="15"/>
-                                                </HorizontalStackLayout>
-                                            
-                                            </Grid>
+                                                <Grid ColumnDefinitions="*,90" RowDefinitions="*" Padding="0" MinimumHeightRequest="50" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                                    <!-- LA je ne comprends pas : pour que les VisualStates 
+                                                fonctionnent sur tout le grid, et pas que sur le texte du label, il faut rajouter un background?? Bizarre...-->
+
+
+                                                    <VerticalStackLayout Padding="15,10,10,10" Grid.Column="0" VerticalOptions="Center">
+                                                        <Label BindingContext="{Binding Auteur}" Text="{Binding Pseudo, StringFormat='{0} :'}"/>
+                                                        <Label VerticalOptions="Fill" LineBreakMode="WordWrap" Text="{Binding Texte, StringFormat='{0}'}" />
+                                                    </VerticalStackLayout>
+
+                                                    <!-- Les boutons de modifications et de suppression-->
+                                                    <HorizontalStackLayout x:Name="ConseilOptions" Grid.Column="1" HorizontalOptions="End" IsVisible="False">
+                                                        <ImageButton CornerRadius="5" Scale="0.7" Source="pencil.png" HeightRequest="12" WidthRequest="12"/>
+                                                        <ImageButton CornerRadius="5" Scale="0.7" Source="bin.png" HeightRequest="12" WidthRequest="12"/>
+                                                    </HorizontalStackLayout>
+
+                                                </Grid>
+                                            </Border>
                                         </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackLayout>
                     </Border>
+                    
                 </StackLayout>
             </Grid>
         </ScrollView>
