@@ -243,8 +243,12 @@
 
                                                     <!-- Les boutons de modifications et de suppression-->
                                                     <HorizontalStackLayout x:Name="ConseilOptions" Grid.Column="1" HorizontalOptions="End" IsVisible="False">
-                                                        <ImageButton CornerRadius="5" Scale="0.7" Source="pencil.png" HeightRequest="12" WidthRequest="12"/>
-                                                        <ImageButton CornerRadius="5" Scale="0.7" Source="bin.png" HeightRequest="12" WidthRequest="12"/>
+                                                        <ImageButton x:Name="lolilol" CornerRadius="5" Scale="0.7" Source="bin.png" HeightRequest="12" WidthRequest="12"/>
+                                                        <ImageButton CornerRadius="5" Scale="0.7" Source="pencil.png" HeightRequest="12" WidthRequest="12" Clicked="ImageButton_Clicked"/>
+                                                        <VerticalStackLayout x:Name="VerticalModifConseil" Grid.Row="2" IsVisible="False">
+                                                            <Editor Text="{Binding ListConseils}"></Editor>
+                                                            <Button x:Name="BoutonValidModif" Text="Confirmer les modifications"/>
+                                                        </VerticalStackLayout>
                                                     </HorizontalStackLayout>
 
                                                 </Grid>

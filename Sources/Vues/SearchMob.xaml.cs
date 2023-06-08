@@ -144,4 +144,11 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     {
         (ScrollLayoutThatNeedsToBeRefreshed as IView).InvalidateMeasure(); //Permet de recalculer la taille de la scrollView
     }
+
+    private void ImageButton_Clicked(object sender, EventArgs e)
+    {
+        //VerticalModifConseil.IsVisible = true; ABANDON je vais faire la collection
+        
+    }
+
 }
