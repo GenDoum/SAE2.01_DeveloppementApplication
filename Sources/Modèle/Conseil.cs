@@ -1,4 +1,4 @@
-﻿using Model;
+﻿    using Model;
 using Modèle;
 using System;
 using System.Collections.Generic;
@@ -58,7 +58,6 @@ namespace Model
         {
             Console.WriteLine($"Id : {Id}");
             Console.WriteLine($"Auteur : {Auteur.Pseudo}");
-            Console.WriteLine($"Monstre : {LeMonstre.Name}");
             Console.WriteLine($"Conseil : {Texte}");
         }
     }
