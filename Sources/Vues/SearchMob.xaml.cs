@@ -151,4 +151,40 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         
     }
 
+    private async void CollectionClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Collection());
+    }
+
+    private async void QuitClicked(object sender, EventArgs e)
+    {
+        (Application.Current as App).User = null;
+        await Navigation.PushAsync(new Accueil());
+    }
+
+    private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        /*
+        if (CheckDejaVu.IsChecked)
+        {
+            if ((App.Current as App).User != null) 
+            {
+                (Application.Current as App).MonstreSelectionne.IsChecked = true;
+                (Application.Current as App).User.monstresDejaVu.Add((Application.Current as App).MonstreSelectionne);
+            }
+        }
+        else
+        {
+            if ((App.Current as App).User != null)
+            {
+                (Application.Current as App).MonstreSelectionne.IsChecked = false;
+                (Application.Current as App).User.monstresDejaVu.Remove((Application.Current as App).MonstreSelectionne);
+            }
+        }
+        */
+
+        ///Si checkbox check
+        ///add le monstre courant à la liste des monstre du user
+        ///si unchecked, retirer le monsrte
+    }
 }

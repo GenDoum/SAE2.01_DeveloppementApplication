@@ -4,51 +4,29 @@
              x:Class="Vues.Collection"
              BackgroundImageSource="backcollection.jpg"
              >
-    <VerticalStackLayout
-        >
+    <VerticalStackLayout>
 
         <HorizontalStackLayout BackgroundColor="{StaticResource buttonBackgroundColor}">
             <Label Text=" Monstre déjà vu"></Label>
-            <CheckBox 
-                Color="{StaticResource BleuFonce}"></CheckBox>
+            <CheckBox x:Name="CheckboxdejaVu"
+                      Color="{StaticResource BleuFonce}"
+                      IsChecked="True"
+                      CheckedChanged="CheckedVu"></CheckBox>
             <Label Text=" Monstre jamais vu"></Label>
-            <CheckBox Color="{StaticResource BleuFonce}"></CheckBox>
+            <CheckBox x:Name="CheckboxpasVu"
+                      Color="{StaticResource BleuFonce}"
+                      CheckedChanged="CheckedPasVu"></CheckBox>
         </HorizontalStackLayout>
-        
         <Line X1="0" Y1="0" X2="1500" Y2="0" Stroke="Black" StrokeThickness="2"/>
-
-
-        <FlexLayout
-            Wrap="Wrap">
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
-            <Image Source="cartedragon.png"
-                   HeightRequest="300"
-                   Margin="5, 5, 0, 0"></Image>
+        <FlexLayout>
+            <ListView ItemsSource="{Binding listMobs}" BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nom}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </FlexLayout>
-        
-        
     </VerticalStackLayout>
+
 </ContentPage>

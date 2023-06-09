@@ -63,7 +63,8 @@
               BackgroundColor="{StaticResource buttonBackgroundColor}">
             <VerticalStackLayout>
                 <HorizontalStackLayout Grid.Row="0">
-                    <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}"/>
+                    <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}" Clicked="QuitClicked"/>
+                    <ImageButton Source="book.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}" Clicked="CollectionClicked"/>
                     <SearchBar x:Name="searchBar" Placeholder="Rechercher un monstre"
                         PlaceholderColor="DimGray"
                         CancelButtonColor="DimGray"
@@ -135,10 +136,10 @@
             <!-- Grid du Detail contenant toutes les informations du monstre -->
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
                 <Grid ColumnDefinitions="3*, *" Grid.Row="0">
-
+                    <!-- Checkbox "Déjà Vu-->
                     <HorizontalStackLayout Grid.Column="0" VerticalOptions="Start">
                         <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
-                        <CheckBox Color="Green"/>
+                        <CheckBox Color="Green" CheckedChanged="CheckBox_CheckedChanged" x:Name="CheckDejaVu"/>
                     </HorizontalStackLayout>
 
                     <VerticalStackLayout VerticalOptions="Center" Grid.Column="0">
