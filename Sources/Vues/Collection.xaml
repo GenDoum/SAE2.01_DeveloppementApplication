@@ -18,15 +18,19 @@
                       CheckedChanged="CheckedPasVu"></CheckBox>
         </HorizontalStackLayout>
         <Line X1="0" Y1="0" X2="1500" Y2="0" Stroke="Black" StrokeThickness="2"/>
-        <FlexLayout>
-            <ListView ItemsSource="{Binding listMobs}" BackgroundColor="White">
+        <VerticalStackLayout BackgroundColor="AliceBlue">
+            <ListView x:Name="ListViewMonsters" ItemsSource="{Binding MonstresDejaVu}" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Nom}" />
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <Image Source="{Binding ImageLink, StringFormat='collection{0}.png'}" HeightRequest="300"/>
+                            </VerticalStackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </FlexLayout>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 
 </ContentPage>

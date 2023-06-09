@@ -164,12 +164,11 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
     private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        /*
+        
         if (CheckDejaVu.IsChecked)
         {
             if ((App.Current as App).User != null) 
             {
-                (Application.Current as App).MonstreSelectionne.IsChecked = true;
                 (Application.Current as App).User.monstresDejaVu.Add((Application.Current as App).MonstreSelectionne);
             }
         }
@@ -177,11 +176,10 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         {
             if ((App.Current as App).User != null)
             {
-                (Application.Current as App).MonstreSelectionne.IsChecked = false;
                 (Application.Current as App).User.monstresDejaVu.Remove((Application.Current as App).MonstreSelectionne);
             }
         }
-        */
+        
 
         ///Si checkbox check
         ///add le monstre courant à la liste des monstre du user

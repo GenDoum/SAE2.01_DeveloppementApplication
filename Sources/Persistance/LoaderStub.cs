@@ -18,9 +18,10 @@ namespace Persistance
         public LoaderStub() { }
         public List<User> loadUsers() ///CHANGER VISIBILITEE, CAR PAS BIEN DE LAISSER A TOUT LE MONDE
         {
+            Monstre monstre = new Monstre(1, "Poule", "passif", "Les poules sont des créatures passives. Elles fournissent des plumes et des oeufs.En moyenne, une poule laisse tomber un oeuf toutes des 5 à 10 minutes.", new List<string> { "Quand une poule est tuée, il y a une faible chance qu'elle laisse tomber un œuf.", "Parfois, les poules apparaissent avec un bébé zombie sur le dos, on l'appelle alors une poule jockey. Il est aussi possible d'avoir un bébé cochon zombie sur son dos, mais seulement par commande." }, new List<string> { "Poule", "Poule jockey", "Poule jockey cochon" }, new ObservableCollection<Conseil> { });
             List<User> lu = new List<User>();
-            lu.Add(new User("DedeDu42", "dede", "dodo", "mdp", new List<Monstre> { }));
-            lu.Add(new User("Moi", "Monchanin", "Liam", "feur", new List<Monstre> { }));
+            lu.Add(new User("DedeDu42", "dede", "dodo", "mdp", new List<Monstre> { monstre }));
+            lu.Add(new User("Moi", "Monchanin", "Liam", "feur", new List<Monstre> { monstre }));
             lu.Add(new User("Nikoala", "Blondeau", "Nicolas", "niblondeau", new List<Monstre> { 
                                                                                     new Monstre(2, 
                                                                                     "Mouton", "passif", "Je suis présent un peu partout, sauf dnas le desert.", 
@@ -28,8 +29,8 @@ namespace Persistance
                                                                                     new List<string> { "Apparence1", "App2", "App3" }
                                                                                     , new ObservableCollection<Conseil> {}) }));
 
-            lu.Add(new User("Yadoumir", "Doumir", "Yannis", "mdp", new List<Monstre> { }));
-            lu.Add(new User("osuplayer123", "Bonetti", "Martin", "oSu!727", new List<Monstre> { }));
+            lu.Add(new User("Yadoumir", "Doumir", "Yannis", "mdp", new List<Monstre> { monstre }));
+            lu.Add(new User("osuplayer123", "Bonetti", "Martin", "oSu!727", new List<Monstre> { monstre }));
             return lu;
         }
 
