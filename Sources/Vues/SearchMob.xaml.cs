@@ -55,7 +55,6 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 		(App.Current as App).MonstreSelectionne = e.Item as Monstre;
         imageCollection.Source = imageLinkConverter((App.Current as App).MonstreSelectionne.AppearanceList.First());
         AddConseilLayout.IsVisible = false;
-        CheckDejaVu.IsChecked = (App.Current as App).MonstreSelectionne.IsChecked; // Mets la checkbox "Déjà vu" en true ou false selon la propriété IsChecked du monstre sélectionné
         refreshScrollView();
     }
     private void OnAddConseilClicked(object sender, EventArgs e)
@@ -165,6 +164,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
     private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
+        /*
         if (CheckDejaVu.IsChecked)
         {
             if ((App.Current as App).User != null) 
@@ -181,6 +181,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
                 (Application.Current as App).User.monstresDejaVu.Remove((Application.Current as App).MonstreSelectionne);
             }
         }
+        */
 
         ///Si checkbox check
         ///add le monstre courant à la liste des monstre du user

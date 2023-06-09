@@ -76,19 +76,6 @@ namespace Model
 
         public string ImageLink { get; init ; }
 
-        public bool IsChecked
-        {
-            get { return isChecked; }
-            set
-            {
-                if (isChecked != value)
-                {
-                    isChecked = value;
-                    OnPropertyChanged(nameof(IsChecked));
-                }
-            }
-        }
-        private bool isChecked;
         public Monstre(int id, string name, string danger, string desc, List<string> characList, List<string> appearList, ObservableCollection<Conseil> conseilList)
         {
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(desc) || string.IsNullOrWhiteSpace(danger))
