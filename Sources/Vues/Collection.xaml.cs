@@ -1,6 +1,7 @@
 using Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Vues;
 
@@ -14,51 +15,57 @@ public partial class Collection : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         User toto = (Application.Current as App).User;
         MonstresDejaVu = new ObservableCollection<Monstre>(toto.monstresDejaVu);
-        
+        var MnstrTemp = new ObservableCollection<Monstre> { };
+        MnstrTemp = new ObservableCollection<Monstre>((Application.Current as App).monsterManager.ListMonsters.Except(MonstresDejaVu));
         ListViewMonsters.BindingContext = this;
     }
-
-    private void UpdateListMobs()
+    
+    private void UpdateListMobs(ObservableCollection<Monstre> Monstres) // /!\ Qd on décoche Monstre déjà vu et re coche ils ne veulent pas réapparaître sauf si on clique aussi sur monstre pas vu
     {
-        var monstresDejaVu = MnstrTemp.Where(monstre => (Application.Current as App).User.monstresDejaVu.Contains(monstre)).ToList();
-        var monstresPasVu = MnstrTemp.Except((Application.Current as App).User.monstresDejaVu).ToList();
-        var listMobs = new ObservableCollection<Monstre>();
-        listMobs.Clear();
-        
-
+        var monstresDejaVu = Monstres.Where(monstre => (Application.Current as App).User.monstresDejaVu.Contains(monstre)).ToList();
+        var monstresPasVu = (Application.Current as App).monsterManager.ListMonsters.Except(monstresDejaVu).ToList();
+        Monstres.Clear();
         if (CheckboxdejaVu.IsChecked && CheckboxpasVu.IsChecked)
         {
-            var concatMonstres = monstresDejaVu.Concat(monstresPasVu);
-            listMobs = new ObservableCollection<Monstre>(concatMonstres);
+            foreach (var monstre in monstresDejaVu.Concat(monstresPasVu))
+            {
+                Monstres.Add(monstre);
+            }
         }
-        else if (CheckboxdejaVu.IsChecked)
+        // Si monstres déjà vu checked et monstres pas vu pas checked alors on l'ajoute à la collection et on supprime les monstres pas vu
+        else if (CheckboxdejaVu.IsChecked && !CheckboxpasVu.IsChecked)
         {
-            listMobs = new ObservableCollection<Monstre>(monstresDejaVu);
+            foreach (var monstre in monstresDejaVu)
+            {
+                Monstres.Add(monstre);
+            }
         }
-        else if (CheckboxpasVu.IsChecked)
+        // Si monstres pas vu checked alors on l'ajoute à la collection
+        else if (CheckboxpasVu.IsChecked && !CheckboxdejaVu.IsChecked)
         {
-            listMobs = new ObservableCollection<Monstre>(monstresPasVu);
+            foreach (var monstre in monstresPasVu)
+            {
+                if (!monstresDejaVu.Contains(monstre))
+                {
+                    Monstres.Add(monstre);
+                }
+            }
         }
-        else
-        {
-            listMobs = new ObservableCollection<Monstre>();
-        }
+
     }
 
     private void CheckedVu(object sender, CheckedChangedEventArgs e)
     {
-        UpdateListMobs();
+        UpdateListMobs(MonstresDejaVu);
     }
 
     private void CheckedPasVu(object sender, CheckedChangedEventArgs e)
     {
-        UpdateListMobs();
+        UpdateListMobs(MonstresDejaVu);
     }
 
-    private string imageLinkConverter(string imageLink)
+    private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-        imageLink = String.Concat(imageLink.Where(c => !Char.IsWhiteSpace(c)));
-        imageLink = "collection" + imageLink.ToLower() + ".png";
-        return imageLink;
+        await Navigation.PopAsync();
     }
 }

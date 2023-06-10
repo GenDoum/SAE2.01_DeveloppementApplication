@@ -7,6 +7,10 @@
     <VerticalStackLayout>
 
         <HorizontalStackLayout BackgroundColor="{StaticResource buttonBackgroundColor}">
+            <ImageButton Source="arrow.png" WidthRequest="40"
+                         BackgroundColor="{StaticResource buttonBackgroundColor}"
+                         Clicked="ImageButton_Clicked"/>
+            <Line X1="0" Y1="0" X2="0" Y2="70" Stroke="Black" StrokeThickness="2"/>
             <Label Text=" Monstre déjà vu"></Label>
             <CheckBox x:Name="CheckboxdejaVu"
                       Color="{StaticResource BleuFonce}"
@@ -18,13 +22,15 @@
                       CheckedChanged="CheckedPasVu"></CheckBox>
         </HorizontalStackLayout>
         <Line X1="0" Y1="0" X2="1500" Y2="0" Stroke="Black" StrokeThickness="2"/>
-        <VerticalStackLayout BackgroundColor="AliceBlue">
+        <VerticalStackLayout >
             <ListView x:Name="ListViewMonsters" ItemsSource="{Binding MonstresDejaVu}" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <VerticalStackLayout>
-                                <Image Source="{Binding ImageLink, StringFormat='collection{0}.png'}" HeightRequest="300"/>
+                                <Image Source="{Binding ImageLink}" 
+                                       HeightRequest="50"
+                                       Margin="20, 20, 20, 20"/>
                             </VerticalStackLayout>
                         </ViewCell>
                     </DataTemplate>
