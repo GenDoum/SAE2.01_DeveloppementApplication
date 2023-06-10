@@ -45,6 +45,8 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
             ButtonAddConseil.IsVisible = true;
             ConseilOptionModify.IsVisible = true;
             ConseilOptionDelete.IsVisible = true;
+            dejaVuContainer.IsVisible = true;
+            CheckDejaVu.IsChecked = false;
         }
     }
 
@@ -59,6 +61,21 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         imageCollection.Source = imageLinkConverter((App.Current as App).MonstreSelectionne.AppearanceList.First());
         AddConseilLayout.IsVisible = false;
         conseilSelectionne = null;
+        if ((Application.Current as App).User != null)
+        {
+            foreach (Monstre m in (App.Current as App).User.monstresDejaVu)
+            {
+                if (m.Name.Equals((App.Current as App).MonstreSelectionne.Name))
+                {
+                    CheckDejaVu.IsChecked = true;
+                    break;
+                }
+                else
+                {
+                    CheckDejaVu.IsChecked = false;
+                }
+            }
+        }
         refreshScrollView();
     }
     private void OnAddConseilClicked(object sender, EventArgs e)
@@ -168,12 +185,11 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
     private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        /*
         if (CheckDejaVu.IsChecked)
         {
             if ((App.Current as App).User != null) 
             {
-                (Application.Current as App).MonstreSelectionne.IsChecked = true;
+                CheckDejaVu.IsChecked = true;
                 (Application.Current as App).User.monstresDejaVu.Add((Application.Current as App).MonstreSelectionne);
             }
         }
@@ -181,15 +197,10 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         {
             if ((App.Current as App).User != null)
             {
-                (Application.Current as App).MonstreSelectionne.IsChecked = false;
+                CheckDejaVu.IsChecked = false;
                 (Application.Current as App).User.monstresDejaVu.Remove((Application.Current as App).MonstreSelectionne);
             }
         }
-        */
-
-        /*Si checkbox check
-        ///add le monstre courant à la liste des monstre du user
-        ///si unchecked, retirer le monsrte*/
     }
 
     private void ConseilOptionDelete_Clicked(object sender, EventArgs e)
