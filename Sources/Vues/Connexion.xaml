@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Vues.Connexion"
+             BackgroundImageSource="back.png">
+    
+    <toolkit:DockLayout>
+        <Image
+            Source="stevemc.png"
+            toolkit:DockLayout.DockPosition="Left"
+            HeightRequest="400"
+            Margin="100"/>  
+        <FlexLayout
+            JustifyContent="Center"
+            toolkit:DockLayout.DockPosition="Right"
+            AlignItems="Center"
+            Direction="Column">
+            <FlexLayout.Resources>
+                <Style TargetType="Entry">
+                    <Setter Property="WidthRequest" Value="250" />
+                    <Setter Property="BackgroundColor" Value="{StaticResource Gray200}" />
+                    <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
+                    <Setter Property="Margin" Value="3"/>
+                    <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+                </Style>
+                <Style x:Key="buttonStyle" TargetType="Button">
+                    <Setter Property="FontSize" Value="Small" />
+                    <Setter Property="WidthRequest" Value="100" />
+                    <Setter Property="HeightRequest" Value="50" />
+                    <Setter Property="BorderColor" Value="Black" />
+                    <Setter Property="BorderWidth" Value="1" />
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="BackgroundColor" Value="{StaticResource buttonBackgroundColor}" />
+                    <Setter Property="VisualStateManager.VisualStateGroups">
+                        <VisualStateGroupList>
+                            <VisualStateGroup>
+                                <VisualState x:Name="Normal">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                        Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                        Value="1.05" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </Setter>
+                </Style>
+            </FlexLayout.Resources>
+            <Image
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Source="connexion.png"
+                HeightRequest="70"
+                Margin="0, 0, 0, 30" />
+            <Entry x:Name="IdEntry" TextChanged="IdEntry_TextChanged" Placeholder="Identifiant" ReturnType="Next" />
+            <Entry x:Name="PsswEntry" Placeholder="Mot de passe" IsPassword="True" ReturnType="Next" />
+            <Label x:Name="resultLabel" IsVisible="False" Text="Wrong username or password!" TextColor="Red"/>
+            <Button Style="{StaticResource buttonStyle}"
+                    Text="Valider"
+                    Clicked="ValiderClicked"/>
+        </FlexLayout>
+    </toolkit:DockLayout>
+</ContentPage>

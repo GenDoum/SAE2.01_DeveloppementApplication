@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vues.Accueil"
+             BackgroundImageSource="back.png">
+    <FlexLayout
+        Direction="Column"
+        JustifyContent="Center"
+        AlignItems="Center">
+        <FlexLayout.Resources>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="WidthRequest" Value="250" />
+                <Setter Property="HeightRequest" Value="70" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource buttonBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1.05" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <Style x:Key="labelStyleBottom" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource buttonBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextDecorations"
+                                        Value="None" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="TextDecorations"
+                                        Value="Underline" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </FlexLayout.Resources>
+        <Image
+            Source="bienvenue.png"
+            VerticalOptions="Center"
+            Margin="0, 0, 0, 40"
+            HorizontalOptions="Center"
+            HeightRequest="100"
+            />
+        <Button
+            Clicked="Connection_Clicked"
+            Style="{StaticResource buttonStyle}"
+            Text="Se connecter" />
+        <Button
+            Clicked="Inscription_Clicked"
+            Style="{StaticResource buttonStyle}"
+            Text="Créer un compte" />
+        <Label
+            Style="{StaticResource labelStyleBottom}"
+            Text="Me connecter plus tard"
+            HeightRequest="20">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Invite_Clicked"/>
+            </Label.GestureRecognizers>
+        </Label>
+            
+        
+        <!--IMAGE SORTIE APPLI A FAIRE - EXIT avec porte style minecraft-->
+    </FlexLayout>
+
+</ContentPage>

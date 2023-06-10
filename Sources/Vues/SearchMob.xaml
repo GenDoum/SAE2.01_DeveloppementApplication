@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:shape="Microsoft.Maui.Controls.Shapes"
+             xmlns:model="clr-namespace:Model;assembly=Modèle"
+             x:Class="Vues.SearchMob"
+             BackgroundImageSource="backcollection.jpg">
+    <!--BackgroundImageSource="backcollection.jpg"-->
+    <Grid ColumnDefinitions="Auto, *">
+        <Grid.Resources>
+            <Style x:Key="sectionStyle" TargetType="Border">
+                <Setter Property="Stroke" Value="#735751" />
+                <Setter Property="StrokeThickness" Value="4" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 15" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#efccb2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#f6ccb2" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BorderColor" Value="Black" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="{StaticResource buttonBackgroundColor}" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="PointerOver">
+                                <VisualState.Setters>
+                                    <Setter Property="Scale"
+                                        Value="1.05" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid RowDefinitions="Auto, *" RowSpacing="25" WidthRequest="300"
+              BackgroundColor="{StaticResource buttonBackgroundColor}">
+            <VerticalStackLayout>
+                <HorizontalStackLayout Grid.Row="0">
+                    <ImageButton Source="exit.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}" Clicked="QuitClicked"/>
+                    <ImageButton Source="book.png" WidthRequest="20" BackgroundColor="{StaticResource buttonBackgroundColor}" Clicked="CollectionClicked"/>
+                    <SearchBar x:Name="searchBar" Placeholder="Rechercher un monstre"
+                        PlaceholderColor="DimGray"
+                        CancelButtonColor="DimGray"
+                        TextChanged="SearchBar_TextChanged"
+                        Text="{Binding SearchText, Mode=TwoWay}"/>
+                </HorizontalStackLayout>
+                <Button Grid.Row="1"  
+                        Text="Filtrer"
+                        BackgroundColor="{StaticResource buttonBackgroundColor}"
+                        BorderColor="Black"
+                        Clicked="FilterClicked"/>
+                <HorizontalStackLayout x:Name="HorizonFilterClicked" IsVisible="False">
+                    <Grid ColumnDefinitions="Auto, Auto, Auto, Auto, Auto, Auto"
+                          RowDefinitions="Auto, Auto"
+                          x:Name="GridFilter">
+                        <Label Grid.Column="0">Passive</Label>
+                        <CheckBox x:Name="passive" 
+                                  Color="Green"
+                                  Grid.Column="1"
+                                  IsChecked="True"
+                                  CheckedChanged="passive_CheckedChanged"/>
+                        <Label Grid.Column="2">Hostile</Label>
+                        <CheckBox x:Name="hostile" 
+                                  Color="Red"
+                                  Grid.Column="3"
+                                  IsChecked="True"
+                                  CheckedChanged="hostile_CheckedChanged"/>
+                        <Label Grid.Column="4">Boss</Label>
+                        <CheckBox x:Name="boss"
+                                  Color="Purple"
+                                  Grid.Column="5"
+                                  IsChecked="True"
+                                  CheckedChanged="boss_CheckedChanged"/>
+                    </Grid>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <ListView x:Name="ListViewMonsters" ItemsSource="{Binding MnstrTemp}" Grid.Row="1" ItemTapped="OnClick">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <VerticalStackLayout>
+                                <Image Source="{Binding ImageLink}"> <!-- PROBLEME ICI, LANCE POUR VOIR TU VAS VOIR ça fonctionne 
+                                    mais si tu regardes dans la barre en haut, tu as plein d'erreurs en faisant des recherches -->
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroupList>
+                                            <VisualStateGroup x:Name="CommonStates">
+                                                <VisualState x:Name="PointerOver">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Opacity" Value="1" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState x:Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="Opacity" Value="0.9" />
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateGroupList>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Image>
+                            </VerticalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <ScrollView Grid.Column="1" Margin="10"  x:Name="ScrollLayoutThatNeedsToBeRefreshed">
+            
+            <!-- Grid du Detail contenant toutes les informations du monstre -->
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
+                <Grid ColumnDefinitions="3*, *" Grid.Row="0">
+                    <!-- Checkbox "Déjà Vu-->
+                    <HorizontalStackLayout x:Name="dejaVuContainer" IsVisible="false" Grid.Column="0" VerticalOptions="Start">
+                        <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
+                        <CheckBox Color="Green" CheckedChanged="CheckBox_CheckedChanged" x:Name="CheckDejaVu"/>
+                    </HorizontalStackLayout>
+
+                    <VerticalStackLayout VerticalOptions="Center" Grid.Column="0">
+                        <!-- Description du monstre -->
+                        <Border Style="{StaticResource sectionStyle}">
+                            <StackLayout>
+                                <Label TextDecorations="Underline" Text="Description :" FontSize="Medium"/>
+                                <Label FontSize="Small" Text="{Binding Description, StringFormat='{0}'}" HorizontalOptions="Fill"/>
+                            </StackLayout>
+                        </Border>
+                        <Border Style="{StaticResource sectionStyle}">
+                            <StackLayout>
+                                <Label TextDecorations="Underline" Text="Caractéristiques du monstre :" FontSize="Medium" />
+                                <ListView ItemsSource="{Binding CharacteristicsList}" Grid.Row="0">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small" VerticalOptions="Fill"/>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </Border>
+                        
+                    </VerticalStackLayout>
+                    
+                    <!-- Image du monstre -->
+                    <VerticalStackLayout Grid.Column="1">
+                        
+                        <Border Grid.Row="1" Style="{StaticResource sectionStyle}" HorizontalOptions="Fill">
+                            <Label FontSize="Small" Text="{Binding Dangerosite, StringFormat='Dangerosité : {0}'}"/>
+                        </Border>
+                        <Image  x:Name="imageCollection" HeightRequest="600" HorizontalOptions="End"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <StackLayout Grid.Row="1">
+
+                    <Border Style="{StaticResource sectionStyle}">
+                        <StackLayout>
+                            <Label TextDecorations="Underline" Text="Apparences :" FontSize="Medium"/>
+                            <ListView x:Name="ListAppearance" VerticalOptions="Fill" ItemsSource="{Binding AppearanceList}" Grid.Row="1" ItemTapped="ListAppearance_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Label Text="{Binding ., StringFormat='{0}'}" FontSize="Small"/>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Border>
+                    
+                    <!-- Conseils -->
+                    <Border Grid.Row="3" Style="{StaticResource sectionStyle}">
+                        <StackLayout>
+                            <Label TextDecorations="Underline" Text="Conseils :" FontSize="Medium"/>
+                            <!-- Bouton d'ajout de conseil -->
+                            <Button x:Name="ButtonAddConseil" Margin="8" HorizontalOptions="End" IsVisible="False" Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+                            <HorizontalStackLayout>
+                                <!-- On devrait faire des styles globaux pour ces boutons, comme en haut du XAML -->
+                                <ImageButton
+                                    x:Name="ConseilOptionModify" 
+                                    IsVisible="False" 
+                                    IsEnabled="False"
+                                    CornerRadius="5" 
+                                    Scale="0.7" 
+                                    Source="pencil.png"
+                                    HeightRequest="12" WidthRequest="12"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="ConseilOptionModify_Clicked"/>
+                                <ImageButton
+                                    x:Name="ConseilOptionDelete"
+                                    IsVisible="False" 
+                                    IsEnabled="False"
+                                    CornerRadius="5" 
+                                    Scale="0.7" 
+                                    Source="bin.png" 
+                                    HeightRequest="12" WidthRequest="12"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="ConseilOptionDelete_Clicked"/>
+                            </HorizontalStackLayout>
+                            <VerticalStackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                <Editor x:Name="texteConseilEntry" TextChanged="texteConseilEntry_TextChanged" AutoSize="TextChanges" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                <Grid ColumnDefinitions="*,*" Padding="8" HorizontalOptions="CenterAndExpand">
+                                    <Button Grid.Column="0" Text="Valider" Clicked="OnValiderConseilClicked" />
+                                    <Button Grid.Column="1" Text="Annuler" Clicked="OnExitConseilClicked" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout x:Name="ModifyConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                <Editor x:Name="conseilEditor" TextChanged="conseilEditor_TextChanged" AutoSize="TextChanges" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                <Grid ColumnDefinitions="*,*" Padding="8" HorizontalOptions="CenterAndExpand">
+                                    <Button Grid.Column="0" Text="Valider" Clicked="OnValiderModifConseilClicked" />
+                                    <Button Grid.Column="1" Text="Annuler" Clicked="OnExitModifConseilClicked" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            <ListView x:Name="ListViewConseils"  VerticalOptions="Fill" ItemsSource="{Binding ListConseils}" ItemTapped="ListViewConseils_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- x:DataType="model:Conseil" Besoin de préciser pour pouvoir passer
+                                                                                 l'objet en tant que Conseil en paramètre -->
+                                        <ViewCell>
+                                            <Border BackgroundColor="AntiqueWhite" StrokeThickness="2" StrokeShape="RoundRectangle 10">
+
+                                                <Grid ColumnDefinitions="*,70,70" RowDefinitions="*" Padding="0" MinimumHeightRequest="50" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                                    <!-- LA je ne comprends pas : pour que les VisualStates 
+                                                fonctionnent sur tout le grid, et pas que sur le texte du label, il faut rajouter un background?? Bizarre-->
+                                                    <VerticalStackLayout Padding="15,10,10,10" Grid.Column="0" VerticalOptions="Center">
+                                                        <Label BindingContext="{Binding Auteur}" Text="{Binding Pseudo, StringFormat='{0} :'}"/>
+                                                        <Label x:Name="labelConseil" VerticalOptions="Fill" LineBreakMode="WordWrap" Text="{Binding Texte, StringFormat='{0}'}" />
+                                                        <Editor x:Name="editorConseil" IsVisible="false" VerticalOptions="Fill" Text="{Binding Texte, StringFormat='{0}'}" />
+                                                    </VerticalStackLayout>
+
+                                                </Grid>
+                                            </Border>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Border>
+                    
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vues.Collection"
+             BackgroundImageSource="backcollection.jpg"
+             >
+    <VerticalStackLayout>
+
+        <HorizontalStackLayout BackgroundColor="{StaticResource buttonBackgroundColor}">
+            <Label Text=" Monstre déjà vu"></Label>
+            <CheckBox x:Name="CheckboxdejaVu"
+                      Color="{StaticResource BleuFonce}"
+                      IsChecked="True"
+                      CheckedChanged="CheckedVu"></CheckBox>
+            <Label Text=" Monstre jamais vu"></Label>
+            <CheckBox x:Name="CheckboxpasVu"
+                      Color="{StaticResource BleuFonce}"
+                      CheckedChanged="CheckedPasVu"></CheckBox>
+        </HorizontalStackLayout>
+        <Line X1="0" Y1="0" X2="1500" Y2="0" Stroke="Black" StrokeThickness="2"/>
+        <FlexLayout>
+            <ListView ItemsSource="{Binding listMobs}" BackgroundColor="White">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nom}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </FlexLayout>
+    </VerticalStackLayout>
+
+</ContentPage>
