@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:shape="Microsoft.Maui.Controls.Shapes"
+             xmlns:model="clr-namespace:Model;assembly=Modèle"
              x:Class="Vues.SearchMob"
              BackgroundImageSource="backcollection.jpg">
     <!--BackgroundImageSource="backcollection.jpg"-->
@@ -137,7 +138,7 @@
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" BindingContext="{Binding SelectedItem, Source={x:Reference ListViewMonsters}}">
                 <Grid ColumnDefinitions="3*, *" Grid.Row="0">
                     <!-- Checkbox "Déjà Vu-->
-                    <HorizontalStackLayout Grid.Column="0" VerticalOptions="Start">
+                    <HorizontalStackLayout x:Name="dejaVuContainer" IsVisible="false" Grid.Column="0" VerticalOptions="Start">
                         <Label Text="Déjà vu ?" FontSize="20" TextColor="White" Margin="7"/>
                         <CheckBox Color="Green" CheckedChanged="CheckBox_CheckedChanged" x:Name="CheckDejaVu"/>
                     </HorizontalStackLayout>
@@ -200,6 +201,29 @@
                             <Label TextDecorations="Underline" Text="Conseils :" FontSize="Medium"/>
                             <!-- Bouton d'ajout de conseil -->
                             <Button x:Name="ButtonAddConseil" Margin="8" HorizontalOptions="End" IsVisible="False" Text="Ajouter un conseil" Grid.Row="0" Grid.Column="1" Clicked="OnAddConseilClicked" />
+                            <HorizontalStackLayout>
+                                <!-- On devrait faire des styles globaux pour ces boutons, comme en haut du XAML -->
+                                <ImageButton
+                                    x:Name="ConseilOptionModify" 
+                                    IsVisible="False" 
+                                    IsEnabled="False"
+                                    CornerRadius="5" 
+                                    Scale="0.7" 
+                                    Source="pencil.png"
+                                    HeightRequest="12" WidthRequest="12"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="ConseilOptionModify_Clicked"/>
+                                <ImageButton
+                                    x:Name="ConseilOptionDelete"
+                                    IsVisible="False" 
+                                    IsEnabled="False"
+                                    CornerRadius="5" 
+                                    Scale="0.7" 
+                                    Source="bin.png" 
+                                    HeightRequest="12" WidthRequest="12"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="ConseilOptionDelete_Clicked"/>
+                            </HorizontalStackLayout>
                             <VerticalStackLayout x:Name="AddConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
                                 <Editor x:Name="texteConseilEntry" TextChanged="texteConseilEntry_TextChanged" AutoSize="TextChanges" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
                                 <Grid ColumnDefinitions="*,*" Padding="8" HorizontalOptions="CenterAndExpand">
@@ -207,50 +231,29 @@
                                     <Button Grid.Column="1" Text="Annuler" Clicked="OnExitConseilClicked" />
                                 </Grid>
                             </VerticalStackLayout>
-                            <ListView x:Name="ListViewConseils" VerticalOptions="Fill" ItemsSource="{Binding ListConseils}">
+                            <VerticalStackLayout x:Name="ModifyConseilLayout" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="False">
+                                <Editor x:Name="conseilEditor" TextChanged="conseilEditor_TextChanged" AutoSize="TextChanges" Placeholder="Texte du conseil" PlaceholderColor="{StaticResource Gray500}"/>
+                                <Grid ColumnDefinitions="*,*" Padding="8" HorizontalOptions="CenterAndExpand">
+                                    <Button Grid.Column="0" Text="Valider" Clicked="OnValiderModifConseilClicked" />
+                                    <Button Grid.Column="1" Text="Annuler" Clicked="OnExitModifConseilClicked" />
+                                </Grid>
+                            </VerticalStackLayout>
+                            <ListView x:Name="ListViewConseils"  VerticalOptions="Fill" ItemsSource="{Binding ListConseils}" ItemTapped="ListViewConseils_ItemTapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
+                                        <!-- x:DataType="model:Conseil" Besoin de préciser pour pouvoir passer
+                                                                                 l'objet en tant que Conseil en paramètre -->
                                         <ViewCell>
                                             <Border BackgroundColor="AntiqueWhite" StrokeThickness="2" StrokeShape="RoundRectangle 10">
 
-                                                <VisualStateManager.VisualStateGroups>
-                                                    <VisualStateGroupList>
-                                                        <VisualStateGroup x:Name="CommonStates">
-                                                            <VisualState x:Name="PointerOver">
-                                                                <VisualState.Setters>
-                                                                    <Setter TargetName="ConseilOptions" Property="IsVisible"
-                                                                            Value="true" />
-                                                                </VisualState.Setters>
-                                                            </VisualState>
-                                                            <VisualState x:Name="Normal">
-                                                                <VisualState.Setters>
-                                                                    <Setter TargetName="ConseilOptions" Property="IsVisible" 
-                                                                            Value="false" />
-                                                                </VisualState.Setters>
-                                                            </VisualState>
-                                                        </VisualStateGroup>
-                                                    </VisualStateGroupList>
-                                                </VisualStateManager.VisualStateGroups>
-
-                                                <Grid ColumnDefinitions="*,90" RowDefinitions="*" Padding="0" MinimumHeightRequest="50" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                                <Grid ColumnDefinitions="*,70,70" RowDefinitions="*" Padding="0" MinimumHeightRequest="50" HorizontalOptions="Fill" VerticalOptions="Fill">
                                                     <!-- LA je ne comprends pas : pour que les VisualStates 
-                                                fonctionnent sur tout le grid, et pas que sur le texte du label, il faut rajouter un background?? Bizarre...-->
-
-
+                                                fonctionnent sur tout le grid, et pas que sur le texte du label, il faut rajouter un background?? Bizarre-->
                                                     <VerticalStackLayout Padding="15,10,10,10" Grid.Column="0" VerticalOptions="Center">
                                                         <Label BindingContext="{Binding Auteur}" Text="{Binding Pseudo, StringFormat='{0} :'}"/>
-                                                        <Label VerticalOptions="Fill" LineBreakMode="WordWrap" Text="{Binding Texte, StringFormat='{0}'}" />
+                                                        <Label x:Name="labelConseil" VerticalOptions="Fill" LineBreakMode="WordWrap" Text="{Binding Texte, StringFormat='{0}'}" />
+                                                        <Editor x:Name="editorConseil" IsVisible="false" VerticalOptions="Fill" Text="{Binding Texte, StringFormat='{0}'}" />
                                                     </VerticalStackLayout>
-
-                                                    <!-- Les boutons de modifications et de suppression-->
-                                                    <HorizontalStackLayout x:Name="ConseilOptions" Grid.Column="1" HorizontalOptions="End" IsVisible="False">
-                                                        <ImageButton x:Name="lolilol" CornerRadius="5" Scale="0.7" Source="bin.png" HeightRequest="12" WidthRequest="12"/>
-                                                        <ImageButton CornerRadius="5" Scale="0.7" Source="pencil.png" HeightRequest="12" WidthRequest="12" Clicked="ImageButton_Clicked"/>
-                                                        <VerticalStackLayout x:Name="VerticalModifConseil" Grid.Row="2" IsVisible="False">
-                                                            <Editor Text="{Binding ListConseils}"></Editor>
-                                                            <Button x:Name="BoutonValidModif" Text="Confirmer les modifications"/>
-                                                        </VerticalStackLayout>
-                                                    </HorizontalStackLayout>
 
                                                 </Grid>
                                             </Border>
