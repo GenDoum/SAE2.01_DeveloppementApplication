@@ -203,6 +203,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         }
     }
 
+
     private void ConseilOptionDelete_Clicked(object sender, EventArgs e)
     {
         if (conseilSelectionne != null)
