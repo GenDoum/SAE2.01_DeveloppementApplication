@@ -12,6 +12,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 {
     public ObservableCollection<Monstre> MnstrTemp { get; set; }
     private string searchText;
+    private Conseil conseilSelectionne { get; set; }
     public string SearchText
     {
         get
@@ -42,6 +43,10 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         if ((Application.Current as App).User != null)
         {
             ButtonAddConseil.IsVisible = true;
+            ConseilOptionModify.IsVisible = true;
+            ConseilOptionDelete.IsVisible = true;
+            dejaVuContainer.IsVisible = true;
+            CheckDejaVu.IsChecked = false;
         }
     }
 
@@ -55,11 +60,27 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 		(App.Current as App).MonstreSelectionne = e.Item as Monstre;
         imageCollection.Source = imageLinkConverter((App.Current as App).MonstreSelectionne.AppearanceList.First());
         AddConseilLayout.IsVisible = false;
+        conseilSelectionne = null;
+        if ((Application.Current as App).User != null)
+        {
+            foreach (Monstre m in (App.Current as App).User.monstresDejaVu)
+            {
+                if (m.Name.Equals((App.Current as App).MonstreSelectionne.Name))
+                {
+                    CheckDejaVu.IsChecked = true;
+                    break;
+                }
+                else
+                {
+                    CheckDejaVu.IsChecked = false;
+                }
+            }
+        }
         refreshScrollView();
     }
     private void OnAddConseilClicked(object sender, EventArgs e)
     {
-        // Afficher les champs à remplir pour ajouter un conseil
+        // Afficher les champs Ã  remplir pour ajouter un conseil
         if (!AddConseilLayout.IsVisible)
         {
             AddConseilLayout.IsVisible = true;
@@ -73,7 +94,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         if (AddConseilLayout != null)
         {
             string texteConseil = texteConseilEntry.Text;
-            // Ajouter le nouveau conseil à la liste des conseils du monstre sélectionné
+            // Ajouter le nouveau conseil Ã  la liste des conseils du monstre sÃ©lectionnÃ©
             var selectedMonstre = (App.Current as App).MonstreSelectionne;
             if (selectedMonstre != null && !string.IsNullOrWhiteSpace(texteConseil))
             {
@@ -107,7 +128,7 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
 
     private void FilterClicked(object sender, EventArgs e)
     {
-        // Inverse la valeur booléenne de IsVisible => Permet d'afficher ou non les boutons de filtrage
+        // Inverse la valeur boolÃ©enne de IsVisible => Permet d'afficher ou non les boutons de filtrage
         HorizonFilterClicked.IsVisible = !HorizonFilterClicked.IsVisible;
     }
 
@@ -159,16 +180,16 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
     private async void QuitClicked(object sender, EventArgs e)
     {
         (Application.Current as App).User = null;
-        await Navigation.PushAsync(new Accueil());
+        await Navigation.PopToRootAsync(); //Pour retourner Ã  la page racine
     }
 
     private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        
         if (CheckDejaVu.IsChecked)
         {
             if ((App.Current as App).User != null) 
             {
+                CheckDejaVu.IsChecked = true;
                 (Application.Current as App).User.monstresDejaVu.Add((Application.Current as App).MonstreSelectionne);
             }
         }
@@ -176,13 +197,80 @@ public partial class SearchMob : ContentPage, INotifyPropertyChanged
         {
             if ((App.Current as App).User != null)
             {
+                CheckDejaVu.IsChecked = false;
                 (Application.Current as App).User.monstresDejaVu.Remove((Application.Current as App).MonstreSelectionne);
             }
         }
-        
+    }
 
-        ///Si checkbox check
-        ///add le monstre courant à la liste des monstre du user
-        ///si unchecked, retirer le monsrte
+    private void ConseilOptionDelete_Clicked(object sender, EventArgs e)
+    {
+        if (conseilSelectionne != null)
+        {
+            if ((App.Current as App).User.Pseudo.Equals(conseilSelectionne.Auteur.Pseudo))
+            {
+                (App.Current as App).MonstreSelectionne.ListConseils.Remove(conseilSelectionne);
+                ConseilOptionModify.IsEnabled = false;
+                ConseilOptionDelete.IsEnabled = false;
+            }
+        }
+    }
+
+    private void ConseilOptionModify_Clicked(object sender, EventArgs e)
+    {
+        if (!ModifyConseilLayout.IsVisible)
+        {
+            ModifyConseilLayout.IsVisible = true;
+            conseilEditor.Text = conseilSelectionne.Texte;
+            refreshScrollView();
+        }
+    }
+
+    private void ListViewConseils_ItemTapped(object sender, ItemTappedEventArgs e)
+    {
+        if((App.Current as App).User != null)
+        {
+            conseilSelectionne = e.Item as Conseil;
+            if (conseilSelectionne != null && (App.Current as App).User.Pseudo.Equals(conseilSelectionne.Auteur.Pseudo))
+            {
+                ConseilOptionModify.IsEnabled = true;
+                ConseilOptionDelete.IsEnabled = true;
+            }
+            else
+            {
+                ConseilOptionModify.IsEnabled = false;
+                ConseilOptionDelete.IsEnabled = false;
+            }
+        }
+    }
+
+    private void conseilEditor_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        (ScrollLayoutThatNeedsToBeRefreshed as IView).InvalidateMeasure();
+    }
+
+    private void OnValiderModifConseilClicked(object sender, EventArgs e)
+    {
+        if (ModifyConseilLayout != null)
+        {
+            string texteConseil = conseilEditor.Text;
+            var selectedMonstre = (App.Current as App).MonstreSelectionne;
+            if (selectedMonstre != null && !string.IsNullOrWhiteSpace(texteConseil) && !conseilSelectionne.Texte.Equals(texteConseil))
+            {
+                selectedMonstre.ListConseils.Remove(conseilSelectionne);
+                selectedMonstre.ListConseils.Add(new Conseil((App.Current as App).User, texteConseil, selectedMonstre));
+            }
+            conseilEditor.Text = null;
+            ModifyConseilLayout.IsVisible = false;
+            ConseilOptionModify.IsEnabled = false;
+            ConseilOptionDelete.IsEnabled = false;
+        }
+        refreshScrollView();
+    }
+
+    private void OnExitModifConseilClicked(object sender, EventArgs e)
+    {
+        conseilEditor.Text = null;
+        ModifyConseilLayout.IsVisible = false;
     }
 }
