@@ -21,6 +21,7 @@ namespace Vues
 
         private async void Invite_Clicked(object sender, EventArgs e)
         {
+            (Application.Current as App).User = null;
             await Navigation.PushAsync(new SearchMob());
         }
     }
