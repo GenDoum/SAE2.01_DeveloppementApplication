@@ -1,4 +1,4 @@
-SAE 2.01 : Développement d'une application en XAML et C#
+SAE 2.01 : Développement d'une application en XAML et C# avec le Framawork .NET 7
 
 
 
